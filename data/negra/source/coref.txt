@@ -1,0 +1,25 @@
+1 501 %Db=Purist
+1 502 %GENERIC
+1 503 %R1=Komponist
+1 504 %GENERIC
+1 505 %R1=Purist
+2 1 %R=Komponist
+2 10 %R=Komponist
+3 11 %R=Komponist
+3 14 %R=Komponist
+3 502 %GENERIC
+4 19 %R=Musik/2
+4 501 %Db=Komponist %R1=Musik/2
+5 7 %R=Musik/2
+6 500 %R=Musik/2
+7 500 %R1=Platten#@firma
+7 502 %R=Musik/2
+8 18 %R=Komponist
+8 500 %R=Komponist
+8 502 %R=Platten#@firma
+9 6 %R=<hum>Philip_Glass
+9 500 %R1=<hum>Philip_Glass
+10 1 %R=<hum>Philip_Glass
+10 22 %R=<hum>Philip_Glass
+10 501 %GENERIC
+10 507 %R=<hum>Philip_Glass
