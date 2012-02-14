@@ -27,10 +27,16 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.shared.JenaException;
 import com.hp.hpl.jena.vocabulary.*;
 import com.sun.org.apache.xpath.internal.XPathFactory;
 
-/** read GrAF, build RDF */
+/** read GrAF, build RDF 
+ * 
+ * known bugs: 
+ * - no support for multiply defined GrAF IDs
+ * - no support for Terminals with empty strings (yet) in mpqa
+ * */
 public class GrAF2POWLA {
 
 	final String namespace;
@@ -57,6 +63,7 @@ public class GrAF2POWLA {
 
     final Property powla_hasAnnotation;	
     final Resource powla_Nonterminal;
+    final Resource powla_Relation;
     final Property powla_hasChild;
 	final Property powla_rootOfDocument;
 	final Resource powla_Root;
@@ -73,7 +80,10 @@ public class GrAF2POWLA {
 	final Property powla_string;
 	final Property powla_firstTerminal;
 	final Property powla_lastTerminal;
-
+	final Property powla_layerID;
+	final Property powla_hasSource; 
+	final Property powla_hasTarget ; 
+	
 	final Resource corpus;
 	
     final GraphParser parser; 
@@ -81,7 +91,10 @@ public class GrAF2POWLA {
 	/** create model, declare vocabulary, declare ontology 
 	 * @throws SAXException */
 	public GrAF2POWLA(String prefix, String namespace) throws SAXException, MalformedURLException  {
-		
+
+		PrintStream stdout = System.out;
+		System.setOut(System.err); // redirect GrAF log messages (including asynchronous messages) to stderr
+
 		parser = new GraphParser();
 		
 		//System.err.println("GrAF2POWLA.<init>("+namespace+" "+namespace+")");
@@ -92,10 +105,19 @@ public class GrAF2POWLA {
 		String uri = namespace.replaceFirst("[#/]$", "");
 		
 		model = ModelFactory.createDefaultModel();
+		
 		try {
-			// if the Model already exists, add its content
-			model.read(URI.create(uri).toURL().openStream(), null);
-		} catch (IOException e) { }
+			// if the Model already exists, add its content	
+			model.read(URI.create(uri).toURL().openStream(), this.namespace);
+		} catch (IOException e) { 
+			System.err.println("creating new model for URI "+uri);
+			model.removeAll();
+		} catch (JenaException e) {
+			System.err.println("warning: URI "+uri+" does not resolve to a valid RDF resource, ignoring its content:");
+			System.err.println("(details: "+e.getMessage()+")");
+			model.removeAll();
+		}
+		System.setOut(stdout);
 		
 		model.setNsPrefix("rdf", rdf);
         model.setNsPrefix("rdfs", rdfs);
@@ -103,6 +125,7 @@ public class GrAF2POWLA {
         model.setNsPrefix("dc", dc);
         model.setNsPrefix("powla", powla);
         model.setNsPrefix(prefix,this.namespace);
+        model.setNsPrefix("",this.namespace);
 
         rdf_type = model.createProperty(rdf+"type");
         rdfs_subPropertyOf = model.createProperty(rdfs+"subPropertyOf");
@@ -120,7 +143,9 @@ public class GrAF2POWLA {
         powla_hasAnnotation.addProperty(rdf_type,owl_DatatypeProperty);
     	powla_Nonterminal = model.createResource(powla+"Nonterminal").addProperty(rdf_type, owl_Class);
     	powla_hasChild = model.createProperty(powla+"hasChild");
+    	powla_hasChild.addProperty(rdf_type, owl_ObjectProperty);
     	powla_rootOfDocument = model.createProperty(powla+"rootOfDocument");
+    	powla_rootOfDocument.addProperty(rdf_type, owl_ObjectProperty);
     	powla_Root = model.createResource(powla+"Root").addProperty(rdf_type, owl_Class);
     	powla_Document = model.createResource(powla+"Document").addProperty(rdf_type,owl_Class);
     	powla_Layer = model.createResource(powla+"Layer").addProperty(rdf_type,owl_Class);
@@ -132,16 +157,27 @@ public class GrAF2POWLA {
     	powla_hasDocument = model.createProperty(powla+"hasDocument");
     	powla_hasDocument.addProperty(rdf_type, owl_ObjectProperty);
     	powla_Terminal = model.createResource(powla+"Terminal");
+    	powla_Terminal.addProperty(rdf_type, owl_Class);
     	powla_start = model.createProperty(powla+"startPosition");
+    	powla_start.addProperty(rdf_type, owl_DatatypeProperty);
     	powla_end = model.createProperty(powla+"endPosition");
-    	powla_next = model.createProperty(powla+"nextNode"); 
+    	powla_end.addProperty(rdf_type, owl_DatatypeProperty);
+    	powla_next = model.createProperty(powla+"nextNode");
+    	powla_next.addProperty(rdf_type, owl_ObjectProperty);
     	powla_string = model.createProperty(powla+"hasStringValue");
     	powla_firstTerminal = model.createProperty(powla+"firstTerminal");
     	powla_firstTerminal.addProperty(rdf_type, owl_ObjectProperty);
     	powla_lastTerminal = model.createProperty(powla+"lastTerminal");
     	powla_lastTerminal.addProperty(rdf_type, owl_ObjectProperty);
-
-
+    	powla_layerID = model.createProperty(powla+"layerID");
+    	powla_layerID.addProperty(rdf_type, owl_DatatypeProperty);
+    	powla_Relation = model.createResource(powla+"Relation");
+    	powla_Relation.addProperty(rdf_type, owl_Class);
+    	powla_hasTarget = model.createProperty(powla+"hasTarget");
+    	powla_hasTarget.addProperty(rdf_type, owl_ObjectProperty);
+    	powla_hasSource= model.createProperty(powla+"hasSource");
+    	powla_hasSource.addProperty(rdf_type, owl_ObjectProperty);
+    	
         // declare ontology
         model.createResource(uri)
         	.addProperty(rdf_type, model.createResource(owl+"Ontology")/*.addProperty(rdf_type,owl_Class)*/)
@@ -163,6 +199,7 @@ public class GrAF2POWLA {
         GraphParser parser = new GraphParser(); 
         System.err.print(".");
     	File ancDir = ancFile.getParentFile();
+    	if(ancDir==null) ancDir=new File(".");
     	// heuristic filters for ANC/GrAF naming conventions
         System.err.println(". ok");
 
@@ -252,7 +289,7 @@ public class GrAF2POWLA {
 				.addProperty(rdf_type,powla_Document);
 		System.err.print(".");
 		// metadata (at the moment a provisional direct RDF linearization of the XCES header)
-		addMetadata(document,ancFile);
+		// addMetadata(document,ancFile);
 		System.err.println(". ok");
 		
         		
@@ -361,7 +398,12 @@ public class GrAF2POWLA {
 	
 	/** perform a SPARQL query on model */
 	public ResultSet query(String query) {
-		return QueryExecutionFactory.create(QueryFactory.create(query), model).execSelect();
+		try {
+			return QueryExecutionFactory.create(QueryFactory.create(query), model).execSelect();
+		} catch (Exception e) {
+			System.err.println(query);
+			return QueryExecutionFactory.create(QueryFactory.create(query), model).execSelect();
+		}
 	}
 		
 	/** set firstTerminal and lastTerminal for every Node recursively, starting from the Root */
@@ -386,19 +428,26 @@ public class GrAF2POWLA {
 						lastChildTerminal=child.getPropertyResourceValue(powla_lastTerminal);
 					}
 					
-					long pos = firstChildTerminal.getProperty(powla_start).getLong();
-					if(pos<=start) {
-						firstTerminal=firstChildTerminal;
-						start=pos;
-					}
-					pos = lastChildTerminal.getProperty(powla_end).getLong();
-					if(pos>=end) {
-						lastTerminal=lastChildTerminal;
-						end=pos;
+					try { 
+						// in GrAF, nodes without anchoring in the primary data are possible, e.g., empty arguments in FrameNet annotations, cf, MASC, HistoryGreek-fn.xmk#fn-n3950
+						// in PAULA, this is currently not allowed, but for consistency with GrAF, POWLA should support that
+						// print a warning
+						long pos = firstChildTerminal.getProperty(powla_start).getLong();
+						if(pos<=start) {
+							firstTerminal=firstChildTerminal;
+							start=pos;
+						}
+						pos = lastChildTerminal.getProperty(powla_end).getLong();
+						if(pos>=end) {
+							lastTerminal=lastChildTerminal;
+							end=pos;
+						}
+					} catch (NullPointerException e) {
+						System.err.println("warning: node "+child+" is not anchored in the primary data");
 					}
 				} catch (NullPointerException e) {
 					System.err.println("\nwhile consolidating "+root);
-					e.printStackTrace(); // tocheck: why does that happen ?
+					e.printStackTrace(); // shouldn't occur
 				}
 			}
 			try {
@@ -428,7 +477,7 @@ public class GrAF2POWLA {
 		layer.addProperty(rdfs_subClassOf, 
 				model.createResource()
 					.addProperty(rdf_type, owl_Restriction)
-					.addProperty(owl_onProperty, model.createResource(powla+"layerID"))
+					.addProperty(owl_onProperty, powla_layerID)
 					.addProperty(owl_hasValue, layerID));
 		
 		Resource documentLayer = 		
@@ -470,14 +519,11 @@ public class GrAF2POWLA {
 			// todo: check whether all regions are covered by children
 			if(node.getOutEdges().size()==0) 
 				for(ILink link : node.getLinks())
-					for(IRegion region : link.regions()) 
+					for(IRegion region : link.regions())
 						nonterminal.addProperty(powla_hasChild, model.createResource(namespace+region.getId()));
 		}
 		
 		// define Relations (Edges)
-		Resource powla_Relation = model.createResource(powla+"Relation");
-		Property powla_isSourceOf = model.createProperty(powla+"isSourceOf");
-		Property powla_hasTarget = model.createProperty(powla+"hasTarget");
 		for(IEdge edge : graph.edges()) {
 			Resource src = 
 				model.createResource(namespace+edge.getFrom().getId());
@@ -486,7 +532,7 @@ public class GrAF2POWLA {
 			Resource relation =
 				model.createResource(namespace+edge.getId())
 					.addProperty(rdf_type, powla_Relation)
-					.addProperty(powla_isSourceOf,src)
+					.addProperty(powla_hasSource,src)
 					.addProperty(powla_hasTarget,tgt);
 			addAnnotations(relation, edge.annotations());
 		}
@@ -512,7 +558,7 @@ public class GrAF2POWLA {
 				// todo: resolve conflicting segmentation (cf. Chiarcos et al. 2009, LAW, however, not clear how this would look like in the GrAF API)
 				if(layerID.equals("seg")) {
 					terminal.addProperty(rdf_type, powla_Terminal);
-					terminal.addLiteral(powla_start, start).addLiteral(powla_end, end); // Fact++: unsupported datatype long
+					terminal.addLiteral(powla_start, model.createTypedLiteral(start)).addLiteral(powla_end, model.createTypedLiteral(end)); // Fact++: unsupported datatype long
 					terminal.addProperty(powla_string, getString(textFile, start, end));
 					terminal.addProperty(rdf_type, powla_Root);
 					terminal.addProperty(powla_hasLayer,documentLayer);
@@ -524,13 +570,13 @@ public class GrAF2POWLA {
 						Resource startTerm =
 							this.query("SELECT ?term " +
 									"WHERE { ?term <"+rdf_type+"> <"+powla_Terminal+"> ." +
-										   " ?term <"+powla_start+"> "+model.createTypedLiteral(start)+" " +
+										   " ?term <"+powla_start+"> "+start+" " +//model.createTypedLiteral(start)+" " +
 										   "} " +
 									"LIMIT 1" ).next().getResource("term");
 						Resource endTerm = 
 							this.query("SELECT ?term " +
 									"WHERE { ?term <"+rdf_type+"> <"+powla_Terminal+"> ." +
-										   " ?term <"+powla_end+"> "+model.createTypedLiteral(end)+" " +
+										   " ?term <"+powla_end+"> "+end+" " +//model.createTypedLiteral(end)+" " +
 										   "} " +
 									"LIMIT 1" ).next().getResource("term");
 						if(!(startTerm.equals(endTerm) && startTerm.getURI().equals(terminal.getURI()))) {
@@ -567,7 +613,6 @@ public class GrAF2POWLA {
 								for(Resource t = startTerm; !t.equals(endTerm); t=startTerm.getPropertyResourceValue(powla_next).asResource())
 									terminal.addProperty(powla_hasChild,t);
 								terminal.addProperty(powla_hasChild,endTerm);
-								terminal.addProperty();
 							}
 						}
 					} catch(NoSuchElementException e) {
@@ -596,12 +641,16 @@ public class GrAF2POWLA {
 	}
 
 	protected Resource addAnnotations(Resource r, Iterable<IAnnotation> annotations) { 
+		HashSet<String> knownAttributes = new HashSet<String>();
 		for(IAnnotation annotation : annotations) { // GrAF is redundant here, label+annotationSet is replicated in feature structure
 			// labels
 			String value = annotation.getLabel(); 
 			String att = annotation.getAnnotationSet().getName(); // getType() ?
 			if(att.contains(":")) {
-				System.err.print("warning: non-supported attribute "+att+" at "+r);
+				if(!knownAttributes.contains(att)) {
+					System.err.println("warning: non-supported attribute "+att+" at "+r);
+					knownAttributes.add(att);
+				}
 			} else {
 				Property powla_hasAnno = 
 					model.createProperty(powla+"has_"+att.replaceAll("[#/:]","."));
@@ -617,7 +666,6 @@ public class GrAF2POWLA {
 				// because this is metadata (about annotation), not annotation
 				att = feat.getName();
 				if(att.contains(":")) {
-					System.err.print("warning: non-supported attribute "+att+" at "+r);
 					Property powla_hasAnno = 
 						model.createProperty(powla+"has_"+att.replaceAll("[#/:]",".")+"_fs");
 					powla_hasAnno.addProperty(rdf_type, owl_DatatypeProperty)

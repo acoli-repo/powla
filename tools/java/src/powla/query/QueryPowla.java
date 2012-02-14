@@ -1,7 +1,8 @@
 package powla.query;
 
-import virtuoso.sesame2.driver.*;
+//import virtuoso.sesame2.driver.*;
 import org.openrdf.repository.*;
+import org.openrdf.repository.dataset.DatasetRepository;
 import org.openrdf.rio.*;
 import java.io.*;
 import java.net.*;
@@ -16,7 +17,8 @@ import org.openrdf.model.*;
 /** always close() connections, even in case of exceptions */
 public class QueryPowla {
 	
-	Repository myRepository = new VirtuosoRepository("jdbc:virtuoso://localhost:1111","dba","dba");
+	Repository myRepository = new DatasetRepository();
+		// new VirtuosoRepository("jdbc:virtuoso://localhost:1111","dba","dba");
 	
 	public QueryPowla() throws RepositoryException {
 		myRepository.initialize();
