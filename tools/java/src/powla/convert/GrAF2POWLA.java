@@ -203,7 +203,6 @@ public class GrAF2POWLA {
     	// heuristic filters for ANC/GrAF naming conventions
         System.err.println(". ok");
 
-        
         System.err.print("analyze XCES meta data ..");
         String textFile = null;
         try {
@@ -677,6 +676,20 @@ public class GrAF2POWLA {
 		return r;
 	}
 
+	/** in a GrAF project (*.anc), IDs in different files are unambiguous only among groups of documents that depend one on another<br/>
+	 *  independent annotation layers (xml files) may use the same id for different nodes
+	 *  
+	 * @param file *.anc file
+	 * @return Hashtable: layer2grafID2modifiedgrafID (layers represented by layer id)
+	 */
+	protected Hashtable<String, Hashtable<String,String>> disambiguateGrAFIDs(File file) {
+		Hashtable<String,Hashtable<String,String>> result = new Hashtable<String,Hashtable<String,String>>();
+		Hashtable<String,String> layerDependsOn = new Hashtable<String,String>();
+		
+		Hashtable<String,String> idOnLayer = new Hashtable<String,String>();
+		return result;
+	}
+
 	
 	/*
 	 * @args[0] prefix and namespace, e.g., mycorpus=http://mycorpora.org/mycorpus.owl# (should end with # or /)
@@ -706,7 +719,8 @@ public class GrAF2POWLA {
         if(args.length>2) {
         	System.err.print(args[2]+" ..");
         } else System.err.print("stdout ..");
-        g2p.model.write(out,"RDF/XML-ABBREV");
+        g2p.model.write(out,"RDF/XML");
         System.err.println(". ok");    
     }
+
 }
