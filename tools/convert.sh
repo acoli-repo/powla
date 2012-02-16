@@ -47,7 +47,8 @@ done;`;
 
 if echo $* | grep -i '\-f GrAF' >& /dev/null; then
 	echo "convert GrAF to RDF" 1>&2;
-	java -Xmx1000m -classpath $CLASSPATH powla.convert.GrAF2POWLA graf=http://www.anc.org/graf/ $ARGFILES 
+	java -classpath $CLASSPATH powla.convert.DisambiguateGrAFIDs $ARGFILES;
+	java -Xmx1000m -classpath $CLASSPATH powla.convert.GrAF2POWLA graf=http://www.anc.org/graf/ $ARGFILES;
 
 # else: print help
 else bash $0 -help;
