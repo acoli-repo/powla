@@ -1,0 +1,2653 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graph xmlns="http://www.xces.org/ns/GrAF/1.0/">
+    <header>
+        <tagsDecl>
+            <tagUsage gi="WordNet" occurs="117"/>
+        </tagsDecl>
+        <annotationSets>
+            <annotationSet name="WordNet" type="http://wordnet.princeton.edu/"/>
+            <annotationSet name="xces" type="http://www.xces.org/schema/2003"/>
+        </annotationSets>
+    </header>
+    <region xml:id="wn_r1" anchors="0 51"/>
+    <region xml:id="wn_r0" anchors="4 13"/>
+    <region xml:id="wn_r4" anchors="53 193"/>
+    <region xml:id="wn_r2" anchors="57 66"/>
+    <region xml:id="wn_r3" anchors="151 158"/>
+    <region xml:id="wn_r8" anchors="195 361"/>
+    <region xml:id="wn_r5" anchors="278 283"/>
+    <region xml:id="wn_r6" anchors="303 312"/>
+    <region xml:id="wn_r7" anchors="353 360"/>
+    <region xml:id="wn_r12" anchors="363 552"/>
+    <region xml:id="wn_r9" anchors="370 379"/>
+    <region xml:id="wn_r10" anchors="441 447"/>
+    <region xml:id="wn_r11" anchors="500 506"/>
+    <region xml:id="wn_r15" anchors="554 682"/>
+    <region xml:id="wn_r13" anchors="560 569"/>
+    <region xml:id="wn_r14" anchors="674 681"/>
+    <region xml:id="wn_r17" anchors="684 896"/>
+    <region xml:id="wn_r16" anchors="793 802"/>
+    <region xml:id="wn_r19" anchors="898 1162"/>
+    <region xml:id="wn_r18" anchors="1147 1156"/>
+    <region xml:id="wn_r22" anchors="1164 1608"/>
+    <region xml:id="wn_r20" anchors="1341 1347"/>
+    <region xml:id="wn_r21" anchors="1416 1425"/>
+    <region xml:id="wn_r24" anchors="1610 1751"/>
+    <region xml:id="wn_r23" anchors="1707 1716"/>
+    <region xml:id="wn_r26" anchors="1753 1874"/>
+    <region xml:id="wn_r25" anchors="1769 1778"/>
+    <region xml:id="wn_r29" anchors="1876 2005"/>
+    <region xml:id="wn_r27" anchors="1895 1904"/>
+    <region xml:id="wn_r28" anchors="1983 1989"/>
+    <region xml:id="wn_r32" anchors="2007 2206"/>
+    <region xml:id="wn_r30" anchors="2141 2145"/>
+    <region xml:id="wn_r31" anchors="2175 2184"/>
+    <region xml:id="wn_r35" anchors="2208 2386"/>
+    <region xml:id="wn_r33" anchors="2289 2298"/>
+    <region xml:id="wn_r34" anchors="2299 2304"/>
+    <region xml:id="wn_r39" anchors="2388 2689"/>
+    <region xml:id="wn_r36" anchors="2431 2436"/>
+    <region xml:id="wn_r37" anchors="2449 2458"/>
+    <region xml:id="wn_r38" anchors="2597 2603"/>
+    <region xml:id="wn_r41" anchors="2691 2904"/>
+    <region xml:id="wn_r40" anchors="2882 2891"/>
+    <region xml:id="wn_r43" anchors="2906 2957"/>
+    <region xml:id="wn_r42" anchors="2936 2945"/>
+    <region xml:id="wn_r48" anchors="2959 3304"/>
+    <region xml:id="wn_r44" anchors="3131 3137"/>
+    <region xml:id="wn_r45" anchors="3163 3169"/>
+    <region xml:id="wn_r46" anchors="3198 3207"/>
+    <region xml:id="wn_r47" anchors="3255 3261"/>
+    <region xml:id="wn_r50" anchors="3306 3490"/>
+    <region xml:id="wn_r49" anchors="3421 3430"/>
+    <region xml:id="wn_r52" anchors="3492 3800"/>
+    <region xml:id="wn_r51" anchors="3668 3677"/>
+    <region xml:id="wn_r54" anchors="3802 4007"/>
+    <region xml:id="wn_r53" anchors="3898 3907"/>
+    <region xml:id="wn_r57" anchors="4009 4160"/>
+    <region xml:id="wn_r55" anchors="4118 4123"/>
+    <region xml:id="wn_r56" anchors="4136 4145"/>
+    <region xml:id="wn_r59" anchors="4162 4275"/>
+    <region xml:id="wn_r58" anchors="4169 4178"/>
+    <region xml:id="wn_r61" anchors="4277 4571"/>
+    <region xml:id="wn_r60" anchors="4539 4548"/>
+    <region xml:id="wn_r63" anchors="4573 4875"/>
+    <region xml:id="wn_r62" anchors="4713 4722"/>
+    <region xml:id="wn_r65" anchors="4877 5099"/>
+    <region xml:id="wn_r64" anchors="5023 5032"/>
+    <region xml:id="wn_r67" anchors="5101 5229"/>
+    <region xml:id="wn_r66" anchors="5130 5139"/>
+    <region xml:id="wn_r70" anchors="5231 5460"/>
+    <region xml:id="wn_r68" anchors="5274 5279"/>
+    <region xml:id="wn_r69" anchors="5305 5314"/>
+    <region xml:id="wn_r72" anchors="5462 5681"/>
+    <region xml:id="wn_r71" anchors="5610 5619"/>
+    <region xml:id="wn_r74" anchors="5683 5825"/>
+    <region xml:id="wn_r73" anchors="5804 5813"/>
+    <region xml:id="wn_r76" anchors="5827 5985"/>
+    <region xml:id="wn_r75" anchors="5846 5855"/>
+    <region xml:id="wn_r78" anchors="5987 6164"/>
+    <region xml:id="wn_r77" anchors="6032 6041"/>
+    <region xml:id="wn_r80" anchors="6166 6395"/>
+    <region xml:id="wn_r79" anchors="6304 6313"/>
+    <region xml:id="wn_r82" anchors="6397 6591"/>
+    <region xml:id="wn_r81" anchors="6460 6469"/>
+    <region xml:id="wn_r84" anchors="6593 6703"/>
+    <region xml:id="wn_r83" anchors="6686 6695"/>
+    <region xml:id="wn_r87" anchors="6705 6983"/>
+    <region xml:id="wn_r85" anchors="6869 6875"/>
+    <region xml:id="wn_r86" anchors="6900 6909"/>
+    <region xml:id="wn_r89" anchors="6985 7076"/>
+    <region xml:id="wn_r88" anchors="7045 7054"/>
+    <region xml:id="wn_r91" anchors="7078 7200"/>
+    <region xml:id="wn_r90" anchors="7110 7119"/>
+    <region xml:id="wn_r93" anchors="7202 7290"/>
+    <region xml:id="wn_r92" anchors="7204 7213"/>
+    <region xml:id="wn_r96" anchors="7292 7603"/>
+    <region xml:id="wn_r94" anchors="7328 7337"/>
+    <region xml:id="wn_r95" anchors="7376 7384"/>
+    <region xml:id="wn_r98" anchors="7605 7845"/>
+    <region xml:id="wn_r97" anchors="7671 7680"/>
+    <region xml:id="wn_r100" anchors="7847 7980"/>
+    <region xml:id="wn_r99" anchors="7961 7970"/>
+    <region xml:id="wn_r102" anchors="7982 8123"/>
+    <region xml:id="wn_r101" anchors="8055 8064"/>
+    <region xml:id="wn_r104" anchors="8125 8307"/>
+    <region xml:id="wn_r103" anchors="8162 8171"/>
+    <region xml:id="wn_r106" anchors="8309 8398"/>
+    <region xml:id="wn_r105" anchors="8378 8387"/>
+    <region xml:id="wn_r108" anchors="8400 8612"/>
+    <region xml:id="wn_r107" anchors="8441 8450"/>
+    <region xml:id="wn_r111" anchors="8614 8739"/>
+    <region xml:id="wn_r109" anchors="8653 8662"/>
+    <region xml:id="wn_r110" anchors="8680 8685"/>
+    <region xml:id="wn_r113" anchors="8741 8913"/>
+    <region xml:id="wn_r112" anchors="8866 8875"/>
+    <region xml:id="wn_r115" anchors="8915 9201"/>
+    <region xml:id="wn_r114" anchors="8948 8957"/>
+    <region xml:id="wn_r117" anchors="9203 9295"/>
+    <region xml:id="wn_r116" anchors="9229 9238"/>
+    <region xml:id="wn_r119" anchors="9297 9557"/>
+    <region xml:id="wn_r118" anchors="9337 9346"/>
+    <region xml:id="wn_r122" anchors="9559 9745"/>
+    <region xml:id="wn_r120" anchors="9627 9636"/>
+    <region xml:id="wn_r121" anchors="9720 9725"/>
+    <region xml:id="wn_r124" anchors="9747 9908"/>
+    <region xml:id="wn_r123" anchors="9846 9855"/>
+    <region xml:id="wn_r126" anchors="9910 10117"/>
+    <region xml:id="wn_r125" anchors="10101 10110"/>
+    <region xml:id="wn_r128" anchors="10119 10198"/>
+    <region xml:id="wn_r127" anchors="10125 10134"/>
+    <region xml:id="wn_r131" anchors="10200 10413"/>
+    <region xml:id="wn_r129" anchors="10226 10235"/>
+    <region xml:id="wn_r130" anchors="10268 10273"/>
+    <region xml:id="wn_r133" anchors="10415 10644"/>
+    <region xml:id="wn_r132" anchors="10466 10475"/>
+    <region xml:id="wn_r135" anchors="10646 10804"/>
+    <region xml:id="wn_r134" anchors="10686 10695"/>
+    <region xml:id="wn_r137" anchors="10806 11046"/>
+    <region xml:id="wn_r136" anchors="11006 11015"/>
+    <region xml:id="wn_r139" anchors="11048 11177"/>
+    <region xml:id="wn_r138" anchors="11109 11118"/>
+    <region xml:id="wn_r141" anchors="11179 11398"/>
+    <region xml:id="wn_r140" anchors="11244 11253"/>
+    <region xml:id="wn_r143" anchors="11400 11497"/>
+    <region xml:id="wn_r142" anchors="11477 11486"/>
+    <region xml:id="wn_r145" anchors="11499 11542"/>
+    <region xml:id="wn_r144" anchors="11499 11508"/>
+    <region xml:id="wn_r147" anchors="11544 11628"/>
+    <region xml:id="wn_r146" anchors="11599 11608"/>
+    <region xml:id="wn_r149" anchors="11630 11709"/>
+    <region xml:id="wn_r148" anchors="11654 11663"/>
+    <region xml:id="wn_r151" anchors="11711 11810"/>
+    <region xml:id="wn_r150" anchors="11718 11727"/>
+    <region xml:id="wn_r153" anchors="11812 11993"/>
+    <region xml:id="wn_r152" anchors="11935 11944"/>
+    <region xml:id="wn_r155" anchors="11995 12142"/>
+    <region xml:id="wn_r154" anchors="12010 12019"/>
+    <region xml:id="wn_r158" anchors="12144 12380"/>
+    <region xml:id="wn_r156" anchors="12270 12279"/>
+    <region xml:id="wn_r157" anchors="12352 12357"/>
+    <region xml:id="wn_r160" anchors="12382 12484"/>
+    <region xml:id="wn_r159" anchors="12405 12414"/>
+    <region xml:id="wn_r162" anchors="12486 12594"/>
+    <region xml:id="wn_r161" anchors="12577 12586"/>
+    <region xml:id="wn_r164" anchors="12596 12753"/>
+    <region xml:id="wn_r163" anchors="12636 12645"/>
+    <region xml:id="wn_r166" anchors="12755 12933"/>
+    <region xml:id="wn_r165" anchors="12803 12812"/>
+    <region xml:id="wn_r168" anchors="12935 13150"/>
+    <region xml:id="wn_r167" anchors="13035 13044"/>
+    <region xml:id="wn_r170" anchors="13152 13256"/>
+    <region xml:id="wn_r169" anchors="13238 13247"/>
+    <region xml:id="wn_r172" anchors="13258 13404"/>
+    <region xml:id="wn_r171" anchors="13281 13290"/>
+    <region xml:id="wn_r174" anchors="13406 13636"/>
+    <region xml:id="wn_r173" anchors="13452 13461"/>
+    <region xml:id="wn_r176" anchors="13638 13783"/>
+    <region xml:id="wn_r175" anchors="13670 13679"/>
+    <region xml:id="wn_r179" anchors="13785 13887"/>
+    <region xml:id="wn_r177" anchors="13789 13795"/>
+    <region xml:id="wn_r178" anchors="13849 13858"/>
+    <region xml:id="wn_r181" anchors="13889 14102"/>
+    <region xml:id="wn_r180" anchors="13983 13992"/>
+    <region xml:id="wn_r183" anchors="14104 14177"/>
+    <region xml:id="wn_r182" anchors="14133 14142"/>
+    <region xml:id="wn_r185" anchors="14179 14353"/>
+    <region xml:id="wn_r184" anchors="14229 14238"/>
+    <region xml:id="wn_r187" anchors="14355 14445"/>
+    <region xml:id="wn_r186" anchors="14381 14390"/>
+    <region xml:id="wn_r189" anchors="14447 14601"/>
+    <region xml:id="wn_r188" anchors="14483 14492"/>
+    <region xml:id="wn_r191" anchors="14603 14681"/>
+    <region xml:id="wn_r190" anchors="14609 14618"/>
+    <region xml:id="wn_r193" anchors="14683 14756"/>
+    <region xml:id="wn_r192" anchors="14716 14725"/>
+    <region xml:id="wn_r195" anchors="14758 14890"/>
+    <region xml:id="wn_r194" anchors="14825 14834"/>
+    <region xml:id="wn_r197" anchors="14892 15160"/>
+    <region xml:id="wn_r196" anchors="15126 15135"/>
+    <region xml:id="wn_r199" anchors="15162 15364"/>
+    <region xml:id="wn_r198" anchors="15250 15259"/>
+    <region xml:id="wn_r202" anchors="15366 15458"/>
+    <region xml:id="wn_r200" anchors="15409 15413"/>
+    <region xml:id="wn_r201" anchors="15435 15444"/>
+    <region xml:id="wn_r204" anchors="15460 15607"/>
+    <region xml:id="wn_r203" anchors="15553 15562"/>
+    <region xml:id="wn_r206" anchors="15609 15710"/>
+    <region xml:id="wn_r205" anchors="15693 15702"/>
+    <region xml:id="wn_r208" anchors="15712 15863"/>
+    <region xml:id="wn_r207" anchors="15724 15733"/>
+    <region xml:id="wn_r211" anchors="15865 15999"/>
+    <region xml:id="wn_r209" anchors="15869 15875"/>
+    <region xml:id="wn_r210" anchors="15918 15927"/>
+    <region xml:id="wn_r213" anchors="16001 16032"/>
+    <region xml:id="wn_r212" anchors="16001 16010"/>
+    <region xml:id="wn_r215" anchors="16034 16200"/>
+    <region xml:id="wn_r214" anchors="16162 16171"/>
+    <region xml:id="wn_r217" anchors="16202 16309"/>
+    <region xml:id="wn_r216" anchors="16283 16292"/>
+    <region xml:id="wn_r219" anchors="16311 16478"/>
+    <region xml:id="wn_r218" anchors="16345 16354"/>
+    <region xml:id="wn_r221" anchors="16480 16569"/>
+    <region xml:id="wn_r220" anchors="16506 16515"/>
+    <region xml:id="wn_r223" anchors="16571 16629"/>
+    <region xml:id="wn_r222" anchors="16615 16624"/>
+    <region xml:id="wn_r225" anchors="16631 16850"/>
+    <region xml:id="wn_r224" anchors="16648 16657"/>
+    <region xml:id="wn_r227" anchors="16852 17010"/>
+    <region xml:id="wn_r226" anchors="16993 17002"/>
+    <region xml:id="wn_r229" anchors="17012 17191"/>
+    <region xml:id="wn_r228" anchors="17164 17173"/>
+    <region xml:id="wn_r234" anchors="17193 17358"/>
+    <region xml:id="wn_r230" anchors="17204 17209"/>
+    <region xml:id="wn_r231" anchors="17236 17245"/>
+    <region xml:id="wn_r232" anchors="17267 17273"/>
+    <region xml:id="wn_r233" anchors="17294 17301"/>
+    <region xml:id="wn_r236" anchors="17360 17567"/>
+    <region xml:id="wn_r235" anchors="17380 17389"/>
+    <region xml:id="wn_r238" anchors="17569 17737"/>
+    <region xml:id="wn_r237" anchors="17709 17718"/>
+    <region xml:id="wn_r241" anchors="17739 18021"/>
+    <region xml:id="wn_r239" anchors="17760 17765"/>
+    <region xml:id="wn_r240" anchors="17970 17979"/>
+    <region xml:id="wn_r243" anchors="18023 18236"/>
+    <region xml:id="wn_r242" anchors="18034 18043"/>
+    <region xml:id="wn_r245" anchors="18238 18422"/>
+    <region xml:id="wn_r244" anchors="18349 18358"/>
+    <region xml:id="wn_r247" anchors="18424 18618"/>
+    <region xml:id="wn_r246" anchors="18468 18477"/>
+    <region xml:id="wn_r249" anchors="18620 18773"/>
+    <region xml:id="wn_r248" anchors="18730 18739"/>
+    <region xml:id="wn_r251" anchors="18775 18964"/>
+    <region xml:id="wn_r250" anchors="18793 18802"/>
+    <region xml:id="wn_r253" anchors="18966 19216"/>
+    <region xml:id="wn_r252" anchors="19017 19026"/>
+    <region xml:id="wn_r255" anchors="19218 19447"/>
+    <region xml:id="wn_r254" anchors="19429 19438"/>
+    <region xml:id="wn_r257" anchors="19449 19624"/>
+    <region xml:id="wn_r256" anchors="19562 19571"/>
+    <region xml:id="wn_r260" anchors="19626 19795"/>
+    <region xml:id="wn_r258" anchors="19692 19697"/>
+    <region xml:id="wn_r259" anchors="19711 19720"/>
+    <region xml:id="wn_r262" anchors="19797 20024"/>
+    <region xml:id="wn_r261" anchors="19801 19810"/>
+    <region xml:id="wn_r264" anchors="20026 20172"/>
+    <region xml:id="wn_r263" anchors="20158 20167"/>
+    <node xml:id="wn_n0">
+        <link targets="wn_r0"/>
+    </node>
+    <a label="WordNet" ref="wn_n0" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="G"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+            <f name="annotation1">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n1">
+        <link targets="wn_r2"/>
+    </node>
+    <a label="WordNet" ref="wn_n1" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="G"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+            <f name="annotation1">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n10">
+        <link targets="wn_r27"/>
+    </node>
+    <a label="WordNet" ref="wn_n10" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%5:00:00:complex:00"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n100">
+        <link targets="wn_r226"/>
+    </node>
+    <a label="WordNet" ref="wn_n100" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n101">
+        <link targets="wn_r228"/>
+    </node>
+    <a label="WordNet" ref="wn_n101" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n102">
+        <link targets="wn_r231"/>
+    </node>
+    <a label="WordNet" ref="wn_n102" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n103">
+        <link targets="wn_r235"/>
+    </node>
+    <a label="WordNet" ref="wn_n103" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n104">
+        <link targets="wn_r237"/>
+    </node>
+    <a label="WordNet" ref="wn_n104" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n105">
+        <link targets="wn_r240"/>
+    </node>
+    <a label="WordNet" ref="wn_n105" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n106">
+        <link targets="wn_r242"/>
+    </node>
+    <a label="WordNet" ref="wn_n106" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:01::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n107">
+        <link targets="wn_r244"/>
+    </node>
+    <a label="WordNet" ref="wn_n107" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:01::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n108">
+        <link targets="wn_r246"/>
+    </node>
+    <a label="WordNet" ref="wn_n108" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n109">
+        <link targets="wn_r248"/>
+    </node>
+    <a label="WordNet" ref="wn_n109" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n11">
+        <link targets="wn_r31"/>
+    </node>
+    <a label="WordNet" ref="wn_n11" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:01::"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n110">
+        <link targets="wn_r250"/>
+    </node>
+    <a label="WordNet" ref="wn_n110" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n111">
+        <link targets="wn_r252"/>
+    </node>
+    <a label="WordNet" ref="wn_n111" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00:: byzantine%3:01:01::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n112">
+        <link targets="wn_r254"/>
+    </node>
+    <a label="WordNet" ref="wn_n112" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n113">
+        <link targets="wn_r256"/>
+    </node>
+    <a label="WordNet" ref="wn_n113" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:01::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n114">
+        <link targets="wn_r259"/>
+    </node>
+    <a label="WordNet" ref="wn_n114" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n115">
+        <link targets="wn_r261"/>
+    </node>
+    <a label="WordNet" ref="wn_n115" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n116">
+        <link targets="wn_r263"/>
+    </node>
+    <a label="WordNet" ref="wn_n116" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n12">
+        <link targets="wn_r33"/>
+    </node>
+    <a label="WordNet" ref="wn_n12" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%5:00:00:complex:00"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n13">
+        <link targets="wn_r37"/>
+    </node>
+    <a label="WordNet" ref="wn_n13" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n14">
+        <link targets="wn_r40"/>
+    </node>
+    <a label="WordNet" ref="wn_n14" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%5:00:00:complex:00"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n15">
+        <link targets="wn_r42"/>
+    </node>
+    <a label="WordNet" ref="wn_n15" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%5:00:00:complex:00"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n16">
+        <link targets="wn_r46"/>
+    </node>
+    <a label="WordNet" ref="wn_n16" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%5:00:00:complex:00"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n17">
+        <link targets="wn_r49"/>
+    </node>
+    <a label="WordNet" ref="wn_n17" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%5:00:00:complex:00"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n18">
+        <link targets="wn_r51"/>
+    </node>
+    <a label="WordNet" ref="wn_n18" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%5:00:00:complex:00"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n19">
+        <link targets="wn_r53"/>
+    </node>
+    <a label="WordNet" ref="wn_n19" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%5:00:00:complex:00"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n2">
+        <link targets="wn_r6"/>
+    </node>
+    <a label="WordNet" ref="wn_n2" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+            <f name="annotation1">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n20">
+        <link targets="wn_r56"/>
+    </node>
+    <a label="WordNet" ref="wn_n20" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n21">
+        <link targets="wn_r58"/>
+    </node>
+    <a label="WordNet" ref="wn_n21" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%5:00:00:complex:00"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n22">
+        <link targets="wn_r60"/>
+    </node>
+    <a label="WordNet" ref="wn_n22" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n23">
+        <link targets="wn_r62"/>
+    </node>
+    <a label="WordNet" ref="wn_n23" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n24">
+        <link targets="wn_r64"/>
+    </node>
+    <a label="WordNet" ref="wn_n24" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n25">
+        <link targets="wn_r66"/>
+    </node>
+    <a label="WordNet" ref="wn_n25" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n26">
+        <link targets="wn_r69"/>
+    </node>
+    <a label="WordNet" ref="wn_n26" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n27">
+        <link targets="wn_r71"/>
+    </node>
+    <a label="WordNet" ref="wn_n27" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n28">
+        <link targets="wn_r73"/>
+    </node>
+    <a label="WordNet" ref="wn_n28" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:01:: byzantine%3:01:00::"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n29">
+        <link targets="wn_r75"/>
+    </node>
+    <a label="WordNet" ref="wn_n29" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00:: byzantine%3:01:01::"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n3">
+        <link targets="wn_r9"/>
+    </node>
+    <a label="WordNet" ref="wn_n3" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+            <f name="annotation1">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n30">
+        <link targets="wn_r77"/>
+    </node>
+    <a label="WordNet" ref="wn_n30" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n31">
+        <link targets="wn_r79"/>
+    </node>
+    <a label="WordNet" ref="wn_n31" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n32">
+        <link targets="wn_r81"/>
+    </node>
+    <a label="WordNet" ref="wn_n32" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n33">
+        <link targets="wn_r83"/>
+    </node>
+    <a label="WordNet" ref="wn_n33" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="G"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n34">
+        <link targets="wn_r86"/>
+    </node>
+    <a label="WordNet" ref="wn_n34" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n35">
+        <link targets="wn_r88"/>
+    </node>
+    <a label="WordNet" ref="wn_n35" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n36">
+        <link targets="wn_r90"/>
+    </node>
+    <a label="WordNet" ref="wn_n36" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="G"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n37">
+        <link targets="wn_r92"/>
+    </node>
+    <a label="WordNet" ref="wn_n37" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n38">
+        <link targets="wn_r94"/>
+    </node>
+    <a label="WordNet" ref="wn_n38" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n39">
+        <link targets="wn_r97"/>
+    </node>
+    <a label="WordNet" ref="wn_n39" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n4">
+        <link targets="wn_r13"/>
+    </node>
+    <a label="WordNet" ref="wn_n4" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+            <f name="annotation1">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n40">
+        <link targets="wn_r99"/>
+    </node>
+    <a label="WordNet" ref="wn_n40" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n41">
+        <link targets="wn_r101"/>
+    </node>
+    <a label="WordNet" ref="wn_n41" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="G"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n42">
+        <link targets="wn_r103"/>
+    </node>
+    <a label="WordNet" ref="wn_n42" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n43">
+        <link targets="wn_r105"/>
+    </node>
+    <a label="WordNet" ref="wn_n43" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n44">
+        <link targets="wn_r107"/>
+    </node>
+    <a label="WordNet" ref="wn_n44" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n45">
+        <link targets="wn_r109"/>
+    </node>
+    <a label="WordNet" ref="wn_n45" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n46">
+        <link targets="wn_r112"/>
+    </node>
+    <a label="WordNet" ref="wn_n46" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n47">
+        <link targets="wn_r114"/>
+    </node>
+    <a label="WordNet" ref="wn_n47" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n48">
+        <link targets="wn_r116"/>
+    </node>
+    <a label="WordNet" ref="wn_n48" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n49">
+        <link targets="wn_r118"/>
+    </node>
+    <a label="WordNet" ref="wn_n49" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n5">
+        <link targets="wn_r16"/>
+    </node>
+    <a label="WordNet" ref="wn_n5" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%5:00:00:complex:00"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n50">
+        <link targets="wn_r120"/>
+    </node>
+    <a label="WordNet" ref="wn_n50" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n51">
+        <link targets="wn_r123"/>
+    </node>
+    <a label="WordNet" ref="wn_n51" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00:: byzantine%3:01:01::"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n52">
+        <link targets="wn_r125"/>
+    </node>
+    <a label="WordNet" ref="wn_n52" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n53">
+        <link targets="wn_r127"/>
+    </node>
+    <a label="WordNet" ref="wn_n53" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00:: byzantine%3:01:01::"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n54">
+        <link targets="wn_r129"/>
+    </node>
+    <a label="WordNet" ref="wn_n54" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00:: byzantine%3:01:01::"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n55">
+        <link targets="wn_r132"/>
+    </node>
+    <a label="WordNet" ref="wn_n55" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="G"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+            <f name="annotation1">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n56">
+        <link targets="wn_r134"/>
+    </node>
+    <a label="WordNet" ref="wn_n56" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n57">
+        <link targets="wn_r136"/>
+    </node>
+    <a label="WordNet" ref="wn_n57" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n58">
+        <link targets="wn_r138"/>
+    </node>
+    <a label="WordNet" ref="wn_n58" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n59">
+        <link targets="wn_r140"/>
+    </node>
+    <a label="WordNet" ref="wn_n59" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n6">
+        <link targets="wn_r18"/>
+    </node>
+    <a label="WordNet" ref="wn_n6" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n60">
+        <link targets="wn_r142"/>
+    </node>
+    <a label="WordNet" ref="wn_n60" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n61">
+        <link targets="wn_r144"/>
+    </node>
+    <a label="WordNet" ref="wn_n61" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:01::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n62">
+        <link targets="wn_r146"/>
+    </node>
+    <a label="WordNet" ref="wn_n62" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:01::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n63">
+        <link targets="wn_r148"/>
+    </node>
+    <a label="WordNet" ref="wn_n63" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n64">
+        <link targets="wn_r150"/>
+    </node>
+    <a label="WordNet" ref="wn_n64" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n65">
+        <link targets="wn_r152"/>
+    </node>
+    <a label="WordNet" ref="wn_n65" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n66">
+        <link targets="wn_r154"/>
+    </node>
+    <a label="WordNet" ref="wn_n66" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n67">
+        <link targets="wn_r156"/>
+    </node>
+    <a label="WordNet" ref="wn_n67" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n68">
+        <link targets="wn_r159"/>
+    </node>
+    <a label="WordNet" ref="wn_n68" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n69">
+        <link targets="wn_r161"/>
+    </node>
+    <a label="WordNet" ref="wn_n69" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:01::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n7">
+        <link targets="wn_r21"/>
+    </node>
+    <a label="WordNet" ref="wn_n7" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%5:00:00:complex:00"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n70">
+        <link targets="wn_r163"/>
+    </node>
+    <a label="WordNet" ref="wn_n70" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:01::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n71">
+        <link targets="wn_r165"/>
+    </node>
+    <a label="WordNet" ref="wn_n71" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:01:: byzantine%3:01:00::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n72">
+        <link targets="wn_r167"/>
+    </node>
+    <a label="WordNet" ref="wn_n72" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:01::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n73">
+        <link targets="wn_r169"/>
+    </node>
+    <a label="WordNet" ref="wn_n73" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:01::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n74">
+        <link targets="wn_r171"/>
+    </node>
+    <a label="WordNet" ref="wn_n74" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:01:: byzantine%3:01:00::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n75">
+        <link targets="wn_r173"/>
+    </node>
+    <a label="WordNet" ref="wn_n75" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:01::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n76">
+        <link targets="wn_r175"/>
+    </node>
+    <a label="WordNet" ref="wn_n76" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:01:: byzantine%3:01:00::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n77">
+        <link targets="wn_r178"/>
+    </node>
+    <a label="WordNet" ref="wn_n77" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n78">
+        <link targets="wn_r180"/>
+    </node>
+    <a label="WordNet" ref="wn_n78" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:01::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n79">
+        <link targets="wn_r182"/>
+    </node>
+    <a label="WordNet" ref="wn_n79" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:01::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n8">
+        <link targets="wn_r23"/>
+    </node>
+    <a label="WordNet" ref="wn_n8" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%5:00:00:complex:00"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n80">
+        <link targets="wn_r184"/>
+    </node>
+    <a label="WordNet" ref="wn_n80" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n81">
+        <link targets="wn_r186"/>
+    </node>
+    <a label="WordNet" ref="wn_n81" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n82">
+        <link targets="wn_r188"/>
+    </node>
+    <a label="WordNet" ref="wn_n82" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:01::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n83">
+        <link targets="wn_r190"/>
+    </node>
+    <a label="WordNet" ref="wn_n83" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n84">
+        <link targets="wn_r192"/>
+    </node>
+    <a label="WordNet" ref="wn_n84" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:01::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n85">
+        <link targets="wn_r194"/>
+    </node>
+    <a label="WordNet" ref="wn_n85" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:01::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n86">
+        <link targets="wn_r196"/>
+    </node>
+    <a label="WordNet" ref="wn_n86" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n87">
+        <link targets="wn_r198"/>
+    </node>
+    <a label="WordNet" ref="wn_n87" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n88">
+        <link targets="wn_r201"/>
+    </node>
+    <a label="WordNet" ref="wn_n88" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n89">
+        <link targets="wn_r203"/>
+    </node>
+    <a label="WordNet" ref="wn_n89" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n9">
+        <link targets="wn_r25"/>
+    </node>
+    <a label="WordNet" ref="wn_n9" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%5:00:00:complex:00"/>
+                    <f name="annotator" value="109"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz1/HistoryIstanbul.anc"/>
+                    <f name="orig-start" value="14504"/>
+                    <f name="orig-end" value="14617"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n90">
+        <link targets="wn_r205"/>
+    </node>
+    <a label="WordNet" ref="wn_n90" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n91">
+        <link targets="wn_r207"/>
+    </node>
+    <a label="WordNet" ref="wn_n91" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:01::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n92">
+        <link targets="wn_r210"/>
+    </node>
+    <a label="WordNet" ref="wn_n92" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:01::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n93">
+        <link targets="wn_r212"/>
+    </node>
+    <a label="WordNet" ref="wn_n93" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n94">
+        <link targets="wn_r214"/>
+    </node>
+    <a label="WordNet" ref="wn_n94" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n95">
+        <link targets="wn_r216"/>
+    </node>
+    <a label="WordNet" ref="wn_n95" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n96">
+        <link targets="wn_r218"/>
+    </node>
+    <a label="WordNet" ref="wn_n96" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:01::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n97">
+        <link targets="wn_r220"/>
+    </node>
+    <a label="WordNet" ref="wn_n97" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:01::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n98">
+        <link targets="wn_r222"/>
+    </node>
+    <a label="WordNet" ref="wn_n98" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+    <node xml:id="wn_n99">
+        <link targets="wn_r224"/>
+    </node>
+    <a label="WordNet" ref="wn_n99" as="WordNet">
+        <fs>
+            <f name="annotation0">
+                <fs>
+                    <f name="sense" value="byzantine%3:01:00::"/>
+                    <f name="annotator" value="107"/>
+                </fs>
+            </f>
+            <f name="orig-text-location">
+                <fs>
+                    <f name="orig-text" value="file:/D:/Corpora/oanc/data/written_2/travel_guides/berlitz2/Athens-WhereToGo.anc"/>
+                    <f name="orig-start" value="27163"/>
+                    <f name="orig-end" value="27309"/>
+                </fs>
+            </f>
+        </fs>
+    </a>
+</graph>

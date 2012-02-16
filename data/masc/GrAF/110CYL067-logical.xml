@@ -11,11 +11,11 @@
             <annotationSet name="xces" type="http://www.xces.org/schema/2003"/>
         </annotationSets>
     </header>
-    <region xml:id="r0" anchors="0 3094"/>
-    <node xml:id="n0">
-        <link targets="r0"/>
+    <region xml:id="logical_r0" anchors="0 3094"/>
+    <node xml:id="logical_n0">
+        <link targets="logical_r0"/>
     </node>
-    <a label="cesDoc" ref="n0" as="xces">
+    <a label="cesDoc" ref="logical_n0" as="xces">
         <fs>
             <f name="version" value="1.0.4"/>
             <f name="id" value="ICIC032"/>
@@ -24,174 +24,174 @@
             <f name="xmlns" value="http://www.xces.org/schema/2003"/>
         </fs>
     </a>
-    <region xml:id="r1" anchors="6 3093"/>
-    <node xml:id="n1">
-        <link targets="r1"/>
+    <region xml:id="logical_r1" anchors="6 3093"/>
+    <node xml:id="logical_n1">
+        <link targets="logical_r1"/>
     </node>
-    <a label="text" ref="n1" as="xces"/>
-    <region xml:id="r2" anchors="11 3090"/>
-    <node xml:id="n2">
-        <link targets="r2"/>
+    <a label="text" ref="logical_n1" as="xces"/>
+    <region xml:id="logical_r2" anchors="11 3090"/>
+    <node xml:id="logical_n2">
+        <link targets="logical_r2"/>
     </node>
-    <a label="body" ref="n2" as="xces"/>
-    <region xml:id="r3" anchors="18 31"/>
-    <node xml:id="n3">
-        <link targets="r3"/>
+    <a label="body" ref="logical_n2" as="xces"/>
+    <region xml:id="logical_r3" anchors="18 31"/>
+    <node xml:id="logical_n3">
+        <link targets="logical_r3"/>
     </node>
-    <a label="p" ref="n3" as="xces">
+    <a label="p" ref="logical_n3" as="xces">
         <fs>
             <f name="id" value="p1"/>
         </fs>
     </a>
-    <region xml:id="r4" anchors="38 101"/>
-    <node xml:id="n4">
-        <link targets="r4"/>
+    <region xml:id="logical_r4" anchors="38 101"/>
+    <node xml:id="logical_n4">
+        <link targets="logical_r4"/>
     </node>
-    <a label="p" ref="n4" as="xces">
+    <a label="p" ref="logical_n4" as="xces">
         <fs>
             <f name="id" value="p2"/>
         </fs>
     </a>
-    <region xml:id="r5" anchors="108 311"/>
-    <node xml:id="n5">
-        <link targets="r5"/>
+    <region xml:id="logical_r5" anchors="108 311"/>
+    <node xml:id="logical_n5">
+        <link targets="logical_r5"/>
     </node>
-    <a label="p" ref="n5" as="xces">
+    <a label="p" ref="logical_n5" as="xces">
         <fs>
             <f name="id" value="p3"/>
         </fs>
     </a>
-    <region xml:id="r6" anchors="318 486"/>
-    <node xml:id="n6">
-        <link targets="r6"/>
+    <region xml:id="logical_r6" anchors="318 486"/>
+    <node xml:id="logical_n6">
+        <link targets="logical_r6"/>
     </node>
-    <a label="p" ref="n6" as="xces">
+    <a label="p" ref="logical_n6" as="xces">
         <fs>
             <f name="id" value="p4"/>
         </fs>
     </a>
-    <region xml:id="r7" anchors="493 769"/>
-    <node xml:id="n7">
-        <link targets="r7"/>
+    <region xml:id="logical_r7" anchors="493 769"/>
+    <node xml:id="logical_n7">
+        <link targets="logical_r7"/>
     </node>
-    <a label="p" ref="n7" as="xces">
+    <a label="p" ref="logical_n7" as="xces">
         <fs>
             <f name="id" value="p5"/>
         </fs>
     </a>
-    <region xml:id="r8" anchors="776 850"/>
-    <node xml:id="n8">
-        <link targets="r8"/>
+    <region xml:id="logical_r8" anchors="776 850"/>
+    <node xml:id="logical_n8">
+        <link targets="logical_r8"/>
     </node>
-    <a label="p" ref="n8" as="xces">
+    <a label="p" ref="logical_n8" as="xces">
         <fs>
             <f name="id" value="p6"/>
         </fs>
     </a>
-    <region xml:id="r9" anchors="857 1146"/>
-    <node xml:id="n9">
-        <link targets="r9"/>
+    <region xml:id="logical_r9" anchors="857 1146"/>
+    <node xml:id="logical_n9">
+        <link targets="logical_r9"/>
     </node>
-    <a label="p" ref="n9" as="xces">
+    <a label="p" ref="logical_n9" as="xces">
         <fs>
             <f name="id" value="p7"/>
         </fs>
     </a>
-    <region xml:id="r10" anchors="1153 1181"/>
-    <node xml:id="n10">
-        <link targets="r10"/>
+    <region xml:id="logical_r10" anchors="1153 1181"/>
+    <node xml:id="logical_n10">
+        <link targets="logical_r10"/>
     </node>
-    <a label="p" ref="n10" as="xces">
+    <a label="p" ref="logical_n10" as="xces">
         <fs>
             <f name="id" value="p8"/>
         </fs>
     </a>
-    <region xml:id="r11" anchors="1188 1500"/>
-    <node xml:id="n11">
-        <link targets="r11"/>
+    <region xml:id="logical_r11" anchors="1188 1500"/>
+    <node xml:id="logical_n11">
+        <link targets="logical_r11"/>
     </node>
-    <a label="p" ref="n11" as="xces">
+    <a label="p" ref="logical_n11" as="xces">
         <fs>
             <f name="id" value="p9"/>
         </fs>
     </a>
-    <region xml:id="r12" anchors="1507 1582"/>
-    <node xml:id="n12">
-        <link targets="r12"/>
+    <region xml:id="logical_r12" anchors="1507 1582"/>
+    <node xml:id="logical_n12">
+        <link targets="logical_r12"/>
     </node>
-    <a label="p" ref="n12" as="xces">
+    <a label="p" ref="logical_n12" as="xces">
         <fs>
             <f name="id" value="p10"/>
         </fs>
     </a>
-    <region xml:id="r13" anchors="1589 1936"/>
-    <node xml:id="n13">
-        <link targets="r13"/>
+    <region xml:id="logical_r13" anchors="1589 1936"/>
+    <node xml:id="logical_n13">
+        <link targets="logical_r13"/>
     </node>
-    <a label="p" ref="n13" as="xces">
+    <a label="p" ref="logical_n13" as="xces">
         <fs>
             <f name="id" value="p11"/>
         </fs>
     </a>
-    <region xml:id="r14" anchors="1943 2258"/>
-    <node xml:id="n14">
-        <link targets="r14"/>
+    <region xml:id="logical_r14" anchors="1943 2258"/>
+    <node xml:id="logical_n14">
+        <link targets="logical_r14"/>
     </node>
-    <a label="p" ref="n14" as="xces">
+    <a label="p" ref="logical_n14" as="xces">
         <fs>
             <f name="id" value="p12"/>
         </fs>
     </a>
-    <region xml:id="r15" anchors="2265 2548"/>
-    <node xml:id="n15">
-        <link targets="r15"/>
+    <region xml:id="logical_r15" anchors="2265 2548"/>
+    <node xml:id="logical_n15">
+        <link targets="logical_r15"/>
     </node>
-    <a label="p" ref="n15" as="xces">
+    <a label="p" ref="logical_n15" as="xces">
         <fs>
             <f name="id" value="p13"/>
         </fs>
     </a>
-    <region xml:id="r16" anchors="2555 2755"/>
-    <node xml:id="n16">
-        <link targets="r16"/>
+    <region xml:id="logical_r16" anchors="2555 2755"/>
+    <node xml:id="logical_n16">
+        <link targets="logical_r16"/>
     </node>
-    <a label="p" ref="n16" as="xces">
+    <a label="p" ref="logical_n16" as="xces">
         <fs>
             <f name="id" value="p14"/>
         </fs>
     </a>
-    <region xml:id="r17" anchors="2762 2906"/>
-    <node xml:id="n17">
-        <link targets="r17"/>
+    <region xml:id="logical_r17" anchors="2762 2906"/>
+    <node xml:id="logical_n17">
+        <link targets="logical_r17"/>
     </node>
-    <a label="p" ref="n17" as="xces">
+    <a label="p" ref="logical_n17" as="xces">
         <fs>
             <f name="id" value="p15"/>
         </fs>
     </a>
-    <region xml:id="r18" anchors="2913 3032"/>
-    <node xml:id="n18">
-        <link targets="r18"/>
+    <region xml:id="logical_r18" anchors="2913 3032"/>
+    <node xml:id="logical_n18">
+        <link targets="logical_r18"/>
     </node>
-    <a label="p" ref="n18" as="xces">
+    <a label="p" ref="logical_n18" as="xces">
         <fs>
             <f name="id" value="p16"/>
         </fs>
     </a>
-    <region xml:id="r19" anchors="3039 3049"/>
-    <node xml:id="n19">
-        <link targets="r19"/>
+    <region xml:id="logical_r19" anchors="3039 3049"/>
+    <node xml:id="logical_n19">
+        <link targets="logical_r19"/>
     </node>
-    <a label="p" ref="n19" as="xces">
+    <a label="p" ref="logical_n19" as="xces">
         <fs>
             <f name="id" value="p17"/>
         </fs>
     </a>
-    <region xml:id="r20" anchors="3056 3085"/>
-    <node xml:id="n20">
-        <link targets="r20"/>
+    <region xml:id="logical_r20" anchors="3056 3085"/>
+    <node xml:id="logical_n20">
+        <link targets="logical_r20"/>
     </node>
-    <a label="p" ref="n20" as="xces">
+    <a label="p" ref="logical_n20" as="xces">
         <fs>
             <f name="id" value="p18"/>
         </fs>
