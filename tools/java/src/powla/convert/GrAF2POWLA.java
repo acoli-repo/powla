@@ -26,6 +26,8 @@ import org.xces.graf.io.*;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+import powla.POWLAModel;
+
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.shared.JenaException;
 import com.hp.hpl.jena.vocabulary.*;
@@ -38,59 +40,24 @@ import com.sun.org.apache.xpath.internal.XPathFactory;
  *   multiply defined GrAF IDs are to be resolved externally, using DisambiguateGrAFIDs
  * 
  * known bugs: 
- * - no support for Terminals with empty strings (yet) in mpqa
  * - conflicting segmentations are heuristically resolved only
  * - last Region is not linked to its predecessor with a powla_next property
  * - only works if the model covers exactly one text (base segmentation)
+ * - order of empty Regions at the same position is not preserved, cf. HistoryGreek.log:
+ * 		create new Terminal http://www.anc.org/graf/mpqa_r3 before http://www.anc.org/graf/seg_seg-r0
+ * 		create new Terminal http://www.anc.org/graf/mpqa_r1 between http://www.anc.org/graf/mpqa_r3 and http://www.anc.org/graf/seg_seg-r0
+ *		create new Terminal http://www.anc.org/graf/mpqa_r10 between http://www.anc.org/graf/mpqa_r1 and http://www.anc.org/graf/seg_seg-r0
+ *   original order:
+ *   	<region xml:id="mpqa_r10" anchors="27 27"/>
+ *   	<region xml:id="mpqa_r3" anchors="27 27"/>
+ *   	<region xml:id="mpqa_r1" anchors="27 27"/>
  * */
-public class GrAF2POWLA {
+public class GrAF2POWLA extends POWLAModel {
 
 	final String namespace;
 	final String prefix;
 	javax.xml.xpath.XPath xpath = javax.xml.xpath.XPathFactory.newInstance().newXPath();
     
-	final Model model;
-	final static String rdf    = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
-	final static String rdfs   = "http://www.w3.org/2000/01/rdf-schema#";				
-	final static String owl	  = "http://www.w3.org/2002/07/owl#";						
-	final static String powla  = "http://purl.org/powla/powla.owl#";	
-	final static String dc     = "http://purl.org/dc/elements/1.1/";
-
-	final Property rdf_type;
-	final Property rdfs_subPropertyOf;
-	final Property rdfs_subClassOf;
-	final Property rdfs_label;
-    final Resource owl_Restriction;
-    final Resource owl_Class;
-    final Property owl_onProperty;
-    final Property owl_hasValue;
-    final Property owl_ObjectProperty;
-    final Property owl_DatatypeProperty;
-
-    final Property powla_hasAnnotation;	
-    final Resource powla_Nonterminal;
-    final Resource powla_Relation;
-    final Property powla_hasChild;
-	final Property powla_rootOfDocument;
-	final Resource powla_Root;
-	final Resource powla_Document;
-	final Resource powla_Layer;
-	final Resource powla_DocumentLayer;
-	final Property powla_hasSubDocument;
-	final Property powla_hasLayer;
-	final Property powla_hasDocument;
-	final Resource powla_Terminal;
-	final Property powla_start;
-	final Property powla_end;
-	final Property powla_next;
-	final Property powla_string;
-	final Property powla_firstTerminal;
-	final Property powla_lastTerminal;
-	final Property powla_layerID;
-	final Property powla_hasSource; 
-	final Property powla_hasTarget ; 
-	
-	final Resource corpus;
 	
     final GraphParser parser; 
 	
@@ -110,8 +77,6 @@ public class GrAF2POWLA {
 		} else this.namespace=namespace+"#";
 		String uri = namespace.replaceFirst("[#/]$", "");
 		
-		model = ModelFactory.createDefaultModel();
-		
 		try {
 			// if the Model already exists, add its content	
 			model.read(URI.create(uri).toURL().openStream(), this.namespace);
@@ -125,65 +90,9 @@ public class GrAF2POWLA {
 		}
 		System.setOut(stdout);
 		
-		model.setNsPrefix("rdf", rdf);
-        model.setNsPrefix("rdfs", rdfs);
-        model.setNsPrefix("owl", owl);
-        model.setNsPrefix("dc", dc);
-        model.setNsPrefix("powla", powla);
         model.setNsPrefix(prefix,this.namespace);
         model.setNsPrefix("",this.namespace);
 
-        rdf_type = model.createProperty(rdf+"type");
-        rdfs_subPropertyOf = model.createProperty(rdfs+"subPropertyOf");
-        rdfs_subClassOf = model.createProperty(rdfs+"subClassOf");
-        rdfs_label = model.createProperty(rdfs+"label");
-        owl_Restriction = model.createResource(owl+"Restriction");
-        owl_Class = model.createResource(owl+"Class");
-        owl_onProperty = model.createProperty(owl+"onProperty");
-        owl_hasValue = model.createProperty(owl+"hasValue");
-        owl_ObjectProperty = model.createProperty(owl+"ObjectProperty");
-        owl_DatatypeProperty = model.createProperty(owl+"DatatypeProperty");
-    	Property owl_imports = model.createProperty(owl+"imports");
-     
-        powla_hasAnnotation = model.createProperty(powla+"hasAnnotation");
-        powla_hasAnnotation.addProperty(rdf_type,owl_DatatypeProperty);
-    	powla_Nonterminal = model.createResource(powla+"Nonterminal").addProperty(rdf_type, owl_Class);
-    	powla_hasChild = model.createProperty(powla+"hasChild");
-    	powla_hasChild.addProperty(rdf_type, owl_ObjectProperty);
-    	powla_rootOfDocument = model.createProperty(powla+"rootOfDocument");
-    	powla_rootOfDocument.addProperty(rdf_type, owl_ObjectProperty);
-    	powla_Root = model.createResource(powla+"Root").addProperty(rdf_type, owl_Class);
-    	powla_Document = model.createResource(powla+"Document").addProperty(rdf_type,owl_Class);
-    	powla_Layer = model.createResource(powla+"Layer").addProperty(rdf_type,owl_Class);
-    	powla_DocumentLayer = model.createResource(powla+"DocumentLayer").addProperty(rdf_type,owl_Class);
-    	powla_hasSubDocument = model.createProperty(powla+"hasSubDocument");
-    	powla_hasSubDocument.addProperty(rdf_type,owl_ObjectProperty);
-    	powla_hasLayer = model.createProperty(powla+"hasLayer");
-    	powla_hasLayer.addProperty(rdf_type, owl_ObjectProperty);
-    	powla_hasDocument = model.createProperty(powla+"hasDocument");
-    	powla_hasDocument.addProperty(rdf_type, owl_ObjectProperty);
-    	powla_Terminal = model.createResource(powla+"Terminal");
-    	powla_Terminal.addProperty(rdf_type, owl_Class);
-    	powla_start = model.createProperty(powla+"startPosition");
-    	powla_start.addProperty(rdf_type, owl_DatatypeProperty);
-    	powla_end = model.createProperty(powla+"endPosition");
-    	powla_end.addProperty(rdf_type, owl_DatatypeProperty);
-    	powla_next = model.createProperty(powla+"nextNode");
-    	powla_next.addProperty(rdf_type, owl_ObjectProperty);
-    	powla_string = model.createProperty(powla+"hasStringValue");
-    	powla_firstTerminal = model.createProperty(powla+"firstTerminal");
-    	powla_firstTerminal.addProperty(rdf_type, owl_ObjectProperty);
-    	powla_lastTerminal = model.createProperty(powla+"lastTerminal");
-    	powla_lastTerminal.addProperty(rdf_type, owl_ObjectProperty);
-    	powla_layerID = model.createProperty(powla+"layerID");
-    	powla_layerID.addProperty(rdf_type, owl_DatatypeProperty);
-    	powla_Relation = model.createResource(powla+"Relation");
-    	powla_Relation.addProperty(rdf_type, owl_Class);
-    	powla_hasTarget = model.createProperty(powla+"hasTarget");
-    	powla_hasTarget.addProperty(rdf_type, owl_ObjectProperty);
-    	powla_hasSource= model.createProperty(powla+"hasSource");
-    	powla_hasSource.addProperty(rdf_type, owl_ObjectProperty);
-    	
         // declare ontology
         model.createResource(uri)
         	.addProperty(rdf_type, model.createResource(owl+"Ontology")/*.addProperty(rdf_type,owl_Class)*/)
