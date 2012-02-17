@@ -28,13 +28,13 @@
         </annotationSets>
     </header>
     <node xml:id="ptbtok_ptb-n00000"/>
-    <!--node xml:id="ptbtok_ptb-n00254"/>
+    <node xml:id="ptbtok_ptb-n00254"/>
     <a label="S" ref="ptbtok_ptb-n00254" as="PTB">
         <fs>
             <f name="cat" value="S"/>
         </fs>
-    </a-->
-    <!--edge xml:id="ptbtok_ptb-e00260" from="ptbtok_ptb-n00254" to="ptbtok_ptb-n00263"/>
+    </a>
+    <edge xml:id="ptbtok_ptb-e00260" from="ptbtok_ptb-n00254" to="ptbtok_ptb-n00263"/>
     <node xml:id="ptbtok_ptb-n00257"/>
     <a label="VP" ref="ptbtok_ptb-n00257" as="PTB">
         <fs>
@@ -5238,14 +5238,14 @@
     <edge xml:id="ptbtok_ptb-e00833" from="ptbtok_ptb-n00855" to="ptbtok_ptb-n00856"/>
     <edge xml:id="ptbtok_ptb-e00836" from="ptbtok_ptb-n00854" to="ptbtok_ptb-n00855"/>
     <edge xml:id="ptbtok_ptb-e00849" from="ptbtok_ptb-n00853" to="ptbtok_ptb-n00854"/>
-    <edge xml:id="ptbtok_e946" from="ptbtok_ptb-n00000" to="ptbtok_ptb-n00853"/-->
+    <edge xml:id="ptbtok_e946" from="ptbtok_ptb-n00000" to="ptbtok_ptb-n00853"/>
     <node xml:id="ptb_ptb-n00004"/>
     <a label="S" ref="ptb_ptb-n00004" as="PTB">
         <fs>
             <f name="cat" value="S"/>
         </fs>
     </a>
-    <!--edge xml:id="ptbtok_ptb-e00026" from="ptb_ptb-n00004" to="ptbtok_ptb-n00029"/>
+    <edge xml:id="ptbtok_ptb-e00026" from="ptb_ptb-n00004" to="ptbtok_ptb-n00029"/>
     <node xml:id="ptbtok_ptb-n00013"/>
     <a label="VP" ref="ptbtok_ptb-n00013" as="PTB">
         <fs>
@@ -5316,7 +5316,7 @@
     <edge xml:id="ptbtok_ptb-e00011" from="ptbtok_ptb-n00015" to="ptbtok_ptb-n00016"/>
     <edge xml:id="ptbtok_ptb-e00024" from="ptbtok_ptb-n00013" to="ptbtok_ptb-n00015"/>
     <edge xml:id="ptbtok_ptb-e00010" from="ptbtok_ptb-n00013" to="ptbtok_ptb-n00014"/>
-    <edge xml:id="ptbtok_ptb-e00025" from="ptb_ptb-n00004" to="ptbtok_ptb-n00013"/-->
+    <edge xml:id="ptbtok_ptb-e00025" from="ptb_ptb-n00004" to="ptbtok_ptb-n00013"/>
     <node xml:id="ptb_ptb-n00005"/>
     <a label="NP" ref="ptb_ptb-n00005" as="PTB">
         <fs>
@@ -5324,7 +5324,7 @@
             <f name="roles" value="SBJ"/>
         </fs>
     </a>
-    <!--node xml:id="ptbtok_ptb-n00009"/>
+    <node xml:id="ptbtok_ptb-n00009"/>
     <a label="PP" ref="ptbtok_ptb-n00009" as="PTB">
         <fs>
             <f name="cat" value="PP"/>
@@ -5339,14 +5339,14 @@
     <edge xml:id="ptbtok_ptb-e00006" from="ptbtok_ptb-n00011" to="ptbtok_ptb-n00012"/>
     <edge xml:id="ptbtok_ptb-e00007" from="ptbtok_ptb-n00009" to="ptbtok_ptb-n00011"/>
     <edge xml:id="ptbtok_ptb-e00005" from="ptbtok_ptb-n00009" to="ptbtok_ptb-n00010"/>
-    <edge xml:id="ptbtok_ptb-e00008" from="ptb_ptb-n00005" to="ptbtok_ptb-n00009"/-->
+    <edge xml:id="ptbtok_ptb-e00008" from="ptb_ptb-n00005" to="ptbtok_ptb-n00009"/>
     <node xml:id="ptb_ptb-n00006"/>
     <a label="NP" ref="ptb_ptb-n00006" as="PTB">
         <fs>
             <f name="cat" value="NP"/>
         </fs>
     </a>
-    <!--edge xml:id="ptbtok_ptb-e00003" from="ptb_ptb-n00006" to="ptbtok_ptb-n00008"/-->
+    <edge xml:id="ptbtok_ptb-e00003" from="ptb_ptb-n00006" to="ptbtok_ptb-n00008"/>
     <edge xml:id="ptbtok_ptb-e00002" from="ptb_ptb-n00006" to="ptbtok_ptb-n00007"/>
     <edge xml:id="ptbtok_ptb-e00004" from="ptb_ptb-n00005" to="ptb_ptb-n00006"/>
     <edge xml:id="ptbtok_ptb-e00009" from="ptb_ptb-n00004" to="ptb_ptb-n00005"/>
@@ -5361,7 +5361,7 @@
     <edge xml:id="ptbtok_ptb-e00001" from="ptb_ptb-n00001" to="ptbtok_ptb-n00003"/>
     <edge xml:id="ptbtok_ptb-e00000" from="ptb_ptb-n00001" to="ptbtok_ptb-n00002"/>
     <edge xml:id="ptbtok_e2" from="ptbtok_ptb-n00000" to="ptb_ptb-n00001"/>
-    <!--node xml:id="ptbtok_ptb-n00264"/>
+    <node xml:id="ptbtok_ptb-n00264"/>
     <a label="S" ref="ptbtok_ptb-n00264" as="PTB">
         <fs>
             <f name="cat" value="S"/>
@@ -5421,5 +5421,5 @@
     </a>
     <edge xml:id="ptbtok_ptb-e00261" from="ptbtok_ptb-n00265" to="ptbtok_ptb-n00266"/>
     <edge xml:id="ptbtok_ptb-e00262" from="ptbtok_ptb-n00264" to="ptbtok_ptb-n00265"/>
-    <edge xml:id="ptbtok_e286" from="ptbtok_ptb-n00000" to="ptbtok_ptb-n00264"/-->
+    <edge xml:id="ptbtok_e286" from="ptbtok_ptb-n00000" to="ptbtok_ptb-n00264"/>
 </graph>

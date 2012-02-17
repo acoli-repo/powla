@@ -35,7 +35,7 @@
             <f name="msd" value="PRP$"/>
         </fs>
     </a>
-    <!--node xml:id="seg_ptb-n00008">
+    <node xml:id="seg_ptb-n00008">
         <link targets="seg_seg-r6"/>
     </node>
     <a label="tok" ref="seg_ptb-n00008" as="PTB">
@@ -4650,5 +4650,5 @@
         <fs>
             <f name="msd" value="NNP"/>
         </fs>
-    </a-->
+    </a>
 </graph>
