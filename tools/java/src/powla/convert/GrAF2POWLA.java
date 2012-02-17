@@ -546,7 +546,19 @@ public class GrAF2POWLA {
 									   " ?term <"+powla_end+"> \""+end+"\"^^xsd:long " +
 										   "} " +
 									"LIMIT 1" ).next().getResource("term");
-						if(!(startTerm.equals(endTerm) && startTerm.getURI().equals(terminal.getURI()))) {							
+
+						// if startTerm or endTerm is an empty element, the other may be the Terminal we searched for
+						if(startTerm.getURI().equals(terminal.getURI()) && 
+								startTerm.getProperty(powla_start).getLong()==start &&
+								endTerm.getProperty(powla_end).getLong()==end) {
+							endTerm=startTerm;
+						} else if(endTerm.getURI().equals(terminal.getURI()) && 
+								endTerm.getProperty(powla_start).getLong()==start &&
+								endTerm.getProperty(powla_end).getLong()==end) {
+							startTerm=endTerm;
+						}
+						
+						if(!(startTerm.getURI().equals(endTerm.getURI()) && startTerm.getURI().equals(terminal.getURI()))) {							
 							// more cases are to be supported:
 							// 1. Region covers same data as startTerm, but with different ID
 							// 2. Region covers a span of multiple original Regions 
@@ -601,7 +613,7 @@ public class GrAF2POWLA {
 							else if(end==start) {
 								Resource predecessor = endTerm;
 								Resource successor = startTerm;
-								System.err.println("warning: create a new Terminal between "+predecessor+" and "+successor);
+								System.err.println("create new Terminal "+terminal+" between "+predecessor+" and "+successor);
 								terminal.addProperty(rdf_type, powla_Terminal);
 								terminal.addLiteral(powla_start, model.createTypedLiteral(start)).addLiteral(powla_end, model.createTypedLiteral(end));
 								terminal.addProperty(powla_string, getString(textFile, start, end));
@@ -615,7 +627,7 @@ public class GrAF2POWLA {
 							}		
 						}
 					} catch(NoSuchElementException e) {
-						System.err.println("warning: non-base segment "+terminal+" (start="+start+", end="+end+") conflicts with the base segmentation");
+						// System.err.println("warning: non-base segment "+terminal+" (start="+start+", end="+end+") conflicts with the base segmentation");
 						// 3. Region is an empty sting, or a non-segmented (whitespace) string between two original Regions // TODO
 						// 4. Region can correspond to a substring of one original Region // TODO
 						// 5. Region can overlap with one original Region in a substring  // TODO
@@ -633,7 +645,7 @@ public class GrAF2POWLA {
 										"?term <"+powla_end+"> ?end FILTER (?end <= \""+end+"\"^^xsd:long)."+
 										"}");
 						if(terms.hasNext()) {
-							System.err.println("warning: redefined "+terminal+" to cover all Regions it fully contains");
+							System.err.println("redefined "+terminal+" to cover all Regions it fully contains");
 							terminal.addProperty(rdf_type, powla_Nonterminal);
 							while(terms.hasNext())
 								terminal.addProperty(powla_hasChild, terms.next().getResource("term"));
@@ -650,7 +662,7 @@ public class GrAF2POWLA {
 										"?term <"+powla_end+"> ?end FILTER (?end >= \""+end+"\"^^xsd:long) }"+
 										"}");
 							if(start!=end && terms.hasNext()) { // if start==end, then this is an empty string => new Terminal
-								System.err.println("warning: redefined "+terminal+" to cover all Regions it partially contains");
+								System.err.println("redefined "+terminal+" to cover all Regions it partially contains");
 								terminal.addProperty(rdf_type, powla_Nonterminal);
 								while(terms.hasNext())
 									terminal.addProperty(powla_hasChild, terms.next().getResource("term"));
@@ -669,7 +681,7 @@ public class GrAF2POWLA {
 									QuerySolution solution = terms.next();
 									Resource predecessor = solution.getResource("predecessor");
 									Resource successor = solution.getResource("successor");
-									System.err.println("warning: create a new Terminal between "+predecessor+" and "+successor);
+									System.err.println("create new Terminal "+terminal+" between "+predecessor+" and "+successor);
 									terminal.addProperty(rdf_type, powla_Terminal);
 									terminal.addLiteral(powla_start, model.createTypedLiteral(start)).addLiteral(powla_end, model.createTypedLiteral(end));
 									terminal.addProperty(powla_string, getString(textFile, start, end));
@@ -694,7 +706,7 @@ public class GrAF2POWLA {
 									if(terms.hasNext()) {
 										QuerySolution solution = terms.next();
 										Resource predecessor = solution.getResource("predecessor");
-										System.err.println("warning: create a new Terminal after "+predecessor);
+										System.err.println("create new Terminal "+terminal+" after "+predecessor);
 										terminal.addProperty(rdf_type, powla_Terminal);
 										terminal.addLiteral(powla_start, model.createTypedLiteral(start)).addLiteral(powla_end, model.createTypedLiteral(end));
 										terminal.addProperty(powla_string, getString(textFile, start, end));
@@ -715,7 +727,7 @@ public class GrAF2POWLA {
 										if(terms.hasNext()) {
 											QuerySolution solution = terms.next();
 											Resource successor = solution.getResource("successor");
-											System.err.println("warning: create a new Terminal before "+successor);
+											System.err.println("create new Terminal "+terminal+" before "+successor);
 											terminal.addProperty(rdf_type, powla_Terminal);
 											terminal.addLiteral(powla_start, model.createTypedLiteral(start)).addLiteral(powla_end, model.createTypedLiteral(end));
 											terminal.addProperty(powla_string, getString(textFile, start, end));
