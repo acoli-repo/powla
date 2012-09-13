@@ -168,6 +168,8 @@ public class DisambiguateGrAFIDs {
 	    	    try {
 	    	    	boolean modified=false;
 	    	    	System.setProperty("user.dir", ancDir.toString());
+	    	    	System.err.println("ancDir: "+ancDir.toString()+" ("+ancDir.getCanonicalPath()+", "+
+	    	    			ancDir.getAbsolutePath()+")");
 	        		File srcFile = new File(file); //.replaceAll("\\\\",File.separator).replaceAll("/", File.separator));
 	        		// System.err.println(srcFile);
 	        		
@@ -189,7 +191,11 @@ public class DisambiguateGrAFIDs {
 	        			out.close();
 	        			in.close();
 	        		}        			
+
 	        		File tgtFile = new File(file);
+	        		System.err.println("tgtFile: "+tgtFile.toString()+" ("+tgtFile.getCanonicalPath()+", "+
+	    	    			tgtFile.getAbsolutePath()+" <= "+file+" in "+new File(".").getAbsolutePath()+")");
+	        		
 	        		tgtFile.createNewFile();
 	        		BufferedReader in = new BufferedReader(new FileReader(backupFile));
 	        		FileWriter out = new FileWriter(tgtFile);
