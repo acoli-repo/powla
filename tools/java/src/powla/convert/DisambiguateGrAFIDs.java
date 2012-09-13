@@ -170,10 +170,6 @@ public class DisambiguateGrAFIDs {
 	        		File srcFile = new File(file.replaceAll("\\\\",File.separator).replaceAll("/", File.separator));
 	        		System.err.println(srcFile);
 
-	        		if(srcFile.getParentFile()==null) {
-	        			System.err.println("warning: found no parent directory for "+srcFile);
-	        		} else
-	        			System.setProperty("user.dir", srcFile.getParentFile().getAbsolutePath()); // ancDir.toString());
 	        		File backupFile = new File(srcFile.toString()+".bak");
 	        		int backups = 1;
 	        		while(backupFile.exists()) {
