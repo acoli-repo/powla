@@ -79,6 +79,7 @@ public class DisambiguateGrAFIDs {
                 } catch (Exception e) {
                 	System.err.print("\nwhile reading "+(new File(file)).getAbsolutePath()+": "+e.getClass().getCanonicalName());
                 }
+                System.setProperty("user.dir", oldDir.toString());
         }
         System.err.println(". ok");
                 
