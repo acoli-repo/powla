@@ -167,10 +167,10 @@ public class DisambiguateGrAFIDs {
 	        	System.err.print("update "+file+" ..");
 	    	    try {
 	    	    	boolean modified=false;
-	        		File srcFile = new File(file.replaceAll("\\\\","/"));
+	        		File srcFile = new File(file.replaceAll("\\\\",File.separator).replaceAll("/", File.separator));
 	        		File dir = srcFile.getParentFile();
 	        		if(dir==null) {
-	        			dir=new File(System.getProperty("user.dir"));
+	        			dir=new File(".").getAbsoluteFile();
 	        			System.err.println("warning: setting parent directory for file "+srcFile+" to "+dir.getAbsolutePath());
 	        		}
 	        		System.setProperty("user.dir", dir.getAbsolutePath()); // ancDir.toString());
