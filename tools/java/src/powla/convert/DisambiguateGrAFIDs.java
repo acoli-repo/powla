@@ -170,8 +170,8 @@ public class DisambiguateGrAFIDs {
 	        		File srcFile = new File(file.replaceAll("\\\\","/"));
 	        		File dir = srcFile.getParentFile();
 	        		if(dir==null) {
-	        			dir=new File(".");
-	        			System.err.println("warning: found no parent directory for file "+srcFile+" setting it to "+dir.getAbsolutePath());
+	        			dir=new File(".").getAbsoluteFile();
+	        			System.err.println("warning: setting parent directory for file "+srcFile+" to "+dir.getAbsolutePath());
 	        		}
 	        		System.setProperty("user.dir", dir.getAbsolutePath()); // ancDir.toString());
 	        		File backupFile = new File(srcFile.toString()+".bak");
@@ -181,7 +181,7 @@ public class DisambiguateGrAFIDs {
 	        			backups++;
 	        		}
 	        		
-	        		if(!srcFile.exists()) System.err.println("did not find "+srcFile.getCanonicalPath()+" in dir "+srcFile.getParent());
+	        		if(!srcFile.exists()) System.err.println("did not find "+srcFile.getCanonicalPath()+" in dir "+dir.getAbsolutePath());
 	        		if(!srcFile.canRead()) System.err.println("cannot read "+srcFile.getCanonicalPath());
 	        		if(!srcFile.renameTo(backupFile)) {
 	        			BufferedReader in = new BufferedReader(new FileReader(srcFile));
@@ -283,7 +283,7 @@ public class DisambiguateGrAFIDs {
 		System.err.println("DisambiguateGrAFIDs: make sure that all files referenced in an *.anc file use unambiguous node and edge IDs\n"+
 				"synopsis: DisambiguateGrAFIDs [FILE1 .. FILEn]\n"+
 				"\tFILE1 .. FILEn GrAF project (*.anc) files\n" +
-				"\tif ambiguities are found, every XML file referenced in the project files will be " +
+				"\tif ambiguities are found, every XML file referenced in the project files will be\n" +
 				"\tmodified in-place, with a *.bak file created");
 		for(int i = 0; i<args.length; i++) {
 			File file = new File(args[i]);
