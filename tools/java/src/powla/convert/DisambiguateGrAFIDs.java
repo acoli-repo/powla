@@ -181,7 +181,7 @@ public class DisambiguateGrAFIDs {
 	        		if(!srcFile.exists()) System.err.println("did not find "+srcFile.getCanonicalPath());
 	        		if(!srcFile.canRead()) System.err.println("cannot read "+srcFile.getCanonicalPath());
 	        		if(!srcFile.renameTo(backupFile)) {
-	        			BufferedReader in = new BufferedReader(new FileReader(srcFile));
+	        			BufferedReader in = new BufferedReader(new FileReader(srcFile.getCanonicalPath()));
 	        			FileWriter out = new FileWriter(backupFile);
 	        			for(String line = in.readLine(); line!=null; line=in.readLine())
 	        				out.write(line+"\n");
