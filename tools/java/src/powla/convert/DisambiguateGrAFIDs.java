@@ -79,7 +79,6 @@ public class DisambiguateGrAFIDs {
                 } catch (Exception e) {
                 	System.err.print("\nwhile reading "+(new File(file)).getAbsolutePath()+": "+e.getClass().getCanonicalName());
                 }
-                System.setProperty("user.dir", oldDir.toString());
         }
         System.err.println(". ok");
                 
@@ -168,9 +167,10 @@ public class DisambiguateGrAFIDs {
 	        	System.err.print("update "+file+" ..");
 	    	    try {
 	    	    	boolean modified=false;
+	    	    	System.setProperty("user.dir", ancDir.toString());
 	        		File srcFile = new File(file.replaceAll("\\\\",File.separator).replaceAll("/", File.separator));
-	        		System.err.println(srcFile);
-
+	        		// System.err.println(srcFile);
+	        		
 	        		File backupFile = new File(srcFile.toString()+".bak");
 	        		int backups = 1;
 	        		while(backupFile.exists()) {
@@ -261,11 +261,11 @@ public class DisambiguateGrAFIDs {
 	        			backupFile.delete();
 	        		System.err.println(". ok");
 	        			        	
-		        	System.setProperty("user.dir", oldDir.toString());
 	            } catch (Exception ex) {
 	            	System.err.println("while reading "+(new File(file)).getAbsolutePath()+": "+ex.getClass().getCanonicalName());
 	            	ex.printStackTrace();
 	            }
+	        	System.setProperty("user.dir", oldDir.toString());
 	        }
         
 	    
