@@ -168,12 +168,12 @@ public class DisambiguateGrAFIDs {
 	    	    try {
 	    	    	boolean modified=false;
 	        		File srcFile = new File(file.replaceAll("\\\\",File.separator).replaceAll("/", File.separator));
-	        		File dir = srcFile.getParentFile();
-	        		if(dir==null) {
-	        			dir=new File(".").getAbsoluteFile();
-	        			System.err.println("warning: setting parent directory for file "+srcFile+" to "+dir.getAbsolutePath());
-	        		}
-	        		System.setProperty("user.dir", dir.getAbsolutePath()); // ancDir.toString());
+	        		System.err.println(srcFile);
+
+	        		if(srcFile.getParentFile()==null) {
+	        			System.err.println("warning: found no parent directory for "+srcFile);
+	        		} else
+	        			System.setProperty("user.dir", srcFile.getParentFile().getAbsolutePath()); // ancDir.toString());
 	        		File backupFile = new File(srcFile.toString()+".bak");
 	        		int backups = 1;
 	        		while(backupFile.exists()) {
@@ -181,7 +181,7 @@ public class DisambiguateGrAFIDs {
 	        			backups++;
 	        		}
 	        		
-	        		if(!srcFile.exists()) System.err.println("did not find "+srcFile.getCanonicalPath()+" in dir "+dir.getAbsolutePath());
+	        		if(!srcFile.exists()) System.err.println("did not find "+srcFile.getCanonicalPath());
 	        		if(!srcFile.canRead()) System.err.println("cannot read "+srcFile.getCanonicalPath());
 	        		if(!srcFile.renameTo(backupFile)) {
 	        			BufferedReader in = new BufferedReader(new FileReader(srcFile));
