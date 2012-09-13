@@ -168,7 +168,7 @@ public class DisambiguateGrAFIDs {
 	    	    try {
 	    	    	boolean modified=false;
 	        		File srcFile = new File(file.replaceAll("\\\\","/"));
-	        		System.setProperty("user.dir", srcFile.getAbsolutePath()); // ancDir.toString());
+	        		System.setProperty("user.dir", srcFile.getParentFile().getAbsolutePath()); // ancDir.toString());
 	        		File backupFile = new File(srcFile.toString()+".bak");
 	        		int backups = 1;
 	        		while(backupFile.exists()) {
