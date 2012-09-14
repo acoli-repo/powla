@@ -179,7 +179,9 @@ public class DisambiguateGrAFIDs {
 	        			backupFile = new File(srcFile.toString()+".bak"+backups);
 	        			backups++;
 	        		}
-	        		
+
+	        		File tgtFile = new File(srcFile.getAbsoluteFile().getAbsolutePath());
+
 	        		if(!srcFile.exists()) System.err.println("did not find "+srcFile.getCanonicalPath());
 	        		if(!srcFile.canRead()) System.err.println("cannot read "+srcFile.getCanonicalPath());
 	        		if(!srcFile.renameTo(backupFile)) {
@@ -192,7 +194,6 @@ public class DisambiguateGrAFIDs {
 	        			in.close();
 	        		}        			
 
-	        		File tgtFile = new File(file);
 	        		System.err.println("tgtFile: "+tgtFile.toString()+" ("+tgtFile.getCanonicalPath()+", "+
 	    	    			tgtFile.getAbsolutePath()+" <= "+file+" in "+new File(".").getAbsolutePath()+")");
 	        		
