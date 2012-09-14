@@ -42,9 +42,9 @@ public class DisambiguateGrAFIDs {
 	 * 	 *  */
 	public static void processANCfile(File ancFile) throws SAXException, IOException {
         System.err.print("read "+ancFile.toString()+" ..");
-		File ancDir = ancFile.getParentFile();
+		File ancDir = ancFile.getParentFile().getAbsoluteFile().getCanonicalFile();
     	if(ancDir==null) ancDir=new File(".");
-    	File oldDir = new File(System.getProperty("user.dir"));
+    	File oldDir = new File(System.getProperty("user.dir")).getAbsoluteFile().getCanonicalFile();
     	System.err.println(". ok");
     	
     	NodeList annoFiles = null;
