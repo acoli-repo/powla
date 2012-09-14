@@ -168,10 +168,7 @@ public class DisambiguateGrAFIDs {
 	    	    try {
 	    	    	boolean modified=false;
 	    	    	System.setProperty("user.dir", ancDir.toString());
-	    	    	System.err.println("ancDir: "+ancDir.toString()+" ("+ancDir.getCanonicalPath()+", "+
-	    	    			ancDir.getAbsolutePath()+")");
-	        		File srcFile = new File(file); //.replaceAll("\\\\",File.separator).replaceAll("/", File.separator));
-	        		// System.err.println(srcFile);
+	        		File srcFile = new File(file.replaceAll("\\\\",File.separator).replaceAll("/", File.separator));
 	        		
 	        		File backupFile = new File(srcFile.toString()+".bak");
 	        		int backups = 1;
@@ -194,9 +191,6 @@ public class DisambiguateGrAFIDs {
 	        			in.close();
 	        		}        			
 
-	        		System.err.println("tgtFile: "+tgtFile.toString()+" ("+tgtFile.getCanonicalPath()+", "+
-	    	    			tgtFile.getAbsolutePath()+" <= "+file+" in "+new File(".").getAbsolutePath()+")");
-	        		
 	        		tgtFile.createNewFile();
 	        		BufferedReader in = new BufferedReader(new FileReader(backupFile));
 	        		FileWriter out = new FileWriter(tgtFile);
@@ -256,6 +250,7 @@ public class DisambiguateGrAFIDs {
 	        				line=line.replaceAll("(targets=[\"'][^\"']*\\s)"+id+"([\"'\\s])", "$1"+sourceLayer+"_"+id+"$2");
 	        				line=line.replaceAll("<root>"+id+"</root>","<root>"+sourceLayer+"_"+id+"</root>");
 	        				System.err.println("\t["+id+"=>"+sourceLayer+"_"+id+"]");
+	        				modified=true;
 	        			}
 	        			
 	        			out.write(line+"\n");
