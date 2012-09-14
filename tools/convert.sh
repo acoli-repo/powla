@@ -61,7 +61,7 @@ echo found $ARGFILES 1>&2
 if echo $* | grep -i '\-f GrAF' >& /dev/null; then
 	echo "convert GrAF to RDF" 1>&2;
 	java -classpath $CLASSPATH powla.convert.DisambiguateGrAFIDs $ARGFILES;
-	FILE_NAME=`echo $ARGFILES | sed -e s/'[ \t].*'// -e s/'.*[^\/\\]'//g`;
+	FILE_NAME=`echo $ARGFILES | sed -e s/'^[ \t]*'// -e s/'[ \t].*'// -e s/'.*[^\/\\]'//g`;
 	java -Xmx1000m -classpath $CLASSPATH powla.convert.GrAF2POWLA graf=http://www.anc.org/graf/$FILE_NAME $ARGFILES;
 
 # else: print help
