@@ -1,0 +1,62 @@
+
+Libya	Libya	NNP	1	3	poss
+'s	's	POS	2	0	ROOT
+Gaddafi	Gaddafi	NNP	3	16	nsubj
+under	under	IN	4	0	ROOT
+mount	mount	VBG	5	6	amod
+pressure	pressure	NN	6	3	prep_under
+to	to	TO	7	8	aux
+go	go	VB	8	6	ccomp
+Protesters	Protesters	NNP	9	8	dobj
+in	in	IN	10	0	ROOT
+the	the	DT	11	14	det
+libyan	libyan	JJ	12	14	amod
+capital	capital	NN	13	14	nn
+tripolus	tripolus	NN	14	9	prep_in
+have	have	VBP	15	16	aux
+set	set	VBN	16	0	root
+the	the	DT	17	19	det
+parliament	parliament	NN	18	19	nn
+building	building	NN	19	16	dobj
+on	on	IN	20	0	ROOT
+fire	fire	NN	21	16	prep_on
+.	.	.	22	0	ROOT
+
+
+
+they	they	PRP	1	3	nsubj
+be	be	VBP	2	3	aux
+urge	urge	VBG	3	0	root
+the	the	DT	4	5	det
+country	country	NN	5	7	poss
+'s	's	POS	6	0	ROOT
+leader	leader	NN	7	3	dobj
+Colonel	Colonel	NNP	8	10	nn
+Muammar	Muammar	NNP	9	10	nn
+Gaddafi	Gaddafi	NNP	10	12	nsubj
+to	to	TO	11	12	aux
+step	step	VB	12	7	infmod
+down	down	RP	13	12	prt
+.	.	.	14	0	ROOT
+
+
+
+the	the	DT	1	2	det
+military	military	NN	2	5	nsubj
+have	have	VBZ	3	5	aux
+reportedly	reportedly	RB	4	5	advmod
+launch	launch	VBN	5	0	root
+a	a	DT	6	8	det
+air	air	NN	7	8	nn
+strike	strike	NN	8	5	dobj
+on	on	IN	9	0	ROOT
+demonstrator	demonstrator	NNS	10	5	prep_on
+in	in	IN	11	0	ROOT
+the	the	DT	12	13	det
+city	city	NN	13	10	prep_in
+of	of	IN	14	0	ROOT
+Benghazi	Benghazi	NNP	15	13	prep_of
+.	.	.	16	0	ROOT
+
+
+
