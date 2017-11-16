@@ -1,0 +1,33 @@
+# remove every concept (property) with a powla superconcept (superproperty)
+
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX powla: <http://purl.org/powla/powla.owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX conll: <http://ufal.mff.cuni.cz/conll2009-st/task-description.html#>
+PREFIX nif: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#>
+
+# assume that the graph <http://purl.org/powla/> contains a mapping to POWLA (cf. conllrdf.owl in this directory)
+
+DELETE {
+	?a ?prop ?b
+} WHERE {
+	?a ?prop ?b.
+	?a ?powlaProp ?b.
+	GRAPH <http://purl.org/powla/> {
+		?prop rdfs:subPropertyOf ?powlaProp.
+		FILTER(contains(str(?powlaProp), "http://purl.org/powla"))
+	}
+};
+
+DELETE {
+	?a a ?Class.
+} WHERE {
+	?a a ?Class.
+	?a a ?powlaClass.
+	GRAPH <http://purl.org/powla/> {
+		?Class rdfs:subClassOf ?powlaClass.
+		FILTER(contains(str(?powlaClass), "http://purl.org/powla"))
+	}
+};

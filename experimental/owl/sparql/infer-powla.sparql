@@ -1,0 +1,44 @@
+# read CoNLL-RDF, write POWLA
+
+# this involves:
+# - nif:Sentence => powla:Nonterminal and powla:Root
+# - nif:Word => powla:Terminal
+# - nif:nextWord => powla:nextNode
+# - nif:nextSentence => powla:nextNode
+# - conll:HEAD => powla:hasParent
+# - keep everything else, do not create layers or document nodes (tbc: as blank nodes?)
+
+# idea:
+# we separate the mapping from CoNLL-RDF to POWLA into 
+# - a mapping (rdfs:subPropertyOf/rdfs:subClassOf) and 
+# - a generic SPARQL transformation that replaces classes and properties with their powla super classes/properties
+
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX powla: <http://purl.org/powla/powla.owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX conll: <http://ufal.mff.cuni.cz/conll2009-st/task-description.html#>
+PREFIX nif: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#>
+
+# assume that the graph <http://purl.org/powla/> contains a mapping to POWLA (cf. conllrdf.owl in this directory)
+
+INSERT {
+	?a ?powlaProp ?b
+} WHERE {
+	?a ?prop ?b.
+	GRAPH <http://purl.org/powla/> {
+		?prop rdfs:subPropertyOf ?powlaProp.
+		FILTER(contains(str(?powlaProp), "http://purl.org/powla"))
+	}
+};
+
+INSERT {
+	?a a ?powlaClass.
+} WHERE {
+	?a a ?Class.
+	GRAPH <http://purl.org/powla/> {
+		?Class rdfs:subClassOf ?powlaClass.
+		FILTER(contains(str(?powlaClass), "http://purl.org/powla"))
+	}
+};

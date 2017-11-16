@@ -1,0 +1,64 @@
+# read CoNLL-RDF, write POWLA
+
+# this involves:
+# - nif:Sentence => powla:Nonterminal and powla:Root
+# - nif:Word => powla:Terminal
+# - nif:nextWord => powla:nextNode
+# - nif:nextSentence => powla:nextNode
+# - conll:HEAD => powla:hasParent
+# - keep everything else, do not create layers or document nodes (tbc: as blank nodes?)
+
+# idea:
+# we separate the mapping from CoNLL-RDF to POWLA into 
+# - a mapping (rdfs:subPropertyOf/rdfs:subClassOf) and 
+# - a generic SPARQL transformation that replaces classes and properties with their powla super classes/properties
+
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX powla: <http://purl.org/powla/powla.owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX conll: <http://ufal.mff.cuni.cz/conll2009-st/task-description.html#>
+PREFIX nif: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+# (0) generic mapping of nif classes and conll:HEAD
+# implemented in infer-powla.sh
+
+# (1) for every object property that does not have a powla equivalent *in the data* (e.g., SRL)
+#     create a powla:Relation
+#     as we cannot give it a type or annotation, we model a relation to the cRel as skos:broader
+INSERT {
+	?a powla:isSourceOf [ a powla:Relation; skos:broader ?cRel; rdfs:label ?label; powla:hasTarget ?b ].
+} WHERE { 
+	{ SELECT DISTINCT ?cRel		# every CoNLL relation which does not have a systematic POWLA counterpart
+	  WHERE {
+		?x ?cRel ?y.
+		?y ?rel [].				# must be an object property
+		FILTER(contains(str(?cRel), 'http://ufal.mff.cuni.cz/conll2009-st/task-description.html#'))
+		OPTIONAL {
+			?x ?pRel ?y.
+			FILTER(contains(str(?pRel), 'http://purl.org/powla/powla.owl#'))
+		}
+		FILTER(!(BOUND(?pRel)))
+	  }
+	}
+	?a ?cRel ?b.
+	BIND(replace(str(?cRel),'.*[/#]','') AS ?label).
+};
+
+# (2) there should be no CoNLL classes, and we keep CoNLL properties as is
+# skipped
+
+# (3) delete conll properties replaced by powla:Relations
+DELETE {
+	?a ?cRel ?b
+} WHERE {
+	?a ?cRel ?b.
+	?a powla:isSourceOf ?pRel.
+	?pRel skos:broader ?cRel.
+	?pRel powla:hasTarget ?b
+};
+
+# (4) remove every concept (property) with a powla superconcept (superproperty)
+# implemented in prune-powla.sh

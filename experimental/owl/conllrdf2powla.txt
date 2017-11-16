@@ -1,0 +1,16 @@
+read CoNLL-RDF, write POWLA
+
+this involves:
+- nif:Sentence => powla:Nonterminal and powla:Root
+- nif:Word => powla:Terminal
+- nif:nextWord => powla:nextNode
+- nif:nextSentence => powla:nextNode
+- conll:HEAD => powla:hasParent
+- keep everything else, do not create layers or document nodes (tbc: as blank nodes?)
+
+idea:
+we separate the mapping from CoNLL-RDF to POWLA into 
+- a mapping (rdfs:subPropertyOf/rdfs:subClassOf) and 
+- a generic SPARQL transformation that replaces classes and properties with their powla super classes/properties
+
+TODO: support SRL annotations
