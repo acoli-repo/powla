@@ -10,7 +10,6 @@ this involves:
 
 idea:
 we separate the mapping from CoNLL-RDF to POWLA into 
-- a mapping (rdfs:subPropertyOf/rdfs:subClassOf) and 
-- a generic SPARQL transformation that replaces classes and properties with their powla super classes/properties
-
-TODO: support SRL annotations
+- OWL: a mapping (rdfs:subPropertyOf/rdfs:subClassOf) defined in an ontology, i.e., conllrdf.owl,
+- GENERIC SPARQL: a generic SPARQL transformation that replaces these classes and properties with their powla super classes/properties
+- FORMAT-SPECIFIC SPARQL: CoNLL-specific treatment of format specifics, e.g., object properties in conll as produced for SRL
