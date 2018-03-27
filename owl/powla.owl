@@ -4,7 +4,9 @@
 <!DOCTYPE rdf:RDF [
     <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
     <!ENTITY dc "http://purl.org/dc/elements/1.1/" >
+    <!ENTITY powla "http://purl.org/powla/powla.owl#" >
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY owl2xml "http://www.w3.org/2006/12/owl2-xml#" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
 ]>
@@ -12,12 +14,40 @@
 
 <rdf:RDF xmlns="http://purl.org/powla/powla.owl#"
      xml:base="http://purl.org/powla/powla.owl"
+     xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
+     xmlns:powla="http://purl.org/powla/powla.owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:dc="http://purl.org/dc/elements/1.1/"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:owl="http://www.w3.org/2002/07/owl#"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-    <owl:Ontology rdf:about="http://purl.org/powla/powla.owl"/>
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#">
+    <owl:Ontology rdf:about="">
+        <rdfs:comment xml:lang="en"
+            >POWLA provides an OWL2/DL implementation of a generic data model for linguistic annotation (Chiarcos 2012ab). 
+
+The immediate predecessor of POWLA is the PAULA data model (Chiarcos et al., 2008), and the associated XML standoff format (G&#246;tze et al., 2005; Dipper 2005). PAULA (and POWLA) implements the data model of the Linguistic Annotation Framework as described by Ide and Romary (2004). POWLA is thus semantically equivalent with the LAF data model and the GrAF format (Ide and Suderman, 2007), i.e., ISO 24612:2012.
+
+History:
+2017-03-27 deprecate powla:nextNode and powla:previousNode  in favor of powla:next, powla:previous
+2012-02-23 initial release of the OWL/DL implementation
+2008-05-15 abstract data model published (PAULA, Chiarcos et al. 2008)
+
+References:
+
+Chiarcos, C. (2012a). Interoperability of corpora and annotations. In Chiarcos C. et al. (ed.), Linked Data in Linguistics (pp. 161-179). Springer, Berlin, Heidelberg.
+
+Chiarcos, C. (2012b). POWLA: Modeling linguistic corpora in OWL/DL. In Extended Semantic Web Conference (pp. 225-239). Springer, Berlin, Heidelberg.
+
+Chiarcos, C., Dipper, S., G&#246;tze, M., Leser, U., L&#252;deling, A., Ritz, J., &amp; Stede, M. (2008). A flexible framework for integrating annotations from different tools and tagsets. Traitement Automatique des Langues, 49(2), 271-293.
+
+Dipper, S. (2005). XML-based Stand-off Representation and Exploitation of Multi-Level Linguistic Annotation. In Berliner XML Tage (pp. 39-50).
+
+G&#246;tze, M., Skopeteas, S., Roloff, T., &amp; Stoel, R. (2005). Towards a cross-linguistic production data archive: Structure and exploration. In International Tbilisi Symposium on Logic, Language, and Computation (pp. 127-138). Springer, Berlin, Heidelberg.
+
+Ide, N., &amp; Romary, L. (2004). International standard for a linguistic annotation framework. Natural language engineering, 10(3-4), 211-225.
+
+Ide, N., &amp; Suderman, K. (2007). GrAF: A graph-based format for linguistic annotations. In proceedings of the Linguistic Annotation Workshop (pp. 1-8). Association for Computational Linguistics.</rdfs:comment>
+    </owl:Ontology>
     
 
 
@@ -48,179 +78,219 @@
 
     <!-- http://purl.org/powla/powla.owl#firstTerminal -->
 
-    <owl:ObjectProperty rdf:about="http://purl.org/powla/powla.owl#firstTerminal">
-        <rdfs:domain rdf:resource="http://purl.org/powla/powla.owl#Nonterminal"/>
-        <rdfs:range rdf:resource="http://purl.org/powla/powla.owl#Terminal"/>
-        <rdfs:subPropertyOf rdf:resource="http://purl.org/powla/powla.owl#hasTerminal"/>
+    <owl:ObjectProperty rdf:about="#firstTerminal">
+        <rdfs:domain rdf:resource="#Nonterminal"/>
+        <rdfs:range rdf:resource="#Terminal"/>
+        <rdfs:subPropertyOf rdf:resource="#hasTerminal"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://purl.org/powla/powla.owl#hasChild -->
 
-    <owl:ObjectProperty rdf:about="http://purl.org/powla/powla.owl#hasChild">
-        <rdfs:range rdf:resource="http://purl.org/powla/powla.owl#Node"/>
-        <rdfs:domain rdf:resource="http://purl.org/powla/powla.owl#Nonterminal"/>
-        <owl:inverseOf rdf:resource="http://purl.org/powla/powla.owl#hasParent"/>
+    <owl:ObjectProperty rdf:about="#hasChild">
+        <rdfs:comment xml:lang="en"
+            >OPTIONAL PROPERTY for expressing hierarchical annotations with coverage inheritance, e.g., in a tree annotation. Inverse of powla:hasParent, see there for details.
+</rdfs:comment>
+        <rdfs:range rdf:resource="#Node"/>
+        <rdfs:domain rdf:resource="#Nonterminal"/>
+        <owl:inverseOf rdf:resource="#hasParent"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://purl.org/powla/powla.owl#hasDocument -->
 
-    <owl:ObjectProperty rdf:about="http://purl.org/powla/powla.owl#hasDocument">
-        <rdfs:range rdf:resource="http://purl.org/powla/powla.owl#Document"/>
-        <rdfs:domain rdf:resource="http://purl.org/powla/powla.owl#DocumentLayer"/>
+    <owl:ObjectProperty rdf:about="#hasDocument">
+        <rdfs:range rdf:resource="#Document"/>
+        <rdfs:domain rdf:resource="#DocumentLayer"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://purl.org/powla/powla.owl#hasLayer -->
 
-    <owl:ObjectProperty rdf:about="http://purl.org/powla/powla.owl#hasLayer">
-        <rdfs:range rdf:resource="http://purl.org/powla/powla.owl#DocumentLayer"/>
+    <owl:ObjectProperty rdf:about="#hasLayer">
+        <rdfs:range rdf:resource="#DocumentLayer"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://purl.org/powla/powla.owl#hasNode -->
 
-    <owl:ObjectProperty rdf:about="http://purl.org/powla/powla.owl#hasNode">
-        <rdfs:range rdf:resource="http://purl.org/powla/powla.owl#Node"/>
-        <rdfs:domain rdf:resource="http://purl.org/powla/powla.owl#Root"/>
+    <owl:ObjectProperty rdf:about="#hasNode">
+        <rdfs:range rdf:resource="#Node"/>
+        <rdfs:domain rdf:resource="#Root"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://purl.org/powla/powla.owl#hasNonterminal -->
 
-    <owl:ObjectProperty rdf:about="http://purl.org/powla/powla.owl#hasNonterminal">
-        <rdfs:range rdf:resource="http://purl.org/powla/powla.owl#Nonterminal"/>
-        <rdfs:domain rdf:resource="http://purl.org/powla/powla.owl#Root"/>
-        <rdfs:subPropertyOf rdf:resource="http://purl.org/powla/powla.owl#hasNode"/>
+    <owl:ObjectProperty rdf:about="#hasNonterminal">
+        <rdfs:range rdf:resource="#Nonterminal"/>
+        <rdfs:domain rdf:resource="#Root"/>
+        <rdfs:subPropertyOf rdf:resource="#hasNode"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://purl.org/powla/powla.owl#hasParent -->
 
-    <owl:ObjectProperty rdf:about="http://purl.org/powla/powla.owl#hasParent">
-        <rdfs:domain rdf:resource="http://purl.org/powla/powla.owl#Node"/>
-        <rdfs:range rdf:resource="http://purl.org/powla/powla.owl#Nonterminal"/>
+    <owl:ObjectProperty rdf:about="#hasParent">
+        <rdfs:comment xml:lang="en"
+            >RECOMMENDED PROPERTY for expressing hierarchical annotations with coverage inheritance, e.g., in a tree annotation. 
+
+Coverage inheritance means that the string covered by the children must also be covered by the parent node. A typical example is phrase-structure syntax. A typical counter-example is dependency syntax.</rdfs:comment>
+        <rdfs:domain rdf:resource="#Node"/>
+        <rdfs:range rdf:resource="#Nonterminal"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://purl.org/powla/powla.owl#hasRoot -->
 
-    <owl:ObjectProperty rdf:about="http://purl.org/powla/powla.owl#hasRoot">
-        <rdfs:domain rdf:resource="http://purl.org/powla/powla.owl#Node"/>
-        <rdfs:range rdf:resource="http://purl.org/powla/powla.owl#Root"/>
+    <owl:ObjectProperty rdf:about="#hasRoot">
+        <rdfs:domain rdf:resource="#Node"/>
+        <rdfs:range rdf:resource="#Root"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://purl.org/powla/powla.owl#hasSource -->
 
-    <owl:ObjectProperty rdf:about="http://purl.org/powla/powla.owl#hasSource">
-        <rdfs:range rdf:resource="http://purl.org/powla/powla.owl#Node"/>
-        <rdfs:domain rdf:resource="http://purl.org/powla/powla.owl#Relation"/>
+    <owl:ObjectProperty rdf:about="#hasSource">
+        <rdfs:range rdf:resource="#Node"/>
+        <rdfs:domain rdf:resource="#Relation"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://purl.org/powla/powla.owl#hasSubDocument -->
 
-    <owl:ObjectProperty rdf:about="http://purl.org/powla/powla.owl#hasSubDocument">
-        <rdfs:domain rdf:resource="http://purl.org/powla/powla.owl#Document"/>
-        <rdfs:range rdf:resource="http://purl.org/powla/powla.owl#Document"/>
+    <owl:ObjectProperty rdf:about="#hasSubDocument">
+        <rdfs:domain rdf:resource="#Document"/>
+        <rdfs:range rdf:resource="#Document"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://purl.org/powla/powla.owl#hasSuperDocument -->
 
-    <owl:ObjectProperty rdf:about="http://purl.org/powla/powla.owl#hasSuperDocument">
-        <rdfs:range rdf:resource="http://purl.org/powla/powla.owl#Document"/>
-        <rdfs:domain rdf:resource="http://purl.org/powla/powla.owl#Document"/>
-        <owl:inverseOf rdf:resource="http://purl.org/powla/powla.owl#hasSubDocument"/>
+    <owl:ObjectProperty rdf:about="#hasSuperDocument">
+        <rdfs:range rdf:resource="#Document"/>
+        <rdfs:domain rdf:resource="#Document"/>
+        <owl:inverseOf rdf:resource="#hasSubDocument"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://purl.org/powla/powla.owl#hasTarget -->
 
-    <owl:ObjectProperty rdf:about="http://purl.org/powla/powla.owl#hasTarget">
-        <rdfs:range rdf:resource="http://purl.org/powla/powla.owl#Node"/>
-        <rdfs:domain rdf:resource="http://purl.org/powla/powla.owl#Relation"/>
+    <owl:ObjectProperty rdf:about="#hasTarget">
+        <rdfs:range rdf:resource="#Node"/>
+        <rdfs:domain rdf:resource="#Relation"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://purl.org/powla/powla.owl#hasTerminal -->
 
-    <owl:ObjectProperty rdf:about="http://purl.org/powla/powla.owl#hasTerminal">
-        <rdfs:domain rdf:resource="http://purl.org/powla/powla.owl#Root"/>
-        <rdfs:range rdf:resource="http://purl.org/powla/powla.owl#Terminal"/>
-        <rdfs:subPropertyOf rdf:resource="http://purl.org/powla/powla.owl#hasNode"/>
+    <owl:ObjectProperty rdf:about="#hasTerminal">
+        <rdfs:domain rdf:resource="#Root"/>
+        <rdfs:range rdf:resource="#Terminal"/>
+        <rdfs:subPropertyOf rdf:resource="#hasNode"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://purl.org/powla/powla.owl#isSourceOf -->
 
-    <owl:ObjectProperty rdf:about="http://purl.org/powla/powla.owl#isSourceOf">
-        <rdfs:domain rdf:resource="http://purl.org/powla/powla.owl#Node"/>
-        <rdfs:range rdf:resource="http://purl.org/powla/powla.owl#Relation"/>
-        <owl:inverseOf rdf:resource="http://purl.org/powla/powla.owl#hasSource"/>
+    <owl:ObjectProperty rdf:about="#isSourceOf">
+        <rdfs:domain rdf:resource="#Node"/>
+        <rdfs:range rdf:resource="#Relation"/>
+        <owl:inverseOf rdf:resource="#hasSource"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://purl.org/powla/powla.owl#isTargetOf -->
 
-    <owl:ObjectProperty rdf:about="http://purl.org/powla/powla.owl#isTargetOf">
-        <rdfs:domain rdf:resource="http://purl.org/powla/powla.owl#Node"/>
-        <rdfs:range rdf:resource="http://purl.org/powla/powla.owl#Relation"/>
-        <owl:inverseOf rdf:resource="http://purl.org/powla/powla.owl#hasTarget"/>
+    <owl:ObjectProperty rdf:about="#isTargetOf">
+        <rdfs:domain rdf:resource="#Node"/>
+        <rdfs:range rdf:resource="#Relation"/>
+        <owl:inverseOf rdf:resource="#hasTarget"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://purl.org/powla/powla.owl#lastTerminal -->
 
-    <owl:ObjectProperty rdf:about="http://purl.org/powla/powla.owl#lastTerminal">
-        <rdfs:domain rdf:resource="http://purl.org/powla/powla.owl#Nonterminal"/>
-        <rdfs:range rdf:resource="http://purl.org/powla/powla.owl#Terminal"/>
-        <rdfs:subPropertyOf rdf:resource="http://purl.org/powla/powla.owl#hasTerminal"/>
+    <owl:ObjectProperty rdf:about="#lastTerminal">
+        <rdfs:domain rdf:resource="#Nonterminal"/>
+        <rdfs:range rdf:resource="#Terminal"/>
+        <rdfs:subPropertyOf rdf:resource="#hasTerminal"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/powla/powla.owl#next -->
+
+    <owl:ObjectProperty rdf:about="#next">
+        <rdfs:comment xml:lang="en"
+            >RECOMMENDED PROPERTY for connecting two powla:Nodes in a sequence. Note that powla:next is not transitive, but should connect adjacent nodes only.
+
+powla:next can be used to connect subsequent strings in *any* annotation, but when applied to an annotation layer with hierarchical annotation (e.g., a syntactic tree), it is recommended to use powla:next to express the order of nodes with the same parent (e.g., elements of a phrase) are to be connected. Note that sibling order may deviate from string order in the case of discontinuous annotations:
+
+[ [What]_PP1 are [ [you]_SBJ talking [about]_PP2 ]_VP ] ?
+
+In the example, the prepositional argument [about what]_PP is split (&quot;preposition stranding&quot;). Depending on the type of syntactic representation, it may be desirable to represent this as a single phrase, and POWLA allows to specify the canonical order of phrase elements regardless of their sequential order in the textual representation, i.e., about &gt; what.</rdfs:comment>
     </owl:ObjectProperty>
     
 
 
     <!-- http://purl.org/powla/powla.owl#nextNode -->
 
-    <owl:ObjectProperty rdf:about="http://purl.org/powla/powla.owl#nextNode">
-        <rdfs:range rdf:resource="http://purl.org/powla/powla.owl#Node"/>
-        <rdfs:domain rdf:resource="http://purl.org/powla/powla.owl#Node"/>
-        <owl:inverseOf rdf:resource="http://purl.org/powla/powla.owl#previousNode"/>
+    <owl:ObjectProperty rdf:about="#nextNode">
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+        <owl:versionInfo xml:lang="en"
+            >replaced by powla:next</owl:versionInfo>
+        <rdfs:range rdf:resource="#Node"/>
+        <rdfs:domain rdf:resource="#Node"/>
+        <rdfs:subPropertyOf rdf:resource="#next"/>
+        <owl:inverseOf rdf:resource="#previousNode"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/powla/powla.owl#previous -->
+
+    <owl:ObjectProperty rdf:about="#previous">
+        <rdfs:comment xml:lang="en"
+            >OPTIONAL PROPERTY for connecting two powla:Nodes in a sequence. Inverse of powla:next, see there for details.</rdfs:comment>
+        <owl:inverseOf rdf:resource="#next"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://purl.org/powla/powla.owl#previousNode -->
 
-    <owl:ObjectProperty rdf:about="http://purl.org/powla/powla.owl#previousNode">
-        <rdfs:domain rdf:resource="http://purl.org/powla/powla.owl#Node"/>
-        <rdfs:range rdf:resource="http://purl.org/powla/powla.owl#Node"/>
+    <owl:ObjectProperty rdf:about="#previousNode">
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+        <owl:versionInfo xml:lang="en"
+            >deprecated in favor of powla:previous</owl:versionInfo>
+        <rdfs:domain rdf:resource="#Node"/>
+        <rdfs:range rdf:resource="#Node"/>
+        <rdfs:subPropertyOf rdf:resource="#previous"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://purl.org/powla/powla.owl#rootOfDocument -->
 
-    <owl:ObjectProperty rdf:about="http://purl.org/powla/powla.owl#rootOfDocument">
-        <rdfs:domain rdf:resource="http://purl.org/powla/powla.owl#DocumentLayer"/>
-        <rdfs:range rdf:resource="http://purl.org/powla/powla.owl#Root"/>
+    <owl:ObjectProperty rdf:about="#rootOfDocument">
+        <rdfs:domain rdf:resource="#DocumentLayer"/>
+        <rdfs:range rdf:resource="#Root"/>
     </owl:ObjectProperty>
     
 
@@ -238,8 +308,8 @@
 
     <!-- http://purl.org/powla/powla.owl#documentID -->
 
-    <owl:DatatypeProperty rdf:about="http://purl.org/powla/powla.owl#documentID">
-        <rdfs:domain rdf:resource="http://purl.org/powla/powla.owl#Document"/>
+    <owl:DatatypeProperty rdf:about="#documentID">
+        <rdfs:domain rdf:resource="#Document"/>
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
@@ -247,8 +317,8 @@
 
     <!-- http://purl.org/powla/powla.owl#endPosition -->
 
-    <owl:DatatypeProperty rdf:about="http://purl.org/powla/powla.owl#endPosition">
-        <rdfs:domain rdf:resource="http://purl.org/powla/powla.owl#Terminal"/>
+    <owl:DatatypeProperty rdf:about="#endPosition">
+        <rdfs:domain rdf:resource="#Terminal"/>
         <rdfs:range rdf:resource="&xsd;int"/>
     </owl:DatatypeProperty>
     
@@ -256,16 +326,17 @@
 
     <!-- http://purl.org/powla/powla.owl#hasAnnotation -->
 
-    <owl:DatatypeProperty rdf:about="http://purl.org/powla/powla.owl#hasAnnotation">
-        <rdfs:comment>NOTE: hasAnnotation represents linguistic annotations. The atgtribute name is specified in the hasXY property, the value is the string value.
+    <owl:DatatypeProperty rdf:about="#hasAnnotation">
+        <rdfs:comment
+            >NOTE: hasAnnotation represents linguistic annotations. The atgtribute name is specified in the hasXY property, the value is the string value.
 
 corresponds to labels attached to nodes and edges in SALT</rdfs:comment>
         <rdfs:range rdf:resource="&xsd;string"/>
         <rdfs:domain>
             <owl:Class>
                 <owl:unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.org/powla/powla.owl#Node"/>
-                    <rdf:Description rdf:about="http://purl.org/powla/powla.owl#Relation"/>
+                    <rdf:Description rdf:about="#Node"/>
+                    <rdf:Description rdf:about="#Relation"/>
                 </owl:unionOf>
             </owl:Class>
         </rdfs:domain>
@@ -275,8 +346,9 @@ corresponds to labels attached to nodes and edges in SALT</rdfs:comment>
 
     <!-- http://purl.org/powla/powla.owl#hasMetadata -->
 
-    <owl:DatatypeProperty rdf:about="http://purl.org/powla/powla.owl#hasMetadata">
-        <rdfs:comment>like hasAnnotation, but for Document and Layer
+    <owl:DatatypeProperty rdf:about="#hasMetadata">
+        <rdfs:comment
+            >like hasAnnotation, but for Document and Layer
 
 corresponds to labels attached to Graphs in SALT</rdfs:comment>
     </owl:DatatypeProperty>
@@ -285,8 +357,8 @@ corresponds to labels attached to Graphs in SALT</rdfs:comment>
 
     <!-- http://purl.org/powla/powla.owl#hasStringValue -->
 
-    <owl:DatatypeProperty rdf:about="http://purl.org/powla/powla.owl#hasStringValue">
-        <rdfs:domain rdf:resource="http://purl.org/powla/powla.owl#Terminal"/>
+    <owl:DatatypeProperty rdf:about="#hasStringValue">
+        <rdfs:domain rdf:resource="#Terminal"/>
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
@@ -294,8 +366,8 @@ corresponds to labels attached to Graphs in SALT</rdfs:comment>
 
     <!-- http://purl.org/powla/powla.owl#layerID -->
 
-    <owl:DatatypeProperty rdf:about="http://purl.org/powla/powla.owl#layerID">
-        <rdfs:domain rdf:resource="http://purl.org/powla/powla.owl#Layer"/>
+    <owl:DatatypeProperty rdf:about="#layerID">
+        <rdfs:domain rdf:resource="#Layer"/>
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
@@ -303,8 +375,8 @@ corresponds to labels attached to Graphs in SALT</rdfs:comment>
 
     <!-- http://purl.org/powla/powla.owl#startPosition -->
 
-    <owl:DatatypeProperty rdf:about="http://purl.org/powla/powla.owl#startPosition">
-        <rdfs:domain rdf:resource="http://purl.org/powla/powla.owl#Terminal"/>
+    <owl:DatatypeProperty rdf:about="#startPosition">
+        <rdfs:domain rdf:resource="#Terminal"/>
         <rdfs:range rdf:resource="&xsd;int"/>
     </owl:DatatypeProperty>
     
@@ -323,42 +395,44 @@ corresponds to labels attached to Graphs in SALT</rdfs:comment>
 
     <!-- http://purl.org/powla/powla.owl#Corpus -->
 
-    <owl:Class rdf:about="http://purl.org/powla/powla.owl#Corpus">
+    <owl:Class rdf:about="#Corpus">
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.org/powla/powla.owl#Document"/>
+                    <rdf:Description rdf:about="#Document"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.org/powla/powla.owl#hasSuperDocument"/>
+                        <owl:onProperty rdf:resource="#hasSuperDocument"/>
                         <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:maxCardinality>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://purl.org/powla/powla.owl#Document"/>
-        <rdfs:comment>Corpus is a Document without superDocument (optional)</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="#Document"/>
+        <rdfs:comment
+            >Corpus is a Document without superDocument (optional)</rdfs:comment>
     </owl:Class>
     
 
 
     <!-- http://purl.org/powla/powla.owl#Document -->
 
-    <owl:Class rdf:about="http://purl.org/powla/powla.owl#Document">
+    <owl:Class rdf:about="#Document">
         <rdfs:subClassOf>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.org/powla/powla.owl#POWLAElement"/>
+                    <rdf:Description rdf:about="#POWLAElement"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.org/powla/powla.owl#documentID"/>
+                        <owl:onProperty rdf:resource="#documentID"/>
                         <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
         </rdfs:subClassOf>
-        <owl:disjointWith rdf:resource="http://purl.org/powla/powla.owl#Layer"/>
-        <owl:disjointWith rdf:resource="http://purl.org/powla/powla.owl#Node"/>
-        <owl:disjointWith rdf:resource="http://purl.org/powla/powla.owl#Relation"/>
-        <rdfs:comment>roughly corresponding to SALT Graph ?
+        <owl:disjointWith rdf:resource="#Layer"/>
+        <owl:disjointWith rdf:resource="#Node"/>
+        <owl:disjointWith rdf:resource="#Relation"/>
+        <rdfs:comment
+            >roughly corresponding to SALT Graph ?
 
 (optional)</rdfs:comment>
     </owl:Class>
@@ -367,20 +441,21 @@ corresponds to labels attached to Graphs in SALT</rdfs:comment>
 
     <!-- http://purl.org/powla/powla.owl#DocumentLayer -->
 
-    <owl:Class rdf:about="http://purl.org/powla/powla.owl#DocumentLayer">
+    <owl:Class rdf:about="#DocumentLayer">
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.org/powla/powla.owl#Layer"/>
+                    <rdf:Description rdf:about="#Layer"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.org/powla/powla.owl#hasDocument"/>
+                        <owl:onProperty rdf:resource="#hasDocument"/>
                         <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://purl.org/powla/powla.owl#Layer"/>
-        <rdfs:comment>layer within a document
+        <rdfs:subClassOf rdf:resource="#Layer"/>
+        <rdfs:comment
+            >layer within a document
 (optional)</rdfs:comment>
     </owl:Class>
     
@@ -388,39 +463,41 @@ corresponds to labels attached to Graphs in SALT</rdfs:comment>
 
     <!-- http://purl.org/powla/powla.owl#DominanceRelation -->
 
-    <owl:Class rdf:about="http://purl.org/powla/powla.owl#DominanceRelation">
-        <rdfs:subClassOf rdf:resource="http://purl.org/powla/powla.owl#Relation"/>
-        <owl:deprecated>dominance relations aren&#39;t actually necessary, a Relation is a DominanceRelation if it coincides with a hasChild property</owl:deprecated>
+    <owl:Class rdf:about="#DominanceRelation">
+        <rdfs:subClassOf rdf:resource="#Relation"/>
+        <owl:deprecated
+            >dominance relations aren&#39;t actually necessary, a Relation is a DominanceRelation if it coincides with a hasChild property</owl:deprecated>
     </owl:Class>
     
 
 
     <!-- http://purl.org/powla/powla.owl#Layer -->
 
-    <owl:Class rdf:about="http://purl.org/powla/powla.owl#Layer">
+    <owl:Class rdf:about="#Layer">
         <owl:equivalentClass>
             <owl:Class>
                 <owl:unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.org/powla/powla.owl#MarkableLayer"/>
-                    <rdf:Description rdf:about="http://purl.org/powla/powla.owl#StructLayer"/>
-                    <rdf:Description rdf:about="http://purl.org/powla/powla.owl#TokenLayer"/>
+                    <rdf:Description rdf:about="#MarkableLayer"/>
+                    <rdf:Description rdf:about="#StructLayer"/>
+                    <rdf:Description rdf:about="#TokenLayer"/>
                 </owl:unionOf>
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.org/powla/powla.owl#POWLAElement"/>
+                    <rdf:Description rdf:about="#POWLAElement"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.org/powla/powla.owl#layerID"/>
+                        <owl:onProperty rdf:resource="#layerID"/>
                         <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
         </rdfs:subClassOf>
-        <owl:disjointWith rdf:resource="http://purl.org/powla/powla.owl#Node"/>
-        <owl:disjointWith rdf:resource="http://purl.org/powla/powla.owl#Relation"/>
-        <rdfs:comment>describes the layer independently from a particular document
+        <owl:disjointWith rdf:resource="#Node"/>
+        <owl:disjointWith rdf:resource="#Relation"/>
+        <rdfs:comment
+            >describes the layer independently from a particular document
 (optional)</rdfs:comment>
     </owl:Class>
     
@@ -428,102 +505,81 @@ corresponds to labels attached to Graphs in SALT</rdfs:comment>
 
     <!-- http://purl.org/powla/powla.owl#MarkableLayer -->
 
-    <owl:Class rdf:about="http://purl.org/powla/powla.owl#MarkableLayer">
-        <!-- todo: deprecate MarkableLayer, this is just the most general type of Layer with generic extension operators and generic (i.e. ANNIS 1 default) visualization -->
-        <!-- in fact, the real reason is that the following definition cannot be fulfilled in an open world -->
-        <!--owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.org/powla/powla.owl#Layer"/>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.org/powla/powla.owl#rootOfDocument"/>
-                        <owl:allValuesFrom>
-                            <owl:Class>
-                                <owl:intersectionOf rdf:parseType="Collection">
-                                    <rdf:Description rdf:about="http://purl.org/powla/powla.owl#Nonterminal"/>
-                                    <owl:Restriction>
-                                        <owl:onProperty rdf:resource="http://purl.org/powla/powla.owl#hasChild"/>
-                                        <owl:allValuesFrom rdf:resource="http://purl.org/powla/powla.owl#Terminal"/>
-                                    </owl:Restriction>
-                                </owl:intersectionOf>
-                            </owl:Class>
-                        </owl:allValuesFrom>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-            </owl:equivalentClass>
-            <owl:disjointWith rdf:resource="http://purl.org/powla/powla.owl#StructLayer"/>
-            <owl:disjointWith rdf:resource="http://purl.org/powla/powla.owl#TokenLayer"/-->
+    <owl:Class rdf:about="#MarkableLayer">
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.org/powla/powla.owl#Layer"/>
+                    <rdf:Description rdf:about="#Layer"/>
                     <owl:Class>
-                        <owl:complementOf rdf:resource="http://purl.org/powla/powla.owl#StructLayer"/>
+                        <owl:complementOf rdf:resource="#StructLayer"/>
                     </owl:Class>
                     <owl:Class>
-                        <owl:complementOf rdf:resource="http://purl.org/powla/powla.owl#TokenLayer"/>
+                        <owl:complementOf rdf:resource="#TokenLayer"/>
                     </owl:Class>
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://purl.org/powla/powla.owl#Layer"/>
-        <dc:description>markable layers are visualized in a special way. with the current modelling, the status of a layer as a markable layer can be inferred and does not need to be asserted.</dc:description>
+        <rdfs:subClassOf rdf:resource="#Layer"/>
+        <dc:description
+            >markable layers are visualized in a special way. with the current modelling, the status of a layer as a markable layer can be inferred and does not need to be asserted.</dc:description>
     </owl:Class>
     
 
 
     <!-- http://purl.org/powla/powla.owl#Node -->
 
-    <owl:Class rdf:about="http://purl.org/powla/powla.owl#Node">
-        <rdfs:subClassOf rdf:resource="http://purl.org/powla/powla.owl#POWLAElement"/>
-        <owl:disjointWith rdf:resource="http://purl.org/powla/powla.owl#Relation"/>
-        <rdfs:comment>roughly corresponding to SALT AbstractNode</rdfs:comment>
+    <owl:Class rdf:about="#Node">
+        <rdfs:subClassOf rdf:resource="#POWLAElement"/>
+        <owl:disjointWith rdf:resource="#Relation"/>
+        <rdfs:comment
+            >roughly corresponding to SALT AbstractNode</rdfs:comment>
     </owl:Class>
     
 
 
     <!-- http://purl.org/powla/powla.owl#Nonterminal -->
 
-    <owl:Class rdf:about="http://purl.org/powla/powla.owl#Nonterminal">
+    <owl:Class rdf:about="#Nonterminal">
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.org/powla/powla.owl#Node"/>
+                    <rdf:Description rdf:about="#Node"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.org/powla/powla.owl#hasChild"/>
-                        <owl:onClass rdf:resource="http://purl.org/powla/powla.owl#Node"/>
+                        <owl:onProperty rdf:resource="#hasChild"/>
+                        <owl:onClass rdf:resource="#Node"/>
                         <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://purl.org/powla/powla.owl#Node"/>
-        <owl:disjointWith rdf:resource="http://purl.org/powla/powla.owl#Terminal"/>
+        <rdfs:subClassOf rdf:resource="#Node"/>
+        <owl:disjointWith rdf:resource="#Terminal"/>
     </owl:Class>
     
 
 
     <!-- http://purl.org/powla/powla.owl#POWLAElement -->
 
-    <owl:Class rdf:about="http://purl.org/powla/powla.owl#POWLAElement"/>
+    <owl:Class rdf:about="#POWLAElement"/>
     
 
 
     <!-- http://purl.org/powla/powla.owl#PointingRelation -->
 
-    <owl:Class rdf:about="http://purl.org/powla/powla.owl#PointingRelation">
-        <rdfs:subClassOf rdf:resource="http://purl.org/powla/powla.owl#Relation"/>
-        <owl:deprecated>pointing relations aren&#39;t actually necessary, a relation is a pointing relation if it does not coincide with a hasChild property.</owl:deprecated>
+    <owl:Class rdf:about="#PointingRelation">
+        <rdfs:subClassOf rdf:resource="#Relation"/>
+        <owl:deprecated
+            >pointing relations aren&#39;t actually necessary, a relation is a pointing relation if it does not coincide with a hasChild property.</owl:deprecated>
     </owl:Class>
     
 
 
     <!-- http://purl.org/powla/powla.owl#Relation -->
 
-    <owl:Class rdf:about="http://purl.org/powla/powla.owl#Relation">
-        <rdfs:subClassOf rdf:resource="http://purl.org/powla/powla.owl#POWLAElement"/>
-        <rdfs:comment>corresponding to SALT Edge, POM Relation
+    <owl:Class rdf:about="#Relation">
+        <rdfs:subClassOf rdf:resource="#POWLAElement"/>
+        <rdfs:comment
+            >corresponding to SALT Edge, POM Relation
 
 Note: in SALT no edges between Terminals</rdfs:comment>
     </owl:Class>
@@ -532,21 +588,22 @@ Note: in SALT no edges between Terminals</rdfs:comment>
 
     <!-- http://purl.org/powla/powla.owl#Root -->
 
-    <owl:Class rdf:about="http://purl.org/powla/powla.owl#Root">
+    <owl:Class rdf:about="#Root">
         <rdfs:subClassOf>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.org/powla/powla.owl#Node"/>
+                    <rdf:Description rdf:about="#Node"/>
                     <owl:Class>
                         <owl:unionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://purl.org/powla/powla.owl#Nonterminal"/>
-                            <rdf:Description rdf:about="http://purl.org/powla/powla.owl#Terminal"/>
+                            <rdf:Description rdf:about="#Nonterminal"/>
+                            <rdf:Description rdf:about="#Terminal"/>
                         </owl:unionOf>
                     </owl:Class>
                 </owl:intersectionOf>
             </owl:Class>
         </rdfs:subClassOf>
-        <rdfs:comment>in SALT not distinguished from NonTerminal or Terminal, against SSO,
+        <rdfs:comment
+            >in SALT not distinguished from NonTerminal or Terminal, against SSO,
 for a layer with just token-level annotations, the tokens themselves may be root elements
 Note that a Root element may actually have a parent node in a different Layer, hence, the absence of any parent node would not be a sufficient criterion</rdfs:comment>
     </owl:Class>
@@ -555,20 +612,20 @@ Note that a Root element may actually have a parent node in a different Layer, h
 
     <!-- http://purl.org/powla/powla.owl#StructLayer -->
 
-    <owl:Class rdf:about="http://purl.org/powla/powla.owl#StructLayer">
+    <owl:Class rdf:about="#StructLayer">
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.org/powla/powla.owl#Layer"/>
+                    <rdf:Description rdf:about="#Layer"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.org/powla/powla.owl#rootOfDocument"/>
+                        <owl:onProperty rdf:resource="#rootOfDocument"/>
                         <owl:someValuesFrom>
                             <owl:Class>
                                 <owl:intersectionOf rdf:parseType="Collection">
-                                    <rdf:Description rdf:about="http://purl.org/powla/powla.owl#Nonterminal"/>
+                                    <rdf:Description rdf:about="#Nonterminal"/>
                                     <owl:Restriction>
-                                        <owl:onProperty rdf:resource="http://purl.org/powla/powla.owl#hasChild"/>
-                                        <owl:someValuesFrom rdf:resource="http://purl.org/powla/powla.owl#Nonterminal"/>
+                                        <owl:onProperty rdf:resource="#hasChild"/>
+                                        <owl:someValuesFrom rdf:resource="#Nonterminal"/>
                                     </owl:Restriction>
                                 </owl:intersectionOf>
                             </owl:Class>
@@ -577,62 +634,63 @@ Note that a Root element may actually have a parent node in a different Layer, h
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://purl.org/powla/powla.owl#Layer"/>
-        <owl:disjointWith rdf:resource="http://purl.org/powla/powla.owl#TokenLayer"/>
-        <rdfs:comment>struct layers are visualized as directed acyclic graphs (i.e., generalized trees). with the current modelling, the status of a layer as a struct layer can be inferred and does not need to be asserted.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="#Layer"/>
+        <owl:disjointWith rdf:resource="#TokenLayer"/>
+        <rdfs:comment
+            >struct layers are visualized as directed acyclic graphs (i.e., generalized trees). with the current modelling, the status of a layer as a struct layer can be inferred and does not need to be asserted.</rdfs:comment>
     </owl:Class>
     
 
 
     <!-- http://purl.org/powla/powla.owl#Terminal -->
 
-    <owl:Class rdf:about="http://purl.org/powla/powla.owl#Terminal">
+    <owl:Class rdf:about="#Terminal">
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.org/powla/powla.owl#Node"/>
+                    <rdf:Description rdf:about="#Node"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.org/powla/powla.owl#hasChild"/>
-                        <owl:onClass rdf:resource="http://purl.org/powla/powla.owl#Node"/>
+                        <owl:onProperty rdf:resource="#hasChild"/>
+                        <owl:onClass rdf:resource="#Node"/>
                         <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:qualifiedCardinality>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://purl.org/powla/powla.owl#Node"/>
+        <rdfs:subClassOf rdf:resource="#Node"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/powla/powla.owl#endPosition"/>
+                <owl:onProperty rdf:resource="#startPosition"/>
                 <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/powla/powla.owl#startPosition"/>
+                <owl:onProperty rdf:resource="#endPosition"/>
                 <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:comment>roughly corresponding to SALT Terminal, PAULA 1.0 Token and PAULA 1.1 Terminal</rdfs:comment>
+        <rdfs:comment
+            >roughly corresponding to SALT Terminal, PAULA 1.0 Token and PAULA 1.1 Terminal</rdfs:comment>
     </owl:Class>
     
 
 
     <!-- http://purl.org/powla/powla.owl#TokenLayer -->
 
-    <owl:Class rdf:about="http://purl.org/powla/powla.owl#TokenLayer">
+    <owl:Class rdf:about="#TokenLayer">
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.org/powla/powla.owl#Layer"/>
+                    <rdf:Description rdf:about="#Layer"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.org/powla/powla.owl#rootOfDocument"/>
-                        <owl:someValuesFrom rdf:resource="http://purl.org/powla/powla.owl#Terminal"/>
-                        <!-- owl:allValuesFrom would be more precise, but this requires a closed world -->
+                        <owl:onProperty rdf:resource="#rootOfDocument"/>
+                        <owl:someValuesFrom rdf:resource="#Terminal"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://purl.org/powla/powla.owl#Layer"/>
+        <rdfs:subClassOf rdf:resource="#Layer"/>
     </owl:Class>
     
 
@@ -644,5 +702,5 @@ Note that a Root element may actually have a parent node in a different Layer, h
 
 
 
-<!-- Generated by the OWL API (version 3.1.0.20069) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 2.2.1.1138) http://owlapi.sourceforge.net -->
 
