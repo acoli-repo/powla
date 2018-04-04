@@ -28,24 +28,19 @@
 The immediate predecessor of POWLA is the PAULA data model (Chiarcos et al., 2008), and the associated XML standoff format (G&#246;tze et al., 2005; Dipper 2005). PAULA (and POWLA) implements the data model of the Linguistic Annotation Framework as described by Ide and Romary (2004). POWLA is thus semantically equivalent with the LAF data model and the GrAF format (Ide and Suderman, 2007), i.e., ISO 24612:2012.
 
 History:
-2017-03-27 deprecate powla:nextNode and powla:previousNode  in favor of powla:next, powla:previous
+2018-04-03 deprecate powla:rootOfDocument in favor of powla:hasLayer (partial inverse)
+2018-04-01 deprecate powla:endPosition, powla.startPosition in favor of powla:end, powla:start; deprecate powla:hasMetadata in favor of a generalization of powla:hasAnnotation
+2018-03-27 deprecate powla:nextNode and powla:previousNode  in favor of powla:next, powla:previous
 2012-02-23 initial release of the OWL/DL implementation
-2008-05-15 abstract data model published (PAULA, Chiarcos et al. 2008)
+2008-05-15 abstract data model published (PAULA 1.1, Chiarcos et al. 2008)
 
 References:
-
 Chiarcos, C. (2012a). Interoperability of corpora and annotations. In Chiarcos C. et al. (ed.), Linked Data in Linguistics (pp. 161-179). Springer, Berlin, Heidelberg.
-
 Chiarcos, C. (2012b). POWLA: Modeling linguistic corpora in OWL/DL. In Extended Semantic Web Conference (pp. 225-239). Springer, Berlin, Heidelberg.
-
 Chiarcos, C., Dipper, S., G&#246;tze, M., Leser, U., L&#252;deling, A., Ritz, J., &amp; Stede, M. (2008). A flexible framework for integrating annotations from different tools and tagsets. Traitement Automatique des Langues, 49(2), 271-293.
-
 Dipper, S. (2005). XML-based Stand-off Representation and Exploitation of Multi-Level Linguistic Annotation. In Berliner XML Tage (pp. 39-50).
-
 G&#246;tze, M., Skopeteas, S., Roloff, T., &amp; Stoel, R. (2005). Towards a cross-linguistic production data archive: Structure and exploration. In International Tbilisi Symposium on Logic, Language, and Computation (pp. 127-138). Springer, Berlin, Heidelberg.
-
 Ide, N., &amp; Romary, L. (2004). International standard for a linguistic annotation framework. Natural language engineering, 10(3-4), 211-225.
-
 Ide, N., &amp; Suderman, K. (2007). GrAF: A graph-based format for linguistic annotations. In proceedings of the Linguistic Annotation Workshop (pp. 1-8). Association for Computational Linguistics.</rdfs:comment>
     </owl:Ontology>
     
@@ -90,8 +85,7 @@ Ide, N., &amp; Suderman, K. (2007). GrAF: A graph-based format for linguistic an
 
     <owl:ObjectProperty rdf:about="#hasChild">
         <rdfs:comment xml:lang="en"
-            >OPTIONAL PROPERTY for expressing hierarchical annotations with coverage inheritance, e.g., in a tree annotation. Inverse of powla:hasParent, see there for details.
-</rdfs:comment>
+            >OPTIONAL PROPERTY for expressing hierarchical annotations with coverage inheritance, e.g., in a tree annotation. Inverse of powla:hasParent, see there for details.</rdfs:comment>
         <rdfs:range rdf:resource="#Node"/>
         <rdfs:domain rdf:resource="#Nonterminal"/>
         <owl:inverseOf rdf:resource="#hasParent"/>
@@ -111,7 +105,18 @@ Ide, N., &amp; Suderman, K. (2007). GrAF: A graph-based format for linguistic an
     <!-- http://purl.org/powla/powla.owl#hasLayer -->
 
     <owl:ObjectProperty rdf:about="#hasLayer">
+        <rdfs:comment xml:lang="en"
+            >OPTIONAL object property
+hasLayer assigns a Relation or a Node a an annotation layer. hasLayer is recommended for Root nodes; a root can have at most one layer.</rdfs:comment>
         <rdfs:range rdf:resource="#DocumentLayer"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="#Node"/>
+                    <rdf:Description rdf:about="#Relation"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
     </owl:ObjectProperty>
     
 
@@ -151,6 +156,12 @@ Coverage inheritance means that the string covered by the children must also be 
     <!-- http://purl.org/powla/powla.owl#hasRoot -->
 
     <owl:ObjectProperty rdf:about="#hasRoot">
+        <rdfs:comment xml:lang="en"
+            >OPTIONAL object property
+powla:hasRoot is useful for efficient querying, as it allows to quickly check whether two nodes are part of the same tree structure (i.e., they have the same root). However, this is a derived property and SHOULD NOT be provided when exchanging POWLA datasets.
+
+This is an optional shorthand for 
+?node powla:hasParent+ ?root MINUS {?root powla:hasParent [] }</rdfs:comment>
         <rdfs:domain rdf:resource="#Node"/>
         <rdfs:range rdf:resource="#Root"/>
     </owl:ObjectProperty>
@@ -160,6 +171,8 @@ Coverage inheritance means that the string covered by the children must also be 
     <!-- http://purl.org/powla/powla.owl#hasSource -->
 
     <owl:ObjectProperty rdf:about="#hasSource">
+        <rdfs:comment xml:lang="en"
+            >RECOMMENDED datatype property for expressing annotated relations with powla:Relaton.</rdfs:comment>
         <rdfs:range rdf:resource="#Node"/>
         <rdfs:domain rdf:resource="#Relation"/>
     </owl:ObjectProperty>
@@ -188,6 +201,8 @@ Coverage inheritance means that the string covered by the children must also be 
     <!-- http://purl.org/powla/powla.owl#hasTarget -->
 
     <owl:ObjectProperty rdf:about="#hasTarget">
+        <rdfs:comment xml:lang="en"
+            >RECOMMENDED datatype property for expressing annotated relations with powla:Relaton.</rdfs:comment>
         <rdfs:range rdf:resource="#Node"/>
         <rdfs:domain rdf:resource="#Relation"/>
     </owl:ObjectProperty>
@@ -207,6 +222,8 @@ Coverage inheritance means that the string covered by the children must also be 
     <!-- http://purl.org/powla/powla.owl#isSourceOf -->
 
     <owl:ObjectProperty rdf:about="#isSourceOf">
+        <rdfs:comment xml:lang="en"
+            >OPTIONAL datatype property for expressing annotated relations with powla:Relaton. Inverse of powla:hasSource.</rdfs:comment>
         <rdfs:domain rdf:resource="#Node"/>
         <rdfs:range rdf:resource="#Relation"/>
         <owl:inverseOf rdf:resource="#hasSource"/>
@@ -217,6 +234,8 @@ Coverage inheritance means that the string covered by the children must also be 
     <!-- http://purl.org/powla/powla.owl#isTargetOf -->
 
     <owl:ObjectProperty rdf:about="#isTargetOf">
+        <rdfs:comment xml:lang="en"
+            >OPTIONAL  datatype property for expressing annotated relations with powla:Relaton. Inverse of powla:hasTarget</rdfs:comment>
         <rdfs:domain rdf:resource="#Node"/>
         <rdfs:range rdf:resource="#Relation"/>
         <owl:inverseOf rdf:resource="#hasTarget"/>
@@ -238,13 +257,19 @@ Coverage inheritance means that the string covered by the children must also be 
 
     <owl:ObjectProperty rdf:about="#next">
         <rdfs:comment xml:lang="en"
-            >RECOMMENDED PROPERTY for connecting two powla:Nodes in a sequence. Note that powla:next is not transitive, but should connect adjacent nodes only.
+            >OBLIGATORY PROPERTY for connecting two powla:Nodes in a sequence. Note that powla:next is not transitive, but should connect adjacent nodes only.
 
 powla:next can be used to connect subsequent strings in *any* annotation, but when applied to an annotation layer with hierarchical annotation (e.g., a syntactic tree), it is recommended to use powla:next to express the order of nodes with the same parent (e.g., elements of a phrase) are to be connected. Note that sibling order may deviate from string order in the case of discontinuous annotations:
 
 [ [What]_PP1 are [ [you]_SBJ talking [about]_PP2 ]_VP ] ?
 
-In the example, the prepositional argument [about what]_PP is split (&quot;preposition stranding&quot;). Depending on the type of syntactic representation, it may be desirable to represent this as a single phrase, and POWLA allows to specify the canonical order of phrase elements regardless of their sequential order in the textual representation, i.e., about &gt; what.</rdfs:comment>
+In the example, the prepositional argument [about what]_PP is split (&quot;preposition stranding&quot;). Depending on the type of syntactic representation, it may be desirable to represent this as a single phrase, and POWLA allows to specify the canonical order of phrase elements regardless of their sequential order in the textual representation, i.e., about &gt; what.
+
+Note that powla:next MUST be cycle-free, so antisequential order SHOULD NOT be applied to externally provided URIs, e.g., NIF URIs or RFC 5147 URIs. As an alternative, these SHOULD be assigned blank nodes as powla:hasParent each, which are then connected by powla:next.
+
+All children of the same parent node SHOULD be connected by a sequence of powla:next transitions. Non-siblings CAN be connected by powla:next, but this is not recommended except in the absence of hierarchical annotations.
+
+Also note that a single powla:Node MAY have multiple powla:next properties *relative to different parent nodes*. These can be disambiguated with reference to the parent node.</rdfs:comment>
     </owl:ObjectProperty>
     
 
@@ -289,6 +314,12 @@ In the example, the prepositional argument [about what]_PP is split (&quot;prepo
     <!-- http://purl.org/powla/powla.owl#rootOfDocument -->
 
     <owl:ObjectProperty rdf:about="#rootOfDocument">
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+        <rdfs:comment xml:lang="en"
+            >DEPRECATED object property
+connecting a DocumentLayer to the roots in the document.</rdfs:comment>
+        <owl:versionInfo xml:lang="en"
+            >deprecated in favor of powla:hasLayer (a partial inverse)</owl:versionInfo>
         <rdfs:domain rdf:resource="#DocumentLayer"/>
         <rdfs:range rdf:resource="#Root"/>
     </owl:ObjectProperty>
@@ -315,10 +346,28 @@ In the example, the prepositional argument [about what]_PP is split (&quot;prepo
     
 
 
+    <!-- http://purl.org/powla/powla.owl#end -->
+
+    <owl:DatatypeProperty rdf:about="#end">
+        <rdfs:comment xml:lang="en"
+            >OPTIONAL datatype property or powla:Node
+RECOMMENDED datatype property for powla:Terminal
+
+powla:end allows to specify a numerical (integer) index. This may be an offset (as in NIF) or a structure-sensitive index (as in ANNIS). Interpretation is implementation-specific, but end &gt;= start.</rdfs:comment>
+        <rdfs:domain rdf:resource="#Node"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://purl.org/powla/powla.owl#endPosition -->
 
     <owl:DatatypeProperty rdf:about="#endPosition">
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+        <owl:versionInfo xml:lang="en"
+            >DEPRECATED in favor of powla:end</owl:versionInfo>
         <rdfs:domain rdf:resource="#Terminal"/>
+        <rdfs:subPropertyOf rdf:resource="#end"/>
         <rdfs:range rdf:resource="&xsd;int"/>
     </owl:DatatypeProperty>
     
@@ -327,19 +376,14 @@ In the example, the prepositional argument [about what]_PP is split (&quot;prepo
     <!-- http://purl.org/powla/powla.owl#hasAnnotation -->
 
     <owl:DatatypeProperty rdf:about="#hasAnnotation">
-        <rdfs:comment
-            >NOTE: hasAnnotation represents linguistic annotations. The atgtribute name is specified in the hasXY property, the value is the string value.
-
-corresponds to labels attached to nodes and edges in SALT</rdfs:comment>
+        <owl:versionInfo xml:lang="en"
+            >2018-04-01 generalized to metadata annotation
+corresponds to labels attached to nodes and edges in SALT</owl:versionInfo>
+        <rdfs:comment xml:lang="en"
+            >ABSTRACT datatype property for linguistic annotations (on Node and Relation) and metadata (on Document and Layer).
+hasAnnotation represents linguistic annotations. The atgtribute name is specified in the hasXY property, the value is the string value.</rdfs:comment>
+        <rdfs:domain rdf:resource="#POWLAElement"/>
         <rdfs:range rdf:resource="&xsd;string"/>
-        <rdfs:domain>
-            <owl:Class>
-                <owl:unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="#Node"/>
-                    <rdf:Description rdf:about="#Relation"/>
-                </owl:unionOf>
-            </owl:Class>
-        </rdfs:domain>
     </owl:DatatypeProperty>
     
 
@@ -347,10 +391,22 @@ corresponds to labels attached to nodes and edges in SALT</rdfs:comment>
     <!-- http://purl.org/powla/powla.owl#hasMetadata -->
 
     <owl:DatatypeProperty rdf:about="#hasMetadata">
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+        <owl:versionInfo xml:lang="en"
+            >deprecatred in favor of (a generalization of) powla:hasAnnotation</owl:versionInfo>
         <rdfs:comment
             >like hasAnnotation, but for Document and Layer
 
 corresponds to labels attached to Graphs in SALT</rdfs:comment>
+        <rdfs:subPropertyOf rdf:resource="#hasAnnotation"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="#Document"/>
+                    <rdf:Description rdf:about="#Layer"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
     </owl:DatatypeProperty>
     
 
@@ -358,7 +414,11 @@ corresponds to labels attached to Graphs in SALT</rdfs:comment>
     <!-- http://purl.org/powla/powla.owl#hasStringValue -->
 
     <owl:DatatypeProperty rdf:about="#hasStringValue">
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+        <owl:versionInfo xml:lang="en"
+            >deprecated in favor of powla:string</owl:versionInfo>
         <rdfs:domain rdf:resource="#Terminal"/>
+        <rdfs:subPropertyOf rdf:resource="#string"/>
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
@@ -373,11 +433,43 @@ corresponds to labels attached to Graphs in SALT</rdfs:comment>
     
 
 
+    <!-- http://purl.org/powla/powla.owl#start -->
+
+    <owl:DatatypeProperty rdf:about="#start">
+        <rdfs:comment xml:lang="en"
+            >OPTIONAL datatype property for powla:Node
+RECOMMENDED datatype property for powla:Terminal
+
+powla:start allows to specify a numerical (integer) index. This may be an offset (as in NIF) or a structure-sensitive index (as in ANNIS). Interpretation is implementation-specific, but end &gt;= start.</rdfs:comment>
+        <rdfs:domain rdf:resource="#Node"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://purl.org/powla/powla.owl#startPosition -->
 
     <owl:DatatypeProperty rdf:about="#startPosition">
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+        <owl:versionInfo xml:lang="en"
+            >DEPRECATED in favor of powla:start</owl:versionInfo>
         <rdfs:domain rdf:resource="#Terminal"/>
+        <rdfs:subPropertyOf rdf:resource="#start"/>
         <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/powla/powla.owl#string -->
+
+    <owl:DatatypeProperty rdf:about="#string">
+        <rdfs:comment xml:lang="en"
+            >RECOMMENDED datatype property for powla:Terminal
+OPTIONAL datatype property for powla:Node
+powla:string carries the string value of the tokens to which this annotation unit (node) applies. For empty strings, this must be left unspecified.
+Corresponds to nif:anchor.</rdfs:comment>
+        <rdfs:domain rdf:resource="#Node"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
 
@@ -408,8 +500,9 @@ corresponds to labels attached to Graphs in SALT</rdfs:comment>
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="#Document"/>
-        <rdfs:comment
-            >Corpus is a Document without superDocument (optional)</rdfs:comment>
+        <rdfs:comment xml:lang="en"
+            >OPTIONAL type
+A Corpus is a Document without superDocument</rdfs:comment>
     </owl:Class>
     
 
@@ -431,10 +524,11 @@ corresponds to labels attached to Graphs in SALT</rdfs:comment>
         <owl:disjointWith rdf:resource="#Layer"/>
         <owl:disjointWith rdf:resource="#Node"/>
         <owl:disjointWith rdf:resource="#Relation"/>
-        <rdfs:comment
-            >roughly corresponding to SALT Graph ?
+        <rdfs:comment xml:lang="en"
+            >OPTIONAL type
+A document is a(n annotated piece of) primary data as defined by the respective use case. A document can aggregate other documents (e.g., the Bible consists of several books), we thus extend the notion of document to collections of documents.
 
-(optional)</rdfs:comment>
+powla:Document is roughly corresponding to SALT Graph and PAULA anno sets.</rdfs:comment>
     </owl:Class>
     
 
@@ -454,9 +548,9 @@ corresponds to labels attached to Graphs in SALT</rdfs:comment>
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="#Layer"/>
-        <rdfs:comment
-            >layer within a document
-(optional)</rdfs:comment>
+        <rdfs:comment xml:lang="en"
+            >OPTIONAL type
+Layer within a document</rdfs:comment>
     </owl:Class>
     
 
@@ -465,8 +559,14 @@ corresponds to labels attached to Graphs in SALT</rdfs:comment>
 
     <owl:Class rdf:about="#DominanceRelation">
         <rdfs:subClassOf rdf:resource="#Relation"/>
-        <owl:deprecated
-            >dominance relations aren&#39;t actually necessary, a Relation is a DominanceRelation if it coincides with a hasChild property</owl:deprecated>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+        <rdfs:comment xml:lang="en"
+            >DEPRECATED object property
+Dominance relations are labeled (reified) relations with coverage inheritance, i.e., the target node covers all terminals of the source node(s). Dominance relations are typical for phrase structure syntax.
+
+This property, originally motivated from PAULA,  is deprecated in POWLA, as dominance relations are sufficiently described by powla:Relation and powla:hasParent.</rdfs:comment>
+        <owl:versionInfo xml:lang="en"
+            >dominance relations aren&#39;t actually necessary, a Relation is a DominanceRelation if it coincides with a hasChild property</owl:versionInfo>
     </owl:Class>
     
 
@@ -496,9 +596,9 @@ corresponds to labels attached to Graphs in SALT</rdfs:comment>
         </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="#Node"/>
         <owl:disjointWith rdf:resource="#Relation"/>
-        <rdfs:comment
-            >describes the layer independently from a particular document
-(optional)</rdfs:comment>
+        <rdfs:comment xml:lang="en"
+            >OPTIONAL type
+A layer describes a group of annotations, this may be either within a document or independently from a particular document</rdfs:comment>
     </owl:Class>
     
 
@@ -520,8 +620,9 @@ corresponds to labels attached to Graphs in SALT</rdfs:comment>
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="#Layer"/>
-        <dc:description
-            >markable layers are visualized in a special way. with the current modelling, the status of a layer as a markable layer can be inferred and does not need to be asserted.</dc:description>
+        <rdfs:comment xml:lang="en"
+            >OPTIONAL type
+Markable layers are visualized in a special way. with the current modelling, the status of a layer as a markable layer can be inferred and does not need to be asserted.</rdfs:comment>
     </owl:Class>
     
 
@@ -531,8 +632,19 @@ corresponds to labels attached to Graphs in SALT</rdfs:comment>
     <owl:Class rdf:about="#Node">
         <rdfs:subClassOf rdf:resource="#POWLAElement"/>
         <owl:disjointWith rdf:resource="#Relation"/>
-        <rdfs:comment
-            >roughly corresponding to SALT AbstractNode</rdfs:comment>
+        <rdfs:comment xml:lang="en"
+            >RECOMMENDED type.
+Nodes represent units of linguistic annotation (`markables&#39;). Typical nodes have a defined extension or a position in the annotated data.
+
+However, nodes may also be empty or not determined in their position if the annotated category can apply to nodes with a defined extension or position. An example for a non-positionable node with zero extension is the annotation of implicit semantic roles.
+
+El Salvador is now the only Latin American country which still has troops in [Iraq]_LOC. Nicaragua, Honduras and the Dominican Republic have withdrawn their troops [0]_LOC.
+
+In terms of frame semantics, withdrawing toops requires a location element, marked by [0]_LOC, but this is not realized in the local sentence. We can, however, infer its existence from a frame inventory (and in this case, also connect it with a string in the preceding text -- this is not always the case). However, it is impossible to define its actual string position in the second sentence.
+
+Yet, the element marked by [0]_LOC is a valid powla:Node because if a phrase like &quot;from Iraq&quot; would have occurred in the sentence, it would have been annotated with the same linguistic features as the empty element.
+
+Note that rdf:type powla:Node is recommended, but not obligatory, as this can be RDFS-inferred from (the obligatory) powla:next.</rdfs:comment>
     </owl:Class>
     
 
@@ -544,23 +656,48 @@ corresponds to labels attached to Graphs in SALT</rdfs:comment>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="#Node"/>
+                    <owl:Class>
+                        <owl:complementOf rdf:resource="#Terminal"/>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="#Node"/>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="#hasChild"/>
-                        <owl:onClass rdf:resource="#Node"/>
-                        <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+                        <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minCardinality>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="#Node"/>
         <owl:disjointWith rdf:resource="#Terminal"/>
+        <rdfs:comment xml:lang="en"
+            >OPTIONAL type
+A powla:Node which is not a powla:Terminal (see there), RDFS-inferrable from powla:hasParent.</rdfs:comment>
     </owl:Class>
     
 
 
     <!-- http://purl.org/powla/powla.owl#POWLAElement -->
 
-    <owl:Class rdf:about="#POWLAElement"/>
+    <owl:Class rdf:about="#POWLAElement">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="#Document"/>
+                    <rdf:Description rdf:about="#Layer"/>
+                    <rdf:Description rdf:about="#Node"/>
+                    <rdf:Description rdf:about="#Relation"/>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:comment xml:lang="en"
+            >ABSTRACT type for POWLA data structures, not to be directly applied to data.</rdfs:comment>
+    </owl:Class>
     
 
 
@@ -568,8 +705,14 @@ corresponds to labels attached to Graphs in SALT</rdfs:comment>
 
     <owl:Class rdf:about="#PointingRelation">
         <rdfs:subClassOf rdf:resource="#Relation"/>
-        <owl:deprecated
-            >pointing relations aren&#39;t actually necessary, a relation is a pointing relation if it does not coincide with a hasChild property.</owl:deprecated>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+        <rdfs:comment xml:lang="en"
+            >DEPRECATED object relation
+A pointing relation is a labeled (reified) relation without coverage inheritance, i.e., the (terminals covered by the) target nodes do not typically overlap with the (terminals covered by the) source nodes.
+
+This property, motivated from PAULA, is deprecated in POWLA, as it is sufiiently described by a relation without accompanying powla:hasParent.</rdfs:comment>
+        <owl:versionInfo xml:lang="en"
+            >pointing relations aren&#39;t actually necessary, a relation is a pointing relation if it does not coincide with a hasChild property.</owl:versionInfo>
     </owl:Class>
     
 
@@ -578,10 +721,13 @@ corresponds to labels attached to Graphs in SALT</rdfs:comment>
 
     <owl:Class rdf:about="#Relation">
         <rdfs:subClassOf rdf:resource="#POWLAElement"/>
-        <rdfs:comment
+        <rdfs:comment xml:lang="en"
+            >RECOMMENDED type
+A relation represents a labelled edge that holds between two powla nodes. POWLA employs a reified representation, where source and target are linked with the relation via powla:hasSource and powla:hasTarget (resp., powla:isSourceOf and powla:isTargetOf)</rdfs:comment>
+        <owl:versionInfo xml:lang="en"
             >corresponding to SALT Edge, POM Relation
 
-Note: in SALT no edges between Terminals</rdfs:comment>
+Note: in SALT no edges between Terminals</owl:versionInfo>
     </owl:Class>
     
 
@@ -589,6 +735,17 @@ Note: in SALT no edges between Terminals</rdfs:comment>
     <!-- http://purl.org/powla/powla.owl#Root -->
 
     <owl:Class rdf:about="#Root">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="#Node"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="#hasParent"/>
+                        <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:cardinality>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
         <rdfs:subClassOf>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
@@ -602,10 +759,10 @@ Note: in SALT no edges between Terminals</rdfs:comment>
                 </owl:intersectionOf>
             </owl:Class>
         </rdfs:subClassOf>
-        <rdfs:comment
-            >in SALT not distinguished from NonTerminal or Terminal, against SSO,
-for a layer with just token-level annotations, the tokens themselves may be root elements
-Note that a Root element may actually have a parent node in a different Layer, hence, the absence of any parent node would not be a sufficient criterion</rdfs:comment>
+        <rdfs:comment xml:lang="en"
+            >OPTIONAL type
+A root node is a powla:Node which is not a subject of a powla:hasParent property.
+A number of properties that organize linguistic annotations into documents and corpora are based on the notion of root nodes as this limits the number of necessary links between data points and data sets. powla:Root can be RDFS-inferred from these or inferred from the absence of powla:hasParent under a closed world assumption.</rdfs:comment>
     </owl:Class>
     
 
@@ -636,8 +793,9 @@ Note that a Root element may actually have a parent node in a different Layer, h
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="#Layer"/>
         <owl:disjointWith rdf:resource="#TokenLayer"/>
-        <rdfs:comment
-            >struct layers are visualized as directed acyclic graphs (i.e., generalized trees). with the current modelling, the status of a layer as a struct layer can be inferred and does not need to be asserted.</rdfs:comment>
+        <rdfs:comment xml:lang="en"
+            >OPTIONAL type
+Struct layers are visualized as directed acyclic graphs (i.e., generalized trees). with the current modelling, the status of a layer as a struct layer can be inferred and does not need to be asserted.</rdfs:comment>
     </owl:Class>
     
 
@@ -649,10 +807,19 @@ Note that a Root element may actually have a parent node in a different Layer, h
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="#Node"/>
+                    <owl:Class>
+                        <owl:complementOf rdf:resource="#Nonterminal"/>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="#Node"/>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="#hasChild"/>
-                        <owl:onClass rdf:resource="#Node"/>
-                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:qualifiedCardinality>
+                        <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:cardinality>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
@@ -670,8 +837,16 @@ Note that a Root element may actually have a parent node in a different Layer, h
                 <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:comment
-            >roughly corresponding to SALT Terminal, PAULA 1.0 Token and PAULA 1.1 Terminal</rdfs:comment>
+        <rdfs:comment xml:lang="en"
+            >OPTIONAL type
+A terminal is a node which does not have a child node (cf. hasParent/hasChild). Can be used as a basis for text anchoring.
+
+Also corresponds to the single `base segmentation&#39; in LAF, and the `(privileged) tokenization layer&#39; in PAULA 1.0, which is used for calculating and querying token distance in corpus information systems.
+Where non-minimal segments are needed as `(privileged) tokenization layer&#39;, we recommend to use external vocabularies, e.g., explicit nif:Word and nif:nextWord annotations.
+
+Optional, as it can be inferred from powla:hasParent under a closed world assumption.</rdfs:comment>
+        <owl:versionInfo xml:lang="en"
+            >roughly corresponding to SALT Terminal, PAULA 1.0 Token and PAULA 1.1 Terminal</owl:versionInfo>
     </owl:Class>
     
 
@@ -685,12 +860,15 @@ Note that a Root element may actually have a parent node in a different Layer, h
                     <rdf:Description rdf:about="#Layer"/>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="#rootOfDocument"/>
-                        <owl:someValuesFrom rdf:resource="#Terminal"/>
+                        <owl:allValuesFrom rdf:resource="#Terminal"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="#Layer"/>
+        <rdfs:comment xml:lang="en"
+            >OPTIONAL type
+Token layers consist of annotations of terminal nodes, only. This class is necessary for visualization only, under the closed world assumption, however, it can be inferred and does not need to be asserted.</rdfs:comment>
     </owl:Class>
     
 
