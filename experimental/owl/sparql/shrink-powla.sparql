@@ -1,0 +1,32 @@
+# ABox pruning, destructive: remove to core POWLA feats
+# start with a maximum graph
+# apply after infer-powla.sparql (get maximum powla graph) and before prune-powla.sparql (remove POWLA-mapped source vocabulary)
+# note that this is heuristic and relies on superficial characteristics of rdfs:comments in powla.owl, i.e. rdfs:comment "OPTIONAL ..."
+# should be replaced by a non-generic function, it must be updated in case of vocabulary updates
+
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX powla: <http://purl.org/powla/powla.owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX conll: <http://ufal.mff.cuni.cz/conll2009-st/task-description.html#>
+PREFIX nif: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#>
+
+# (0) LET the graph <http://purl.org/powla/> contain a mapping to POWLA (cf. conllrdf.owl in this directory)
+
+# (1) drop OPTIONAL properties and classes
+# (deprecated already removed in infer-powla.sparql)
+DELETE {
+	?a ?b ?c.
+	?b ?c ?d.
+	?c ?d ?e.
+} WHERE {
+	GRAPH <http://purl.org/powla/> {
+		?c rdfs:comment ?comm.
+		FILTER(strstarts(?comm, "OPTIONAL"))
+		FILTER(strstarts(str(?c), "http://purl.org/powla"))
+	}
+	OPTIONAL { ?a ?b ?c. }
+	OPTIONAL { ?b ?c ?d. }
+	OPTIONAL { ?c ?d ?e. }
+};

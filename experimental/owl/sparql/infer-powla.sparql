@@ -1,6 +1,10 @@
 # read CoNLL-RDF, write POWLA
+# we read the mapping from an external source and do (partial*) RDFS inference
+# (* partial RDFS inference: rdfs2, rdfs3, rdfs5, rdfs7, rdfs9, rdfs11, cf. https://www.w3.org/TR/rdf11-mt/#patterns-of-rdfs-entailment-informative)
+# also supports selected OWL vocabulary (in TBox, not in ABox)
+# requires iterations, but axioms reordered to minimize iterations, i.e., probably ok after a single run
 
-# this involves:
+# current mapping involves:
 # - nif:Sentence => powla:Nonterminal and powla:Root
 # - nif:Word => powla:Terminal
 # - nif:nextWord => powla:nextNode
@@ -12,6 +16,7 @@
 # we separate the mapping from CoNLL-RDF to POWLA into 
 # - a mapping (rdfs:subPropertyOf/rdfs:subClassOf) and 
 # - a generic SPARQL transformation that replaces classes and properties with their powla super classes/properties
+# - additional constraints for powla:next adjacency implemented in  prune-sparql.sparql
 
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 PREFIX powla: <http://purl.org/powla/powla.owl#>
@@ -21,24 +26,241 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX conll: <http://ufal.mff.cuni.cz/conll2009-st/task-description.html#>
 PREFIX nif: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#>
 
-# assume that the graph <http://purl.org/powla/> contains a mapping to POWLA (cf. conllrdf.owl in this directory)
+# (0) LET graph <http://purl.org/powla/> contain a mapping to POWLA (cf. conllrdf.owl in this directory)
+# mapping may use RDFS + owl:equivalentClass, owl:intersectionOf, owl:sameAs, owl:equivalentProperty, owl:inverseOf
+
+# (1) inverse properties (ABox and TBox)
+########################################
 
 INSERT {
-	?a ?powlaProp ?b
-} WHERE {
-	?a ?prop ?b.
+	?y ?inv ?x.
 	GRAPH <http://purl.org/powla/> {
-		?prop rdfs:subPropertyOf ?powlaProp.
-		FILTER(contains(str(?powlaProp), "http://purl.org/powla"))
+		?inv rdfs:domain ?r.
+		?inv rdfs:range ?d.
+	}
+} WHERE {
+	GRAPH <http://purl.org/powla/> {
+		?rel owl:inverseOf ?inv.
+		OPTIONAL { ?rel rdfs:range ?r. MINUS { ?inv rdfs:domain ?r } }
+		OPTIONAL { ?rel rdfs:domain ?d. MINUS { ?inv rdfs:range ?d } }
+	}
+	?x ?rel ?y.
+	MINUS { ?y ?inv ?x }
+};
+
+# (2) transform and delete OWL vocabulary (TBox only!)
+######################################################
+
+# owl:sameAs => symmetric-transitive closure
+INSERT {
+	GRAPH <http://purl.org/powla/> {
+		?y owl:sameAs ?x
+	}
+} WHERE {
+	GRAPH <http://purl.org/powla/> {
+		?x owl:sameAs+ ?y
+		MINUS { ?y owl:sameAs ?x }
 	}
 };
 
-INSERT {
-	?a a ?powlaClass.
-} WHERE {
-	?a a ?Class.
+# owl:sameAs => reduplicate and remove
+DELETE {
 	GRAPH <http://purl.org/powla/> {
-		?Class rdfs:subClassOf ?powlaClass.
-		FILTER(contains(str(?powlaClass), "http://purl.org/powla"))
+		?x owl:sameAs ?y.
 	}
+} INSERT {
+	GRAPH <http://purl.org/powla/> {
+		?a ?b ?y.
+		?b ?y ?c.
+		?y ?c ?d.
+	}
+} WHERE {
+	GRAPH <http://purl.org/powla/> {
+		?x owl:sameAs ?y.
+		OPTIONAL { ?a ?b ?x. }
+		OPTIONAL { ?b ?x ?c. }
+		OPTIONAL { ?x ?c ?d. }
+	}
+};
+
+# owl:equivalentClass => rdfs:subClassOf and remove
+DELETE {
+	GRAPH <http://purl.org/powla/> {
+		?x owl:equivalentClass ?y.
+	}
+} INSERT {
+	GRAPH <http://purl.org/powla/> {
+		?x rdfs:subClassOf ?y.
+		?y rdfs:subClassOf ?x.
+	}
+} WHERE {
+	GRAPH <http://purl.org/powla/> {
+		?x owl:equivalentClass ?y.
+	}
+};
+
+# owl:equivalentProperty => rdfs:subPropertyOf and remove
+DELETE {
+	GRAPH <http://purl.org/powla/> {
+		?x owl:equivalentProperty ?y.
+	}
+} INSERT {
+	GRAPH <http://purl.org/powla/> {
+		?x rdfs:subPropertyOf ?y.
+		?y rdfs:subPropertyOf ?x.
+	}
+} WHERE {
+	GRAPH <http://purl.org/powla/> {
+		?x owl:equivalentProperty ?y.
+	}
+};
+
+# rdfs:subClassOf/owl:intersectionOf => rdfs:subClassOf and remove
+DELETE {
+	GRAPH <http://purl.org/powla/> {
+		?a ?b ?list.
+		?list ?c ?d.
+		?prev rdf:rest ?tail.
+		?tail rdf:first ?Class.
+		?tail rdf:rest ?next.
+	}
+} INSERT {
+	?x ?prop ?Class.
+} WHERE {
+		?inter owl:intersectionOf ?list.
+		?x ?prop ?inter.
+		FILTER(?prop = rdfs:subClassOf || ?prop = rdfs:domain || ?prop = rdfs:range)
+		?list rdf:rest*/rdf:first ?Class.
+		OPTIONAL { ?a ?b ?list }
+		OPTIONAL { ?list ?c ?d }
+		OPTIONAL { ?prev rdf:rest ?tail. }
+		OPTIONAL { ?tail rdf:first ?Class. }
+		OPTIONAL { ?tail rdf:rest ?next. }
+};		
+
+# RDFS inferences
+# (3) infer TBox relations
+##########################
+# (rdfs5, transitive, within POWLA TBox) xxx rdfs:subPropertyOf yyy . yyy rdfs:subPropertyOf zzz .	=> xxx rdfs:subPropertyOf zzz .
+INSERT {
+	GRAPH <http://purl.org/powla/> {
+		?xxx rdfs:subPropertyOf ?zzz .
+	}
+} WHERE {
+	GRAPH <http://purl.org/powla/> {
+		?xxx rdfs:subPropertyOf/rdfs:subPropertyOf+ ?zzz .
+		FILTER(strstarts(str(?zzz), "http://purl.org/powla"))
+		MINUS { ?xxx rdfs:subPropertyOf ?zzz }
+	}
+};
+
+# (rdfs5, transitive, from local ABox) xxx rdfs:subPropertyOf yyy . yyy rdfs:subPropertyOf zzz .	=> xxx rdfs:subPropertyOf zzz .
+INSERT {
+	GRAPH <http://purl.org/powla/> {
+		?xxx rdfs:subPropertyOf ?zzz .
+	}
+} WHERE {
+	?xxx rdfs:subPropertyOf+ ?yyy.
+	GRAPH <http://purl.org/powla/> {
+		?yyy rdfs:subPropertyOf+ ?zzz .
+		FILTER(strstarts(str(?zzz), "http://purl.org/powla"))
+		MINUS { ?xxx rdfs:subPropertyOf ?zzz }
+	}
+};
+
+# (rdfs11, transitive, within POWLA TBox) xxx rdfs:subClassOf yyy . yyy rdfs:subClassOf zzz .	=> xxx rdfs:subClassOf zzz . 
+INSERT {
+	GRAPH <http://purl.org/powla/> {
+		?xxx rdfs:subClassOf ?zzz .
+	}
+} WHERE {
+	GRAPH <http://purl.org/powla/> {
+		?xxx rdfs:subClassOf/rdfs:subClassOf+ ?zzz .
+		FILTER(strstarts(str(?zzz), "http://purl.org/powla"))
+		MINUS { ?xxx rdfs:subClassOf ?zzz . }
+	}
+};
+
+# (rdfs11, transitive, within local ABox) xxx rdfs:subClassOf yyy . yyy rdfs:subClassOf zzz .	=> xxx rdfs:subClassOf zzz . 
+INSERT {
+	GRAPH <http://purl.org/powla/> {
+		?xxx rdfs:subClassOf ?zzz .
+	}
+} WHERE {
+	?xxx rdfs:subClassOf ?yyy.
+	GRAPH <http://purl.org/powla/> {
+		?yyy rdfs:subClassOf+ ?zzz .
+		FILTER(strstarts(str(?bbb), "http://purl.org/powla"))
+		MINUS { ?xxx rdfs:subClassOf ?zzz . }
+	}
+};
+
+
+# (4) property inference
+########################
+# (rdfs7, transitive) aaa rdfs:subPropertyOf bbb . xxx aaa yyy . => xxx bbb yyy .
+INSERT {
+	?xxx ?bbb ?yyy .
+} WHERE {
+	GRAPH <http://purl.org/powla/> {
+		?aaa rdfs:subPropertyOf+ ?bbb . 
+		FILTER(strstarts(str(?bbb), "http://purl.org/powla"))
+	}
+	?xxx ?aaa ?yyy .
+	MINUS { 	?xxx ?bbb ?yyy . }
+};
+
+# (5) type inference
+####################
+# (rdfs2) aaa rdfs:domain xxx . yyy aaa zzz .	=> yyy rdf:type xxx .
+INSERT {
+	?yyy rdf:type ?xxx .
+} WHERE {
+	GRAPH <http://purl.org/powla/> {
+		?aaa rdfs:domain ?xxx . 
+		FILTER(strstarts(str(?xxx), "http://purl.org/powla"))
+	}
+	?yyy ?aaa ?zzz .
+	MINUS { ?yyy rdf:type ?xxx . }
+};
+
+# (rdfs3) aaa rdfs:range xxx . => yyy aaa zzz .	zzz rdf:type xxx .
+INSERT {
+	?zzz rdf:type ?xxx .
+} WHERE {
+	GRAPH <http://purl.org/powla/> {
+		?aaa rdfs:range ?xxx .
+		FILTER(strstarts(str(?xxx), "http://purl.org/powla"))
+	}
+	?yyy ?aaa ?zzz .	
+	MINUS { ?zzz rdf:type ?xxx . }
+};
+
+# (rdfs9, transitive) xxx rdfs:subClassOf yyy . zzz rdf:type xxx .	=> zzz rdf:type yyy .
+INSERT {
+	?zzz rdf:type ?yyy .
+} WHERE {
+	GRAPH <http://purl.org/powla/> {
+		?xxx rdfs:subClassOf+ ?yyy .
+		FILTER(strstarts(str(?bbb), "http://purl.org/powla"))
+	} 
+	?zzz rdf:type ?xxx .	
+	MINUS { 	?zzz rdf:type ?yyy . }
+};
+
+# (6) pruning
+#############
+# remove deprecated POWLA vocabulary (ABox only)
+DELETE {
+	?a ?b ?x.
+	?b ?x ?c.
+	?x ?c ?d.
+} WHERE {
+	GRAPH <http://purl.org/powla/> {
+		?x owl:deprecated ?dep.
+		FILTER(?dep != "false" && ?dep != "false"^^xsd:boolean)
+	}
+	OPTIONAL { ?a ?b ?x. }
+	OPTIONAL { ?b ?x ?c. }
+	OPTIONAL { ?x ?c ?d. }
 };

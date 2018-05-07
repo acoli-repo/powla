@@ -1,4 +1,6 @@
-# remove every concept (property) with a powla superconcept (superproperty)
+# ABox pruning, moderately destructive
+# (1) enforce powla:next constraints
+# (2) remove every concept (property) with a powla superconcept (superproperty)
 
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 PREFIX powla: <http://purl.org/powla/powla.owl#>
@@ -8,26 +10,74 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX conll: <http://ufal.mff.cuni.cz/conll2009-st/task-description.html#>
 PREFIX nif: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#>
 
-# assume that the graph <http://purl.org/powla/> contains a mapping to POWLA (cf. conllrdf.owl in this directory)
+# (0) LET the graph <http://purl.org/powla/> contain a mapping to POWLA (cf. conllrdf.owl in this directory)
 
-DELETE {
-	?a ?prop ?b
+# (1) enforce powla:next constraints (heuristic)
+####################################
+
+# powla:next: in a hierarchical annotation, propagate powla:next to adjacent siblings
+INSERT {
+	?pA powla:next ?pB.
 } WHERE {
-	?a ?prop ?b.
-	?a ?powlaProp ?b.
-	GRAPH <http://purl.org/powla/> {
-		?prop rdfs:subPropertyOf ?powlaProp.
-		FILTER(contains(str(?powlaProp), "http://purl.org/powla"))
-	}
+	?pA powla:hasParent/^powla:hasParent ?pB.
+	?a powla:next+ ?b.
+	?a powla:hasParent* ?pA.
+	?b powla:hasParent* ?pB.
+	MINUS { ?pA powla:next ?pB }
 };
 
+# powla:next only between siblings which have the same parent
+# (i.e., corpus-specific modeling of sequences remain intact, then)
+DELETE {
+	?a powla:next ?b.
+} WHERE {
+	?a powla:next ?b.
+	?a powla:hasParent []. 
+	?b powla:hasParent [].
+	MINUS { ?a powla:hasParent/(^powla:hasParent) ?b. }
+};
+
+# remove transitive powla:next transitions
+# (must not be iterated in infer-powla.sparql, as this may be infinite)
+DELETE {
+	?a powla:next ?c
+} WHERE {
+	?a powla:next ?c.
+	?a powla:next/powla:next+ ?c.
+};
+
+# remove powla:next in loops
+DELETE {
+	?a powla:next ?b
+} WHERE {
+	?a powla:next ?b.
+	?b powla:next* ?a.
+};
+
+# (2) remove mapped concepts with a powla superconcept (superproperty)
+############################
 DELETE {
 	?a a ?Class.
 } WHERE {
 	?a a ?Class.
 	?a a ?powlaClass.
 	GRAPH <http://purl.org/powla/> {
-		?Class rdfs:subClassOf ?powlaClass.
+		?Class rdfs:subClassOf+ ?powlaClass.
 		FILTER(contains(str(?powlaClass), "http://purl.org/powla"))
+	}
+};
+
+# (3) remove mapped properties with a powla superproperty
+##############################
+# note: keep subproperties of nif:next intact, these encode structure
+DELETE {
+	?a ?prop ?b
+} WHERE {
+	?a ?prop ?b.
+	?a ?powlaProp ?b.
+	GRAPH <http://purl.org/powla/> {
+		?prop rdfs:subPropertyOf+ ?powlaProp.
+		FILTER(contains(str(?powlaProp), "http://purl.org/powla"))
+		MINUS { ?prop rdfs:subPropertyOf+ powla:next }
 	}
 };

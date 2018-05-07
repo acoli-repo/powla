@@ -33,12 +33,16 @@ if
 		-model conllrdf.owl http://purl.org/powla/ 	\
 		-updates \
 			sparql/infer-powla.sparql \
-			sparql/conllrdf2powla.sparql \
-			sparql/prune-powla.sparql;
-
+			sparql/conllrdf2powla.sparql | \
+	\
 	# 4. (optional) remove redundant conll data structures
 	#####################################################
-	# (skipped)
+	$JAVA org.acoli.conll.rdf.CoNLLRDFUpdater \
+		-custom \
+		-model conllrdf.owl http://purl.org/powla/ 	\
+		-updates \
+			sparql/prune-powla.sparql \
+			sparql/shrink-powla.sparql
 
 then
 	echo done 1>&2;

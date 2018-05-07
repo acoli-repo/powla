@@ -1,6 +1,9 @@
 experimental:
-- improve integration with / import from CoNLL-RDF, Web Annotation and NIF
-
+- improve integration with / import from CoNLL-RDF
+- Web Annotation and NIF to come
+- no mapping-specifics in the code:
+  mapping RDFS-inferred from ontologies that formalize the dependencies between formats as rdfs:subClassOf, etc.
+  
 this *may* require adjustments to the ontology, hence, owl/ contains both initial converter prototypes and a copy of powla.owl
 
 so far, powla.owl is left unchanged
@@ -15,3 +18,6 @@ adjustments for POWLA 2.0:
 - powla:lastTerminal => powla:last
 - organize embedding via first/last and start/end: subclasses of Nonterminals
 - split ontology in core ontology (remove inverse and transitive props, no begin/end, first/last etc.) and extended ontology (incl. inverses, transitives, start/end OR first/last)
+
+todo:
+- visualize sentence graphs for debugging

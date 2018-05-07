@@ -50,7 +50,7 @@ Note that the intended scope of this ontology is to guide the SPARQL-driven conv
     <!-- http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#nextSentence -->
 
     <owl:ObjectProperty rdf:about="&nif;nextSentence">
-        <rdfs:subPropertyOf rdf:resource="&powla;nextNode"/>
+        <rdfs:subPropertyOf rdf:resource="&powla;next"/>
     </owl:ObjectProperty>
     
 
@@ -58,7 +58,7 @@ Note that the intended scope of this ontology is to guide the SPARQL-driven conv
     <!-- http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#nextWord -->
 
     <owl:ObjectProperty rdf:about="&nif;nextWord">
-        <rdfs:subPropertyOf rdf:resource="&powla;nextNode"/>
+        <rdfs:subPropertyOf rdf:resource="&powla;next"/>
     </owl:ObjectProperty>
     
 
@@ -69,9 +69,9 @@ Note that the intended scope of this ontology is to guide the SPARQL-driven conv
     
 
 
-    <!-- http://purl.org/powla/powla.owl#nextNode -->
+    <!-- http://purl.org/powla/powla.owl#next -->
 
-    <owl:ObjectProperty rdf:about="&powla;nextNode"/>
+    <owl:ObjectProperty rdf:about="&powla;next"/>
     
 
 
