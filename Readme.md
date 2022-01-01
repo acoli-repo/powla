@@ -1,6 +1,6 @@
 # POWLA: Portable Linguistic Annotation with OWL
 
-OWL2/DL vocabulary for linguistic annotations, grounded in the ISO TC37/SC4 Linguistic Annotation Framework and the PAULA XML standoff format.
+OWL2/DL vocabulary for linguistic annotations, grounded in the ISO TC37/SC4 Linguistic Annotation Framework.
 
 POWLA is intended to represent any kind of linguistic data structures in an LOD/OWL-compliant way. It does *not* aim to model textual data nor the anchoring of annotations in textual data. Instead, it complements existing vocabularies such as Web Annotation/Open Annotation, NIF, CoNLL-RDF or mechanisms such as RDFa.
 
@@ -20,14 +20,17 @@ POWLA is intended to represent any kind of linguistic data structures in an LOD/
 * 2020 POWLA 2.0: adaptation of POWLA 1.0 for compliance with Web Annotation/Open Annotation, NIF 2.0 and CoNLL-RDF, originally published via [Sourceforge](https://sourceforge.net/projects/powla/)
 * 2021-01-01: migration to GitHub
 
-## references for POWLA and its XML predecessors
+## POWLA and its XML predecessors
 
 * POWLA 1.0:
-	- Christian Chiarcos (2012a), POWLA: Modeling linguistic corpora in OWL/DL, In: E. Simperl et al. (eds.) Proceedings of the 9th Extended Semantic Web Conference (ESWC 2012). Springer, Heidelberg, Heraklion, Crete, May 2012 (LNCS 7295), 225-239. 
-	- Christian Chiarcos 2012b), A Generic Formalism to Represent Linguistic Corpora in RDF and OWL/DL, In: 8th International Conference on Language Resources and Evaluation (LREC-2012). Istanbul, Turkey, May 2012, 3205-3212.
-	- Christian Chiarcos (2012c), Interoperability of Corpora and Annotations, In: C. Chiarcos, S. Nordhoff, and S. Hellmann (eds.) Linked Data in Linguistics. Representing and Connecting Language Data and Language Metadata. Springer, Heidelberg.
+	- Christian Chiarcos (2012a), POWLA: Modeling linguistic corpora in OWL/DL, In: E. Simperl et al. (eds.) Proceedings of the 9th Extended Semantic Web Conference (ESWC 2012). Springer, Heidelberg, Heraklion, Crete, May 2012 (LNCS 7295), 225-239. #38
+	- Christian Chiarcos (2012b), Interoperability of Corpora and Annotations, In: C. Chiarcos, S. Nordhoff, and S. Hellmann (eds.) Linked Data in Linguistics. Representing and Connecting Language Data and Language Metadata. Springer, Heidelberg.
+	- Christian Chiarcos 2012c), A Generic Formalism to Represent Linguistic Corpora in RDF and OWL/DL, In: 8th International Conference on Language Resources and Evaluation (LREC-2012). Istanbul, Turkey, May 2012, 3205-3212. #15
 
-* predecessors
+POWLA is a formalism that allows to represent linguistic corpora in RDF.
+
+* XML predecessor: PAULA
+	* PAULA is a data model that has been developed to represent (a) any type of linguistic annotation applicable to textual data, and (b) any combination of annotation layers. PAULA was originally serialized in a standoff XML format (PAULA XML) and as an RDBMS schema (relANNIS), it defines the semantics of the corpus query language [ANNIS-QL](https://corpus-tools.org/annis/), it has been used for NLP workflows [(MOTS)](https://link.springer.com/chapter/10.1007/978-3-642-22613-7_2) and format conversion [(Pepper, based on its Java implementation SALT)](https://github.com/korpling/pepper).
 	* PAULA/XML 0.9:
 		- Stefanie Dipper, Michael Götze, Uwe Küssner, and Manfred Stede (2007). Representing and querying standoff XML. In G. Rehm, A. Witt, and L. Lemnitzer, editors, Data Structures for Linguistic Resources and Applications, pages 337–346. Narr, Tübingen.
 	* PAULA 1.0:
@@ -36,7 +39,7 @@ POWLA is intended to represent any kind of linguistic data structures in an LOD/
 		- After POWLA has been created, PAULA continued to be developed. The current XML format is described at the [PAULA XML page](https://github.com/korpling/paula-xml). The generic PAULA 1.0 data model has now been replaced by different implementation-specific variants [for XML serialization (PAULA XML data model)](https://github.com/korpling/paula-xml), and as [Java object model (SALT)](https://github.com/korpling/salt). POWLA 1.0 is yet another successor of the PAULA 1.0 data model. POWLA 2.0 is a reduced variant of POWLA 1.0 that is designed to complement other community standards for linguistic annotation on the web and that eliminates redundancies and incompatibilities with these.
 
 * POWLA 2.0:
-        - No reference publication for POWLA 2.0 has been published so far. The following papers describe the current status, but details may be updated until the formal release
+	- No reference publication for POWLA 2.0 has been published so far. The following papers describe the current status, but details may be updated until the formal release
 	- Chiarcos, C., & Glaser, L. (2020, May). A Tree Extension for CoNLL-RDF. In Proceedings of the 12th Language Resources and Evaluation Conference (pp. 7161-7169).
 	- Modelling Linguistic Annotations. Chap. 6 of Cimiano P., Chiarcos C., McCrae J.P., Gracia J. (2020) Linguistic Linked Data. Springer, Cham. https://doi.org/10.1007/978-3-030-30225-2_6
 
