@@ -2,7 +2,7 @@
 
 OWL2/DL vocabulary for linguistic annotations, grounded in the ISO TC37/SC4 Linguistic Annotation Framework.
 
-POWLA is intended to represent any kind of linguistic data structures in an LOD/OWL-compliant way. It does *not* aim to model textual data nor the anchoring of annotations in textual data. Instead, it complements existing vocabularies such as Web Annotation/Open Annotation, NIF, CoNLL-RDF or mechanisms such as RDFa.
+POWLA is designed to represent any kind of linguistic data structures in an LOD/OWL-compliant way. It does *not* aim to model textual data nor the anchoring of annotations in textual data. Instead, it complements existing vocabularies such as Web Annotation/Open Annotation, NIF, CoNLL-RDF or mechanisms such as RDFa.
 
 ## contents
 
@@ -23,11 +23,9 @@ POWLA is intended to represent any kind of linguistic data structures in an LOD/
 ## POWLA and its XML predecessors
 
 * POWLA 1.0:
-	- Christian Chiarcos (2012a), POWLA: Modeling linguistic corpora in OWL/DL, In: E. Simperl et al. (eds.) Proceedings of the 9th Extended Semantic Web Conference (ESWC 2012). Springer, Heidelberg, Heraklion, Crete, May 2012 (LNCS 7295), 225-239. #38
+	- Christian Chiarcos (2012a), POWLA: Modeling linguistic corpora in OWL/DL, In: E. Simperl et al. (eds.) Proceedings of the 9th Extended Semantic Web Conference (ESWC 2012). Springer, Heidelberg, Heraklion, Crete, May 2012 (LNCS 7295), 225-239.
 	- Christian Chiarcos (2012b), Interoperability of Corpora and Annotations, In: C. Chiarcos, S. Nordhoff, and S. Hellmann (eds.) Linked Data in Linguistics. Representing and Connecting Language Data and Language Metadata. Springer, Heidelberg.
-	- Christian Chiarcos 2012c), A Generic Formalism to Represent Linguistic Corpora in RDF and OWL/DL, In: 8th International Conference on Language Resources and Evaluation (LREC-2012). Istanbul, Turkey, May 2012, 3205-3212. #15
-
-POWLA is a formalism that allows to represent linguistic corpora in RDF.
+	- Christian Chiarcos 2012c), A Generic Formalism to Represent Linguistic Corpora in RDF and OWL/DL, In: 8th International Conference on Language Resources and Evaluation (LREC-2012). Istanbul, Turkey, May 2012, 3205-3212.
 
 * XML predecessor: PAULA
 	* PAULA is a data model that has been developed to represent (a) any type of linguistic annotation applicable to textual data, and (b) any combination of annotation layers. PAULA was originally serialized in a standoff XML format (PAULA XML) and as an RDBMS schema (relANNIS), it defines the semantics of the corpus query language [ANNIS-QL](https://corpus-tools.org/annis/), it has been used for NLP workflows [(MOTS)](https://link.springer.com/chapter/10.1007/978-3-642-22613-7_2) and format conversion [(Pepper, based on its Java implementation SALT)](https://github.com/korpling/pepper).
