@@ -42,7 +42,7 @@ POWLA is intended to represent any kind of linguistic data structures in an LOD/
 
 ## Related vocabularies
 
-POWLA 1.0 was designed to facilitate corpus queries. POWLA 2.0 is primarily used for extending established vocabularies for linguistic annotations on the web with formal data structures for linguistic annotations. Designated host vocabularies include:
+POWLA 1.0 was designed as a stand-alone vocabulary to facilitate corpus queries in OWL and RDF. POWLA 2.0 is better integrated in the existing landscape of community standards for linguistic annotations on the web and primarily used for their extension with formal data structures for linguistic annotations. Designated host vocabularies include:
 
 - [NIF](http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core/nif-core.html)
 - [CoNLL-RDF](https://github.com/acoli-repo/conll-rdf)
