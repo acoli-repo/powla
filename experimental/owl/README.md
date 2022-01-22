@@ -4,6 +4,20 @@ POWLA 2.0 is a slightly revised subset of POWLA 1.0, designed with the goal to c
 Numerous aspects of POWLA 1.0 were specifically designed to facilitate querying (inverse properties, navigational properties) and addressing primary text (offsets).
 Both aspects will be moved into a separate ontology (powla-corpus).
 
+## usage
+
+setup with
+
+  $> make
+
+requires a Unix-style working environment, tested for Ubuntu 20.04L
+
+demo with
+
+  $> bash -e ./conll2powla-demo.sh
+
+(see that script how to process files on your own)
+
 ## concept (May 2018)
 
 read CoNLL-RDF, write POWLA
