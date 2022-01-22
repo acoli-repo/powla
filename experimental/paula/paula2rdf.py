@@ -19,21 +19,70 @@ if args.dir==None:
 # aux
 ##############
 
-def decode_xlink(xlink,basetree,baseelems):
+def closing_par(string):
+    """ if the first character is (, return the position of the matching ) """
+    open_par=0
+    for n,c in enumerate(string):
+        if c=="(": open_par+=1
+        if c==")": open_par-=1
+        if open_par==0:
+            return n+1
+    return len(string)
 
+def decode_xlink(xlink,basetree,baseelems):
+            # sys.stderr.write("\n"+xlink+"\n")
+            # sys.stderr.flush()
             parse=[]   # local XLink/XPointer expressions
             targets=[] # for id lookup
             string=None # for string ranges
 
+            xlink=xlink.strip()
+
+            if xlink=="":
+                return parse,targets,string
+
             # ad hoc fixes
             # these a not well-formed XPointers, but they occur in PCC2
-            while xlink.startswith("(") and xlink[-1]==")":
-                xlink=xlink[1:-1]
-            if ",#" in xlink:
-                xlink=",".join(xlink.split(",#"))
+            if xlink.startswith("("):
+                brk=closing_par(xlink)
+                x1 = xlink[1:brk-1]
+                x2= xlink[brk:]
+                parse,targets,string=decode_xlink(x1,basetree,baseelems)
+                p,t,s=decode_xlink(x2,basetree,baseelems)
+                parse+=p
+                targets+=t
+                if string==None:
+                    string=s
+                elif s!=None:
+                    string+=" "+s
+                return parse,targets,string
 
+            if xlink.startswith(","):
+                return decode_xlink(xlink[1:],basetree,baseelems)
+
+            xlink=re.sub(",#",",",xlink)
+            if ",xpointer(" in xlink:
+                xlink=re.sub(",xpointer\(","\nxpointer(",xlink)
+                for x in xlink.split("\n"):
+                    p,t,s=decode_xlink(x,basetree,baseelems)
+                    parse+=p
+                    targets+=t
+                    if string==None:
+                        string=s
+                    elif s!=None:
+                        string=string.strip()+" "+s
+                return parse,targets,string
+
+            if xlink.startswith("xpointer("):
+                xlink="#"+xlink
             if xlink.startswith("#xpointer("):
-                xlink=xlink[len("#xpointer("):-1].strip()
+                xlink=xlink[len("#xpointer"):]
+                brk=closing_par(xlink)
+                if len(xlink)>brk:
+                    parse,targets,string=decode_xlink("#xpointer"+xlink[:brk],basetree,baseelems)
+                    xlink=xlink[brk:]
+                else:
+                    xlink=xlink[1:-1].strip()
                 while(len(xlink)>0):
                     if xlink.startswith("id("):
                         id=xlink.split("(")[1].split(")")[0]
@@ -43,12 +92,26 @@ def decode_xlink(xlink,basetree,baseelems):
                         parse.append(id)
                     elif xlink.startswith("range-to("):
                         parse.append("range-to")
-                        xlink=xlink[len("range-to("):-1].strip()
+                        xlink=xlink[len("range-to"):]
+                        brk=closing_par(xlink)
+                        x1 = xlink[1:brk-1].strip()
+                        if x1.startswith("id("):
+                            id=x1.split("(")[1].split(")")[0]
+                            parse.append(id)
+                        else:
+                            raise Exception("unsupported XPointer fragment \""+x1+"\"")
+                        xlink= xlink[brk:]
+
                     elif xlink.startswith("string-range("):
                         parse.append("string-range")
-                        xlink=xlink[len("string-range("):-1].strip()
+                        xlink=xlink[len("string-range("):].strip()
                         parse.append(xlink.split(")")[0])
                         xlink=")".join(xlink.split(")")[1:])
+                    elif xlink.startswith(","):
+                        xlink=xlink[1:]
+                    elif re.sub(r",.*","",xlink) in baseelems:
+                        parse.append(xlink.split(",")[0])
+                        xlink=",".join(xlink.split(",")[1:])
                     else:
                         raise Exception("unsupported XPointer fragment \""+xlink+"\"")
 
@@ -75,7 +138,7 @@ def decode_xlink(xlink,basetree,baseelems):
                             if not string:
                                 string=context
                             else:
-                                string+= " ... "+context
+                                string+= " "+context
                         # print(parse[n+1])
                     elif n==0 or not parse[n-1] in "string-range":
                         raise Exception("unsupported XPointer expression \""+p+"\"")
@@ -265,7 +328,7 @@ for file in type2files["mark"] + type2files["struct"] + type2files["rel"] + type
         if "{http://www.w3.org/1999/xlink}href" in feat.attrib:
             xlink=feat.attrib["{http://www.w3.org/1999/xlink}href"].strip()
             targets=None
-            if basetree and xlink.startswith("#"): # untested
+            if basetree!=None and xlink.startswith("#"): # untested
                         _,targets,_=decode_xlink(xlink,basetree,baseelems)
             elif xlink.startswith("#"): # this is the local document in PCC2 -- but this is not actually XML valid, because the other paths require the directory!
                         targets=[os.path.join(args.baseURI,file)+xlink]
@@ -287,7 +350,7 @@ for file in type2files["mark"] + type2files["struct"] + type2files["rel"] + type
                 if "target" in feat.attrib: # PAULA 1.0 (in PCC2), in PAULA 1.1, this should actually be a rel file
                     reltgt=feat.attrib["target"]
                     reltargets=None
-                    if basetree and reltgt.startswith("#"): # untested
+                    if basetree!=None and reltgt.startswith("#"): # untested
                                 _,reltargets,_=decode_xlink(reltgt,basetree,baseelems)
                     elif reltgt.startswith("#"): # this is the local document in PCC2 -- but this is not actually XML valid, because the other paths require the directory!
                                 reltargets=[os.path.join(args.baseURI,file)+reltgt]
