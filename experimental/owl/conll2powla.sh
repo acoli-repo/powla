@@ -16,6 +16,7 @@ fi;
 
 LOAD='conll-rdf/run.sh CoNLLStreamExtractor'
 UPDATE='conll-rdf/run.sh CoNLLRDFUpdater -custom'
+WRITE='conll-rdf/run.sh CoNLLRDFFormatter'
 
 	if
 		# 1. read data from base uri
@@ -39,7 +40,11 @@ UPDATE='conll-rdf/run.sh CoNLLRDFUpdater -custom'
 		$UPDATE -model conllrdf.owl http://purl.org/powla/ 	\
 			-updates \
 				sparql/prune-powla.sparql \
-				sparql/shrink-powla.sparql
+				sparql/shrink-powla.sparql | \
+		\
+		# 5. format and spellout
+		#########################
+		$WRITE
 
 	then
 		echo done 1>&2;
