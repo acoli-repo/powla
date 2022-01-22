@@ -10,6 +10,7 @@ args=argparse.ArgumentParser(description="""
 """)
 args.add_argument("baseURI", type=str, help="base URI for the PAULA file, should end in /")
 args.add_argument("dir", type=str, nargs="?", help="directory that contains the PAULA-XML files, note that we expect a flat directory structure with one annoset per directory, defaults to baseuri", default=None)
+args.add_argument("-conll","--conll_rdf", action="store_true",help="if set, produce nif:nextWord, nif:Word, conll:WORD instead of powla:nextTerm, powla:Terminal, powla:string")
 args=args.parse_args()
 
 if args.dir==None:
@@ -188,7 +189,7 @@ print("""
 PREFIX powla: <http://purl.org/powla/powla.owl#>
 PREFIX conll: <http://ufal.mff.cuni.cz/conll2009-st/task-description.html#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX nif: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> 
+PREFIX nif: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX paula: <https://github.com/korpling/paula-xml#> # annotation properties
 
@@ -232,14 +233,27 @@ for file in type2files["mark"] + type2files["struct"] + type2files["rel"] + type
 
             parse,targets,string=decode_xlink(xlink,basetree,baseelems)
 
-            if type=="tok" and lastUri!=None:
-                print(f"<{lastUri}> powla:nextTerm <{uri}>.")
+            if type=="tok":
+                if args.conll_rdf:
+                    print(f"<{uri}> a nif:Word.")
+                else:
+                    print(f"<{uri}> a powla:Terminal.")
+                if lastUri!=None:
+                    if args.conll_rdf:
+                        print(f"<{lastUri}> nif:nextWord <{uri}>.")
+                    else:
+                        print(f"<{lastUri}> powla:nextTerm <{uri}>.")
+            else:
+                print(f"<{uri}> a powla:Node.")
             if len(targets)>0:
                 print("#",parse)
                 for p in targets:
                     print(f"<{p}> powla:hasParent <{uri}> .")
                 print()
             if string:
+                if args.conll_rdf:
+                    print(f"<{uri}> conll:WORD \"\"\"{string}\"\"\" .")
+                else:
                     print(f"<{uri}> powla:string \"\"\"{string}\"\"\" .")
             lastUri=uri
 
