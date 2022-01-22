@@ -185,12 +185,12 @@ for file in os.listdir(args.dir):
 
 # prolog: prefixes and definitions
 print("""
-PREFIX powla: <http://purl.org/powla/powla.owl#> .
-PREFIX conll: <http://ufal.mff.cuni.cz/conll2009-st/task-description.html#> .
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-PREFIX nif: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> .
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-PREFIX paula: <https://github.com/korpling/paula-xml#> . # annotation properties
+PREFIX powla: <http://purl.org/powla/powla.owl#>
+PREFIX conll: <http://ufal.mff.cuni.cz/conll2009-st/task-description.html#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX nif: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX paula: <https://github.com/korpling/paula-xml#> # annotation properties
 
 # note that we don't support PAULA namespaces, not fully clear how these are being declared
 # TODO: check against DTD on whether there are properties we're missing
