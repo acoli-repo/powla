@@ -196,7 +196,7 @@ PREFIX paula: <https://github.com/korpling/paula-xml#> # annotation properties
 # note that we don't support PAULA namespaces, not fully clear how these are being declared
 # TODO: check against DTD on whether there are properties we're missing
 
-paula:type rdfs:subPropertyOf powla:hasAnnotation.
+paula:type rdfs:subPropertyOf powla:hasAnnotation .
 
 """)
 
@@ -235,16 +235,16 @@ for file in type2files["mark"] + type2files["struct"] + type2files["rel"] + type
 
             if type=="tok":
                 if args.conll_rdf:
-                    print(f"<{uri}> a nif:Word.")
+                    print(f"<{uri}> a nif:Word .")
                 else:
-                    print(f"<{uri}> a powla:Terminal.")
+                    print(f"<{uri}> a powla:Terminal .")
                 if lastUri!=None:
                     if args.conll_rdf:
-                        print(f"<{lastUri}> nif:nextWord <{uri}>.")
+                        print(f"<{lastUri}> nif:nextWord <{uri}> .")
                     else:
-                        print(f"<{lastUri}> powla:nextTerm <{uri}>.")
+                        print(f"<{lastUri}> powla:nextTerm <{uri}> .")
             else:
-                print(f"<{uri}> a powla:Node.")
+                print(f"<{uri}> a powla:Node .")
             if len(targets)>0:
                 print("#",parse)
                 for p in targets:
@@ -262,7 +262,7 @@ for file in type2files["mark"] + type2files["struct"] + type2files["rel"] + type
         id=tree.xpath("//header/@paula_id")[0]
         type=tree.xpath("//structList[1]/@type")[0]
         if type=="annoSet":
-            print(f"<{args.baseURI+file}> a powla:Document.")
+            print(f"<{args.baseURI+file}> a powla:Document .")
             print(f"<{uri}> a powla:Layer .")
             for rel in struct.xpath("./rel"):
                 if "{http://www.w3.org/1999/xlink}href" in rel.attrib:
@@ -275,10 +275,10 @@ for file in type2files["mark"] + type2files["struct"] + type2files["rel"] + type
                         reltree=etree.parse(os.path.join(args.dir,xlink))
                         ids=reltree.xpath("//*/@id")
                         for id in ids:
-                            print(f"<{os.path.join(args.baseURI,xlink)+'#'+id}> powla:hasLayer <{uri}>.")
+                            print(f"<{os.path.join(args.baseURI,xlink)+'#'+id}> powla:hasLayer <{uri}> .")
 
         else: # elif type in ["struct","const"]: # RST, TIGER
-            print(f"<{uri}> a powla:Node.")
+            print(f"<{uri}> a powla:Node .")
 
             for rel in struct.xpath("./rel"):
                 if "{http://www.w3.org/1999/xlink}href" in rel.attrib:
@@ -296,10 +296,10 @@ for file in type2files["mark"] + type2files["struct"] + type2files["rel"] + type
                         ruri="<"+os.path.join(args.baseURI,file)+"#"+rel.attrib["id"]+">"
 
                     for t in targets:
-                        print(f"<{t}> powla:hasParent <{uri}>. ")
-                        print(f"{ruri} a powla:Relation; powla:hasSource <{t}>; powla:hasTarget <{uri}>",end="")
+                        print(f"<{t}> powla:hasParent <{uri}> . ")
+                        print(f"{ruri} a powla:Relation; powla:hasSource <{t}>; powla:hasTarget <{uri}> ",end="")
                         if "type" in rel.attrib:
-                            print(f"; paula:type \""+rel.attrib["type"]+"\"", end="")
+                            print(f"; paula:type \""+rel.attrib["type"]+"\" ", end="")
                             # this seems to be an add hoc extension for RST
                         print(".")
 
@@ -331,7 +331,7 @@ for file in type2files["mark"] + type2files["struct"] + type2files["rel"] + type
 
                     for t in targets:
                         for s in sources: # both should be singleton sets
-                            print(f"<{uri}> a powla:Relation; powla:hasSource <{s}>; powla:hasTarget <{t}>.")
+                            print(f"<{uri}> a powla:Relation; powla:hasSource <{s}>; powla:hasTarget <{t}> .")
     for feat in tree.xpath("//feat"):
         type=None # shouldn't be used
         try:
