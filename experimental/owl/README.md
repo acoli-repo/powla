@@ -54,15 +54,29 @@ we list the vocabulary elements known to be used by existing tools and in public
 
 Our vocabulary version is the one of Cimiano et al. 2020.
 
+That is, we remove:
+- powla:hasNode and subproperties
+- powla:hasRoot, powla:rootOfDocument
+- powla:hasSuperDocument
+- domain restriction of startPosition (=> start): any Node
+- range restriction of -"-: arbitrary literal
+
+And we deprecate:
+- powla:nextNode => powla:next
+- powla:previousNode => powla:previous
+- powla:hasStringValue => powla:string
+- powla:startPosition => powla:start
+
 ## defining profiles
 
 - three different profiles
   - core vocabulary for information exchange
-    - powla:hasTarget, powla:hasSource, powla:Relation, powla:Node, powla:start, powla:string
+    - powla:hasTarget, powla:hasSource, powla:Relation, powla:Node, powla:string
     - NOTE: if these concepts overlap with that of host vocabularies, these should be defined as subclasses and subproperties of POWLA concepts and properties, e.g., for CoNLL-RDF:
       - nif:Word sub powla:Terminal (sub powla:Node)
       - conll:ID sub powla:start
       - conll:WORD, conll:FORM sub powla:string
+      - nif:nextWord sub powla:nextTerm
   - querying
     - powla:Terminal (can be inferred from the absence of children)
     - powla:Root (can be inferred from the absence of parents)
@@ -78,6 +92,17 @@ Our vocabulary version is the one of Cimiano et al. 2020.
   - core+corpus > querying+corpus (corpus extensions untouched)
   - query+corpus > core+corpus (-"-)
 
+## Minor revisions
+
+For information exchange, it is crucial that sequential order is preserved. powla:next does not fullfill this purpose for phrase structure grammar because it should exist only between siblings.
+At the same time, an obligatory powla:start element is problematic, because we might encounter incorrectly typed literals, so that order cannot be assured. (String comparison of integers will skrew up an intended numerical ordering.) Also, numerical IDs are not universally agreed to be integer IDs (sometimes, combinations of characters and integers, e.g., in CoNLL-U [for multitokens] or TIGER-XML [combine sentence and word id]) nor are numerical IDs necessarily ordered chronologically (in Exmaralda, numerical IDs reflect creation order, not their order in text).
+
+So, we introduce powla:nextTerm to connect all terminals of an annotated piece of text. For POWLA+CoNLL-RDF, this property can be left implicit if we define nif:nextWord sub powla:nextTerm.
+
+Furthermore, we now recommend that cross-document layers should be formalized as classes, not as instances, so a designated DocumentLayer class is no longer necessary and is being deprecated.
+
+Finally, we introduce DataSet as a generalization over Document and Corpus.
+
 ## simplifications for POWLA 2.0
 
 - rename properties
@@ -90,3 +115,7 @@ Our vocabulary version is the one of Cimiano et al. 2020.
 - rename classes
   - powla:Document => powla:DataSet, with Document a subclass
   - powla:hasSubDocument => powla:subSet
+
+## TODO
+
+Synchronize comments with current release version.
