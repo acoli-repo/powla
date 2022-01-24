@@ -50,6 +50,8 @@ remarks:
 
 ## POWLA to CoNLL
 
+This is mostly for validation of conversion results.
+
 - we infer optional POWLA structures from recommended POWLA structures
 - we infer TokenLayer, StructLayer and MarkLayer and encode them differently
   - TokenLayer: each annotation as string values in a separate column, using PAULA XML attribute names
@@ -62,3 +64,4 @@ remarks:
 - we generate PTB-style trees, but we do not validate whether powla:hasParent relations constitute a single tree. For discontinuous elements, these are silently expanded to the full extent.
 - we provide annotations of POWLA nodes as `|`-separated set (unsorted) of attribute-value pairs. As we explicitly encode the attribute, this is more verbose than conventional PTB trees in CoNLL that only provide the value.
 - PTB encoding in CoNLL cannot distinguish node and relation annotations. both as presented as node-level annotations, here.
+- if multiple sets of structs overlap in their nodes (including tokens!), all annotations on these shared nodes will be provided in both trees, because the original annotation layer of individual `powla:hasAnnotation` subproperties is not tracked. To keep them separate, avoid node sharing and/or annotating tokens with struct-specific annotations. 

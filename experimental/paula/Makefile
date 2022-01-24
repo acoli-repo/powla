@@ -23,6 +23,7 @@ samples: conll-rdf
 						  ID WORD \
 							LEMMA POS MORPH TIGER \
 							NP PP SENT HEADING INF_STAT TOPIC FOCUS_NEWINF \
+							RST \
 							;\
 			# python3 paula2rdf.py $$dir -conll | \
 			# egrep '.' | grep -v '^#' | \
