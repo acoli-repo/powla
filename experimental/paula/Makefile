@@ -21,7 +21,9 @@ samples: conll-rdf
 			conll-rdf/run.sh CoNLLRDFFormatter \
 				-conll \
 						  ID WORD \
-							LEMMA POS MORPH TIGER \
+							LEMMA POS MORPH \
+							FUNC \
+							TIGER \
 							NP PP SENT HEADING INF_STAT TOPIC FOCUS_NEWINF \
 							RST \
 							;\

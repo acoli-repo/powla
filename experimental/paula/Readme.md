@@ -57,11 +57,14 @@ This is mostly for validation of conversion results.
   - TokenLayer: each annotation as string values in a separate column, using PAULA XML attribute names
   - MarkLayer: each annotation as IOBES-encoded string values in separate columns, using PAULA XML attribute names
   - StructLayer: each layer encoded as PTB-style tree in a single column, column name is derived from `rdfs:label` of StructLayer or from filename (as preserved in URI); seondary edges are processed like dependencies (RelLayer).
-  - RelLayer: one or multiple pairs of `HEAD` and relation (as in CoNLL-U `DEPS`). Not implemented yet
+  - RelLayer: one or multiple pairs of `HEAD` and relation (as in CoNLL-U `DEPS`). Column name is derived from PAULA XML attribute name of annotations.
 - treat every original PAULA annoset as a single sentence (no principled way to split it from PAULA input)
 
 remarks:
 - we generate PTB-style trees, but we do not validate whether powla:hasParent relations constitute a single tree. For discontinuous elements, these are silently expanded to the full extent.
 - we provide annotations of POWLA nodes as `|`-separated set (unsorted) of attribute-value pairs. As we explicitly encode the attribute, this is more verbose than conventional PTB trees in CoNLL that only provide the value.
 - PTB encoding in CoNLL cannot distinguish node and relation annotations. both as presented as node-level annotations, here.
-- if multiple sets of structs overlap in their nodes (including tokens!), all annotations on these shared nodes will be provided in both trees, because the original annotation layer of individual `powla:hasAnnotation` subproperties is not tracked. To keep them separate, avoid node sharing and/or annotating tokens with struct-specific annotations. 
+- if multiple sets of structs overlap in their nodes (including tokens!), all annotations on these shared nodes will be provided in both trees, because the original annotation layer of individual `powla:hasAnnotation` subproperties is not tracked. To keep them separate, avoid node sharing and/or annotating tokens with struct-specific annotations.
+- relations without annotations are not returned
+- for RelLayers, we preserve the original directionality. For dependency annotations in PCC2, this means we point from head to dependent (CoNLL-U points the other way).
+- as we cannot identify a primary type of dependency syntax, we do not use the `conll:HEAD` property
