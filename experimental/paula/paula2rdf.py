@@ -20,6 +20,18 @@ if args.dir==None:
 # aux
 ##############
 
+def escape(string):
+    """ escaping for turtle literals """
+
+    # XML escaping: causes escaping problems when being read by Apache Jena
+    replacements={"&":"&amp;", '"':'&quot;'}
+    # string replacement, instead
+    # replacements={'"':"''"}
+    for s,t in replacements.items():
+        while(s in string):
+            string=string[0:string.index(s)]+t+string[string.index(s)+len(s):]
+    return string
+
 def closing_par(string):
     """ if the first character is (, return the position of the matching ) """
     open_par=0
@@ -261,10 +273,7 @@ for file in type2files["mark"] + type2files["struct"] + type2files["rel"] + type
                     print(f"<{p}> powla:hasParent <{uri}> .")
                 print()
             if string:
-                replacements={"&":"&amp;", '"':'&quot;'}
-                for s,t in replacements.items():
-                    while s in string:
-                        string=string[0:string.index(s)]+t+string[string.index(s)+len(s):]
+                string=escape(string)
                 if args.conll_rdf:
                     print(f"<{uri}> conll:WORD \"\"\"{string}\"\"\" .")
                 else:
@@ -320,12 +329,7 @@ for file in type2files["mark"] + type2files["struct"] + type2files["rel"] + type
         # else:
         #     raise Exception("unsupported struct type \""+type+"\" in "+file)
         #     sys.exit()
-        if "{http://www.w3.org/1999/xlink}href" in struct.attrib:
-            xlink=struct.attrib["{http://www.w3.org/1999/xlink}href"].strip()
-            # parse,targets,string=decode_xlink(xlink,basetree,baseelems)
-            print(xlink)
-            # print(parse,targets,strings)
-            sys.exit()
+
     for rel in tree.xpath("//relList/rel"):
         uri=args.baseURI+file+"#"+rel.attrib["id"]
         id=tree.xpath("//header/@paula_id")[0]
@@ -374,8 +378,8 @@ for file in type2files["mark"] + type2files["struct"] + type2files["rel"] + type
                                     print(f"{type} rdfs:subPropertyOf powla:hasAnnotation.")
                                     feats.append(type)
 
-                    val=feat.attrib["value"]
-                    print(f"<{t}> {type} \"{val}\".")
+                    val=escape(feat.attrib["value"])
+                    print(f"<{t}> {type} \"\"\"{val}\"\"\".")
                 if "target" in feat.attrib: # PAULA 1.0 (in PCC2), in PAULA 1.1, this should actually be a rel file
                     reltgt=feat.attrib["target"]
                     reltargets=None

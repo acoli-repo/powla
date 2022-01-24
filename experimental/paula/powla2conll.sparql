@@ -137,7 +137,7 @@ INSERT {
   ?layer a powla:Layer.
 } WHERE {
   ?w a powla:Node. MINUS { ?w a powla:Node; powla:hasLayer [] }
-  BIND(URI(concat(replace(str(?w),"[#/][^#/]*$",""),"/layer")) as ?layer)
+  BIND(URI(concat(replace(str(?w),"[#/][^#/]*$",""),"_layer")) as ?layer)
 };
 
 # (f) classify layer type
@@ -217,6 +217,21 @@ INSERT {
   [a powla:Node ] powla:hasLayer ?layer
 };
 
+# (f.5.a) struct layers require an explicit name to generate a column label
+# in PAULA, these names are prefixes in the *anno_feat.xml file
+# e.g., "tiger" from value="tiger.tok_pos"
+# but these files are optional, so, we resort to the file name, instead
+# and use the first string before . from the basename
+# (should produce the same result, but somewhat more robust;
+# potentially risky if files do not obey naming conventions)
+INSERT {
+  ?layer rdfs:label ?label
+} WHERE {
+  ?layer a powla:StructLayer.
+  MINUS { ?layer rdfs:label [] }
+  BIND(replace(replace(str(?layer),".*/",""),"\\..*","") as ?label)
+};
+
 # (g) transform annotations to conll properties
 # (g.1) token layer: note that we do not create sentence objects, yet.
 DELETE {
@@ -226,7 +241,7 @@ DELETE {
   ?w ?conll ?val.
 } WHERE {
   ?prop rdfs:subPropertyOf* powla:hasAnnotation.
-  ?w powla:hasLayer/a powla:TokenLayer.
+  ?w a nif:Word. # powla:hasLayer/a powla:TokenLayer.
   ?w ?prop ?val.
   FILTER(isLiteral(?val))
   BIND(URI(concat("http://ufal.mff.cuni.cz/conll2009-st/task-description.html#",
@@ -264,32 +279,29 @@ DELETE {
 };
 
 # (g.3) struct layer: phrasal encoding
-# note that we use URI encoding to encode feature-value pairs
+# note that we use URI encoding to encode attribute-value pairs
+# also, feats are not ordered
 INSERT {
   ?w ?conll ?phrases
 } WHERE {
-  ?w a nif:Word; powla:hasParent* ?p.
-  ?p powla:hasLayer ?l.
   ?l a powla:StructLayer.
-  MINUS { [powla:hasLayer ?l ] powla:hasParent+ ?p. ?p powla:hasParent ?l }
-  # ?p is the lowest layer element, so we take its annotations
+  ?struct powla:hasLayer ?l.
+  ?w powla:hasParent* ?struct; a nif:Word.
 
   OPTIONAL {
-    SELECT ?root ?l ?p (GROUP_CONCAT(?par; separator=" ") as ?pre)
-    WHERE { # we overgenerate and then return the lowest annotation
+    SELECT ?root ?l ?w (GROUP_CONCAT(?par; separator=" ") as ?pre)
+    WHERE {
       ?l a powla:StructLayer.
       ?root powla:hasLayer ?l.
-      MINUS { ?root powla:hasLayer ?l; powla:hasParent+/powla:hasLayer ?l }
+      MINUS { ?root powla:hasLayer ?l; powla:hasParent/powla:hasLayer ?l }
       ?root (^powla:hasParent)* ?p.
 
-      # only opening elements
-      # CAUTION: this may mess up top-down order!
-      MINUS {
-        ?pre powla:hasParent ?par; powla:hasLayer ?l.
-        ?par powla:hasLayer ?l.
-        ?pre powla:next+ ?p; powla:hasLayer ?l }
+# debugging
+#      BIND(concat(
+#          "(",
+#          replace(str(?p),".*[#/]","")) as ?par)
 
-      ?p powla:hasLayer ?l.
+
       OPTIONAL {
         SELECT ?p (GROUP_CONCAT(?anno; separator="|") as ?annos)
         WHERE {
@@ -323,24 +335,53 @@ INSERT {
                                               concat("(",?annos)),
                              if(bound(?rels), concat("(",?rels),
                                               "(")) as ?par)
-    } GROUP BY ?root ?l ?p
+
+      # with OPTIONAL, the following statement preserves search order for ?p elements
+      # tested on Apache Jena, not guaranteed to work this way on other SPARQL engines
+      OPTIONAL {
+        ?p (^powla:hasParent)* ?w.
+        ?w a nif:Word.
+        MINUS { ?p (^powla:hasParent)* ?w, ?tmp.
+          ?tmp nif:nextWord+ ?w
+        }
+      }
+    } GROUP BY ?root ?l ?w
   }
 
   OPTIONAL {
-    SELECT ?l ?p (GROUP_CONCAT(?par;separator="") as ?post)
+    SELECT ?root ?l ?w (GROUP_CONCAT(?par; separator="") as ?post)
     WHERE {
       ?l a powla:StructLayer.
-      ?p powla:hasLayer ?l.
-      MINUS { ?p powla:next/powla:hasLayer ?l }
+      ?root powla:hasLayer ?l.
+      MINUS { ?root powla:hasLayer ?l; powla:hasParent/powla:hasLayer ?l }
+      ?root (^powla:hasParent)* ?p.
+
       BIND(")" as ?par)
-    } GROUP BY ?l ?p
+      # we go top-down in analogy with ?pre
+
+        ?p (^powla:hasParent)* ?w.
+        ?w a nif:Word.
+        MINUS { ?p (^powla:hasParent)* ?w, ?tmp.
+          ?w nif:nextWord+ ?tmp
+        }
+    } GROUP BY ?root ?l ?w
   }
 
   BIND( concat(
           if(bound(?pre), concat(?pre," "), ""),
           "*",
           if(bound(?post), concat(" ",?post),"")) as ?phrases)
-};
+
+  # column label: using an explicit label (actually, all labels)
+  OPTIONAL {
+    ?l rdfs:label ?label
+  }
+  # if no label is defined, call it STRUCT
+  BIND(if(bound(?label),
+        URI(concat("http://ufal.mff.cuni.cz/conll2009-st/task-description.html#",
+            ucase(replace(?label,"[^a-zA-Z]+","_")))), conll:STRUCT) as ?conll)
+}
+;
 
 # (g.4) relations, CoNLL-U DEPS-style encoding (4:nsubj|11:nsubj)
 #       note that we create these as datatype properties

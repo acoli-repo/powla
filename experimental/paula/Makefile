@@ -19,8 +19,11 @@ samples: conll-rdf
 				-updates remove-powla.sparql | \
 			tee $$tgt.conll.ttl | \
 			conll-rdf/run.sh CoNLLRDFFormatter \
-				-conll ID WORD \
-							 NP PP SENT HEADING INF_STAT TOPIC FOCUS_NEWINF ;\
+				-conll \
+						  ID WORD \
+							LEMMA POS MORPH TIGER \
+							NP PP SENT HEADING INF_STAT TOPIC FOCUS_NEWINF \
+							;\
 			# python3 paula2rdf.py $$dir -conll | \
 			# egrep '.' | grep -v '^#' | \
 			# conll-rdf/run.sh CoNLLRDFFormatter > $$tgt.conll.ttl;\

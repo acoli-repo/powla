@@ -9,8 +9,18 @@ PREFIX conll: <http://ufal.mff.cuni.cz/conll2009-st/task-description.html#>
 PREFIX nif: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#>
 PREFIX paula: <https://github.com/korpling/paula-xml#> # annotation properties
 
+# (j) remove empty annotations
+DELETE {
+  ?w ?anno ?val
+} WHERE {
+  ?anno rdfs:subPropertyOf* powla:hasAnnotation.
+  ?w ?anno ?val.
+  FILTER(?val in ("--", # from TIGER
+    "_"))
+};
 
-# (j) remove all POWLA data structures
+
+# (k) remove all POWLA data structures
 DELETE {
   ?a ?b ?c
 } WHERE {
