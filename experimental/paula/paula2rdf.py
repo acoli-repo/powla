@@ -153,7 +153,12 @@ def decode_xlink(xlink,basetree,baseelems):
 ################
 
 file2data={}
-type2files={}
+type2files={
+    "mark":[],
+    "struct":[],
+    "rel":[],
+    "feat":[]
+}
 
 for file in os.listdir(args.dir):
     if file.endswith("xml"):
@@ -186,17 +191,22 @@ for file in os.listdir(args.dir):
 
 # prolog: prefixes and definitions
 print("""
-PREFIX powla: <http://purl.org/powla/powla.owl#>
-PREFIX conll: <http://ufal.mff.cuni.cz/conll2009-st/task-description.html#>
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX nif: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX paula: <https://github.com/korpling/paula-xml#> # annotation properties
+# data model (formally defined)
+@prefix powla: <http://purl.org/powla/powla.owl#> .
+@prefix conll: <http://ufal.mff.cuni.cz/conll2009-st/task-description.html#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix nif: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# annotation properties (ad hoc extensions, no underlying ontology)
+@prefix paula: <https://github.com/korpling/paula-xml#> .
+
+# PAULA TBox fragments
+paula:type rdfs:subPropertyOf powla:hasAnnotation .
 
 # note that we don't support PAULA namespaces, not fully clear how these are being declared
 # TODO: check against DTD on whether there are properties we're missing
 
-paula:type rdfs:subPropertyOf powla:hasAnnotation .
 
 """)
 
@@ -251,6 +261,10 @@ for file in type2files["mark"] + type2files["struct"] + type2files["rel"] + type
                     print(f"<{p}> powla:hasParent <{uri}> .")
                 print()
             if string:
+                replacements={"&":"&amp;", '"':'&quot;'}
+                for s,t in replacements.items():
+                    while s in string:
+                        string=string[0:string.index(s)]+t+string[string.index(s)+len(s):]
                 if args.conll_rdf:
                     print(f"<{uri}> conll:WORD \"\"\"{string}\"\"\" .")
                 else:
@@ -354,6 +368,7 @@ for file in type2files["mark"] + type2files["struct"] + type2files["rel"] + type
                     if type==None:
                                 type="powla:hasAnnotation" # should not be used !
                     else:
+                                type="_".join(type.split("-"))
                                 type="paula:"+urllib.parse.quote(type)
                                 if not type in feats:
                                     print(f"{type} rdfs:subPropertyOf powla:hasAnnotation.")

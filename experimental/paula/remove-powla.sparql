@@ -1,0 +1,21 @@
+# final pruning step, for debugging
+
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX powla: <http://purl.org/powla/powla.owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX conll: <http://ufal.mff.cuni.cz/conll2009-st/task-description.html#>
+PREFIX nif: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#>
+PREFIX paula: <https://github.com/korpling/paula-xml#> # annotation properties
+
+
+# (j) remove all POWLA data structures
+DELETE {
+  ?a ?b ?c
+} WHERE {
+  ?a ?b ?c.
+  FILTER(strstarts(str(?a),"http://purl.org/powla/powla.owl#") ||
+         strstarts(str(?b),"http://purl.org/powla/powla.owl#") ||
+         strstarts(str(?c),"http://purl.org/powla/powla.owl#"))
+};

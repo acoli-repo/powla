@@ -1,11 +1,26 @@
 all: paula-xml data samples
 
 samples: conll-rdf
-		for dir in `find data | grep 'xml$$' | sed s/'\/[^\/]*$$'// | sort -u`; do \
-			tgt=`echo $$dir | sed s/'data'/samples/`;\
+		for dir in `find data | grep 'xml$$' | sed s/'\/[^\/]*$$'/'\/'/ | sort -u`; do \
+			tgt=`echo $$dir | sed -e s/'data'/samples/ -e s/'\/*$$'//;`;\
 			tgtdir=`dirname $$tgt`;\
+			echo $$tgt.ttl; \
 			if [ ! -e $$tgtdir ]; then mkdir -p $$tgtdir ; fi; \
-			python3 paula2rdf.py $$dir > $$tgt.ttl;\
+			# (a) convert PAULA to POWLA \
+			python3 paula2rdf.py $$dir | tee $$tgt.ttl | \
+			# (b) export POWLA as CoNLL-RDF \
+			egrep '[^\s]' | grep -v '^#'| \
+			# strip empty lines \
+			conll-rdf/run.sh CoNLLRDFUpdater -custom \
+				-updates powla2conll.sparql | \
+			tee $$tgt.conll_full.ttl | \
+			# convert POWLA to CoNLL-RDF data \
+			conll-rdf/run.sh CoNLLRDFUpdater -custom \
+				-updates remove-powla.sparql | \
+			tee $$tgt.conll.ttl | \
+			conll-rdf/run.sh CoNLLRDFFormatter \
+				-conll ID WORD \
+							 NP PP SENT HEADING INF_STAT TOPIC FOCUS_NEWINF ;\
 			# python3 paula2rdf.py $$dir -conll | \
 			# egrep '.' | grep -v '^#' | \
 			# conll-rdf/run.sh CoNLLRDFFormatter > $$tgt.conll.ttl;\
