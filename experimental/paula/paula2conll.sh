@@ -6,6 +6,12 @@
 ########
 
 MYHOME=`dirname $0`
+
+if [ ! -e $MYHOME/conll-rdf ]; then
+  cd $MYHOME;
+  make;
+fi;
+
 UPDATE=$MYHOME/conll-rdf/run.sh' CoNLLRDFUpdater -custom -updates'
 WRITE=$MYHOME/conll-rdf/run.sh' CoNLLRDFFormatter -conll'
 
