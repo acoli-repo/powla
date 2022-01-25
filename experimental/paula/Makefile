@@ -12,7 +12,9 @@ samples: conll-rdf
 			egrep '[^\s]' | grep -v '^#'| \
 			# strip empty lines \
 			conll-rdf/run.sh CoNLLRDFUpdater -custom \
-				-updates powla2conll.sparql | \
+				-updates \
+					induce-nif-sentences.sparql \
+					powla2conll.sparql | \
 			tee $$tgt.conll_full.ttl | \
 			# convert POWLA to CoNLL-RDF data \
 			conll-rdf/run.sh CoNLLRDFUpdater -custom \

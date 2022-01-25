@@ -64,13 +64,21 @@ DELETE {
   ?a powla:next+ [ powla:hasParent ?p; powla:next+ ?b ]
 };
 
-# (a) infer nif:Word, nif:nextWord
+# (a) infer nif:Word
+# (a.1) nif:Word
 INSERT {
   ?v a nif:Word.
   ?w a nif:Word.
-  ?v nif:nextWord ?w.
 } WHERE {
   ?v (nif:nextWord|powla:nextTerm) ?w
+};
+
+# (a.2) nif:nextWord but only if not used (anywhere in the graph)
+INSERT {
+  ?v nif:nextWord ?w.
+} WHERE {
+  ?v powla:nextTerm ?w.
+  FILTER(not exists { ?a nif:nextWord ?b })
 };
 
 # (b) conll:ID and conll:WORD
@@ -82,7 +90,7 @@ INSERT {
     SELECT ?w (str(COUNT(distinct ?pre)) as ?id)
     WHERE {
       ?w a nif:Word.
-      ?pre (nif:nextWord|powla:nextTerm)* ?w.
+      ?pre nif:nextWord* ?w.
     } GROUP BY ?w
   }
 };
@@ -397,14 +405,48 @@ DELETE {
   ?w powla:hasParent* ?W; a nif:Word.
   ?tgt powla:hasParent* ?TGT; a nif:Word.
   ?tgt conll:ID ?head.
+  OPTIONAL {
+    ?rel a powla:Relation; ?anno ?val; powla:hasSource ?W; powla:hasTarget ?TGT.
+    ?W (^powla:hasParent)* ?w. ?w a nif:Word.
+    ?TGT (^powla:hasParent)* ?tgt. ?tgt a nif:Word.
+    ?tgt conll:HEAD+ ?tS. ?tS a nif:Sentence.
+    ?w conll:HEAD+ ?wS. ?wS a nif:Sentence.
+    FILTER(?wS!=?tS)
+    OPTIONAL { SELECT ?wS ?tS (COUNT(distinct ?tmp) as ?positiveDist)
+      WHERE { ?wS nif:nextSentence+ ?tS. ?wS nif:nextSentence* ?tmp. ?tmp nif:nextSentence+ ?tS
+      } GROUP BY ?wS ?tS
+    }
+    OPTIONAL { SELECT ?wS ?tS (COUNT(distinct ?tmp) as ?negativeDist)
+      WHERE { ?tS nif:nextSentence+ ?wS. ?tS nif:nextSentence* ?tmp. ?tmp nif:nextSentence+ ?wS
+      } GROUP BY ?wS ?tS
+    }
+  }
+  bind(if(bound(?positiveDist),concat(str(?positiveDist),":"),
+       if(bound(?negativeDist),concat("-",str(?negativeDist),":"), "")) as ?offset)
+
   FILTER(isliteral(?val))
-  BIND(concat(str(?head),":",?val) as ?dep)
+  BIND(concat(?offset,str(?head),":",?val) as ?dep)
   BIND(URI(concat("http://ufal.mff.cuni.cz/conll2009-st/task-description.html#",
     ucase(replace(str(?anno),".*[#/]([^#/]+)$","$1")))) as ?conll)
 };
 
-# (h) infer sentences before struct boundaries
-# ?
+# (h) create one nif:Sentence for every continuous sequence of words
+#     (should be the entire text)
+#     unless sentence annotation is already available
+#     note: this will fail if a powla property powla:head or the like does exist
+DELETE {
+  ?a ?b ?olds.
+  ?olds ?c ?d.
+} INSERT {
+  ?w conll:HEAD ?s.
+  ?s a nif:Sentence.
+} WHERE {
+  ?w a nif:Word.
+  MINUS { ?w conll:HEAD [] }
+  ?first nif:nextWord* ?w.
+  MINUS { [] nif:nextWord ?first }
+  BIND(URI(concat(str(?first),"_sentence")) as ?s)
+};
 
 # (i) deduplicate CoNLL properties
 DELETE {
@@ -421,29 +463,6 @@ DELETE {
       FILTER(isLiteral(?val))
     } GROUP BY ?w ?conll
   }
-};
-
-# (k) create one nif:Sentence for every continuous sequence of words
-#     (should be the entire text)
-#     (NB: sentence sequence can be extrapolated from URIs of first words)
-#     ? split after every root struct
-#     note: this will fail if a powla property powla:head or the like does exist
-DELETE {
-  ?a ?b ?olds.
-  ?olds ?c ?d.
-} INSERT {
-  ?w conll:HEAD ?s.
-  ?s a nif:Sentence.
-} WHERE {
-  ?w a nif:Word.
-  OPTIONAL { ?w conll:HEAD ?olds. ?olds a nif:Sentence.
-    OPTIONAL { ?a ?b ?olds }
-    OPTIONAL { ?olds ?c ?d }
-   }
-  MINUS { ?w conll:HEAD [] }
-  ?first nif:nextWord* ?w.
-  MINUS { [] nif:nextWord ?first }
-  BIND(URI(concat(str(?first),"_sentence")) as ?s)
 };
 
 # note:

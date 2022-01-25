@@ -63,8 +63,10 @@ This is mostly for validation of conversion results.
   - StructLayer: each layer encoded as PTB-style tree in a single column, column name is derived from `rdfs:label` of StructLayer or from filename (as preserved in URI); seondary edges are processed like dependencies (RelLayer).
   - RelLayer: one or multiple pairs of `HEAD` and relation (as in CoNLL-U `DEPS`). Column name is derived from PAULA XML attribute name of annotations.
 - treat every original PAULA annoset as a single sentence (no principled way to split it from PAULA input)
+- `induce-nif-sentences.sparql` extrapolates sentence boundaries from annotations, this exploits the (lack of) overlap between span (mark) and struct annotations. It will insert a sentence break before every non-overlapping span/tree. Only use this if span annotation marks or is aligned with clause boundaries.
 
 remarks:
+- POWLA generation is fast, but CoNLL export is relatively slow. This is because PAULA generates an unstructured graph, so that the resulting POWLA graph has no consistent segmentation into smaller processing units (say, sentences) that can be processed individually. Instead, search is always over the complete graph (PAULA annoset).
 - we generate PTB-style trees, but we do not validate whether powla:hasParent relations constitute a single tree. For discontinuous elements, these are silently expanded to the full extent.
 - we provide annotations of POWLA nodes as `|`-separated set (unsorted) of attribute-value pairs. As we explicitly encode the attribute, this is more verbose than conventional PTB trees in CoNLL that only provide the value.
 - PTB encoding in CoNLL cannot distinguish node and relation annotations. both as presented as node-level annotations, here.
@@ -79,3 +81,24 @@ remarks:
       :tok_117 conll:TYPE "21:anaphor_antecedent|I-anaphoric|22:anaphor_antecedent". # (PCC2, 4282)
 
     In this, this is all coming from coreference (`mmax`) annotation, but the relation annotations (`21:...`, `22:...`) originate from the `type` feature of original relations, whereas the span annotations (`I-...`) originate from the `type` feature of original markables.
+- if multiple overlapping markable spans are annotated, these are preserved in the conll export, however, if their annotations are distributed across multiple properties (e.g., two annotations per original markable), the synchronization between these properties is lost. This information is preserved in POWLA, but cannot be reliably encoded in CoNLL. This occurs with `mmax` (coref) annotations from PCC2, e.g.,
+
+        10      die               B-defnp      B-sbj
+        11      Dallgower         S-ne|I-defnp S-other|I-sbj
+        12      Gemeindevertreter E-defnp      E-sbj
+
+    As the example shows, interdependencies between annotations of different markables can be recovered from IOBES annotation, but only if preceding and following lines are taken into consideration.
+- During conversion, we discovered some previously undetected data quality issues with the existing PAULA data: `mmax` markables systematically include the preceding punctuation symbol. In combination with an annotation that groups punctuation signs together with the preceding word, this will disable sentence splitting.
+- CoNLL does not have a standard encoding for intersentential links (co-indexing has been used, but this requires globally unambiguous IDs -- URIs provide this, but are too verbose in practice). Here, we adopt a convention earlier used within the Copenhagen Dependency Treebank: if an intersentential relation is to be encoded, we add a sentence offset, separated by `:`, before the target ID, e.g.,
+
+        1       .         _
+        2       Nun       _
+        3       sollen    _
+        4       sie       -1:6:anaphor_antecedent|-1:2:anaphor_antecedent|-1:3:anaphor_antecedent|-1:4:anaphor_antecedent|-1:5:anaphor_antecedent       
+        5       zeigen    _       
+        6       ,         _
+        7       wie       _
+        8       sie       4:anaphor_antecedent
+        9       die       _       
+        10      Chance    _     
+        11      verwerten _
