@@ -11,21 +11,24 @@ samples: conll-rdf
 			# (b) export POWLA as CoNLL-RDF \
 			egrep '[^\s]' | grep -v '^#'| \
 			# strip empty lines \
+# #			conll-rdf/run.sh CoNLLRDFUpdater -custom \
+#				-updates \
+#					induce-nif-sentences.sparql | \
+#			# the preceding step is optional, and will induce sentence boundaries *between trees*, not applicable to PCC2 data\
+#			# because this provides RST trees that include the entire text \
 			conll-rdf/run.sh CoNLLRDFUpdater -custom \
 				-updates \
-					induce-nif-sentences.sparql \
-					powla2conll.sparql | \
-			tee $$tgt.conll_full.ttl | \
-			# convert POWLA to CoNLL-RDF data \
-			conll-rdf/run.sh CoNLLRDFUpdater -custom \
-				-updates remove-powla.sparql | \
+					powla2conll.sparql  \
+				  remove-powla.sparql | \
+			conll-rdf/run.sh CoNLLRDFFormatter | \
+			# this step is necessary only for visualizing $$tgt.conll.ttl \
 			tee $$tgt.conll.ttl | \
 			conll-rdf/run.sh CoNLLRDFFormatter \
 				-conll \
 						  ID WORD \
 							LEMMA POS MORPH \
 							FUNC \
-							TIGER \
+							MERGED TIGER \
 							REFERENTIALITY TYPE ANAPHOR_TYPE AMBIGUITY GRAMMATICAL_ROLE NP_FORM COMPLEX_NP DIR_SPEECH PHRASE_TYPE   \
 							NP PP SENT HEADING INF_STAT TOPIC FOCUS_NEWINF \
 							RST \

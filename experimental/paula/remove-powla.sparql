@@ -20,7 +20,7 @@ DELETE {
 };
 
 
-# (k) remove all POWLA data structures
+# (k) remove all PAULA/POWLA data structures
 DELETE {
   ?a ?b ?c
 } WHERE {
@@ -28,4 +28,12 @@ DELETE {
   FILTER(strstarts(str(?a),"http://purl.org/powla/powla.owl#") ||
          strstarts(str(?b),"http://purl.org/powla/powla.owl#") ||
          strstarts(str(?c),"http://purl.org/powla/powla.owl#"))
+};
+DELETE {
+  ?a ?b ?c
+} WHERE {
+  ?a ?b ?c.
+  FILTER(strstarts(str(?a), "https://github.com/korpling/paula-xml#") ||
+         strstarts(str(?a), "https://github.com/korpling/paula-xml#") ||
+         strstarts(str(?a), "https://github.com/korpling/paula-xml#"))
 };

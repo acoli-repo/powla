@@ -54,7 +54,7 @@ remarks:
 
 ## POWLA to CoNLL
 
-This is mostly for validation of conversion results.
+We provide a [Fintan](https://github.com/Pret-a-LLOD/Fintan)/[CoNLL-RDF](https://github.com/acoli-repo/conll-rdf) pipeline to convert POWLA to CoNLL. This is a generic converter (for any PAULA/POWLA data) primarily intended for validating conversion results. Because it is a generic converter, it is not optimized for specific types of annotations and relatively slow.
 
 - we infer optional POWLA structures from recommended POWLA structures
 - we infer TokenLayer, StructLayer and MarkLayer and encode them differently
@@ -66,7 +66,18 @@ This is mostly for validation of conversion results.
 - `induce-nif-sentences.sparql` extrapolates sentence boundaries from annotations, this exploits the (lack of) overlap between span (mark) and struct annotations. It will insert a sentence break before every non-overlapping span/tree. Only use this if span annotation marks or is aligned with clause boundaries.
 
 remarks:
-- POWLA generation is fast, but CoNLL export is relatively slow. This is because PAULA generates an unstructured graph, so that the resulting POWLA graph has no consistent segmentation into smaller processing units (say, sentences) that can be processed individually. Instead, search is always over the complete graph (PAULA annoset).
+- POWLA generation is fast, but CoNLL export can be *very* slow. Converting even the small PCC2 corpus can take 10 minutes or more. This is for three reasons:
+  (a) The PAULA/POWLA data model is much more generic than CoNLL. Different types of annotations (trees, markables, relations) require complex transformations, often involving aggregates. These aggregates can be time-consuming.
+  (b) PAULA generates an unstructured graph, so that the resulting POWLA graph has no consistent segmentation into smaller processing units (say, sentences) that can be processed individually. Instead, search is always performed over the complete graph (PAULA annoset). For production mode, it is helpful to implement an annotation-specific splitter functionality.
+  (c) The converter is designed to process *any* PAULA data without manual interference. This involves a considerable number of inferences that cover exceptional cases and may be omitted for specific applications. In particular, it will remove and infer `powla:nextTerm` and `powla:next` properties. When working with consistent POWLA data, this is not necessary.
+- when using POWLA to convert PAULA to CoNLL, you can massively speed up the process by feeding each layer (annoset) individually (plus text/token). The resulting CoNLL files can be merged, e.g., by [CoNLL-Merge](https://github.com/acoli-repo/conll-merge) and the result of the conversion can be further processed by CoNLL-RDF
+- the initial conversion functionality was developed on individual annotation layers, without annoset file. If the annoset may group together heterogeneous information that cannot be reduced to a single layer type (e.g., multiple struct layers, a struct layer and a mark layer or a struct layer and a rel layer), these will be treated like struct layers. However, this can lead to unexpected results, e.g.,
+
+  - the CoNLL property is named after the annoset element URI, e.g., `MERGED`
+  - annotations are being conflated into a single priperty (i.e., the one derived from the layer ID = annoset element, e.g., `MERGED`)
+
+  To suppress this behavior, remove `*.anno.xml` and `*.anno_feats.xml` before conversion. 
+
 - we generate PTB-style trees, but we do not validate whether powla:hasParent relations constitute a single tree. For discontinuous elements, these are silently expanded to the full extent.
 - we provide annotations of POWLA nodes as `|`-separated set (unsorted) of attribute-value pairs. As we explicitly encode the attribute, this is more verbose than conventional PTB trees in CoNLL that only provide the value.
 - PTB encoding in CoNLL cannot distinguish node and relation annotations. both as presented as node-level annotations, here.
