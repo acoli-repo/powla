@@ -1,0 +1,190 @@
+# global.columns = ID WORD LEMMA POS MORPH FUNC MERGED TIGER REFERENTIALITY TYPE ANAPHOR_TYPE AMBIGUITY GRAMMATICAL_ROLE NP_FORM COMPLEX_NP DIR_SPEECH PHRASE_TYPE NP PP SENT HEADING INF_STAT TOPIC FOCUS_NEWINF RST
+1	Steilpass	Steilpass	NN	Nom.Sg.Masc	_	_	_	_	B-sentenceSeg|S-headingSeg	_	_	_	_	_	_	_	_	_	_	S-heading	_	_	_	(kind=segment *	
+2	Wunder	Wunder	NN	Acc.Pl.Neut	_	(cat=S *	_	_	S-Inf-StatSeg|B-SentSeg|S-NPSeg|I-sentenceSeg	_	_	_	_	_	_	_	S-NP	_	B-s	_	S-idiom	_	_	(relname=elaboration|type=rst|kind=group|type=span (relname=span|kind=group|type=span (relname=span|kind=group|type=span (relname=span|kind=group|type=multinuc (relname=preparation|type=rst|kind=segment *	
+3	gibt	geben	VVFIN	3.Sg.Pres.Ind	2:obja|6:adv|4:sbj	*	_	_	I-SentSeg|I-sentenceSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	_	*	
+4	es	es	PPER	3.Nom.Sg.Neut	_	*	_	_	I-SentSeg|I-sentenceSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	_	*	
+5	immer	immer	ADV	--	_	(func=MO|type=edge|cat=AVP *	_	_	I-SentSeg|I-sentenceSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	_	*	
+6	wieder	wieder	ADV	--	5:adv|7:punct	* ))	_	_	I-SentSeg|E-sentenceSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	_	*	
+7	!	!	$.	--	_	_	_	_	B-sentenceSeg|E-SentSeg	_	_	_	_	_	_	_	_	_	E-s	_	_	_	_	* )	
+8	Erst	erst	ADV	--	_	(cat=S *	_	_	B-SentSeg|I-sentenceSeg	_	_	_	_	_	_	_	_	_	B-s	_	_	_	_	(relname=sequence|type=multinuc|kind=segment *	
+9	spielen	spielen	VVFIN	3.Pl.Pres.Ind	8:adv|14:adv|12:sbj	*	_	_	I-SentSeg|I-sentenceSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	_	*	
+10	die	der	ART	Nom.Pl.Masc	_	(func=SB|type=edge|cat=NP *	_	B-discourse-new	B-none|B-TopicSeg|I-sentenceSeg|B-NPSeg|B-Inf-StatSeg|B-groupsSeg|B-primmarkSeg|I-SentSeg	_	B-not_ambig	B-sbj	B-defnp	B-yes	B-text_level	B-np	B-NP	_	I-s	_	B-new	B-ab	_	*	
+11	Dallgower	Dallgower	ADJA	Pos.*.*.*	_	*	_	S-discourse-new|I-discourse-new	S-primmarkSeg|I-sentenceSeg|S-none|I-primmarkSeg|I-NPSeg|I-SentSeg|I-Inf-StatSeg|I-TopicSeg|I-none	_	S-not_ambig|I-not_ambig	S-other|I-sbj	I-defnp|S-ne	I-yes|S-no	I-text_level|S-text_level	I-np|S-np	I-NP	_	I-s	_	I-new	I-ab	_	*	
+12	Gemeindevertreter	Gemeindevertreter	NN	Nom.Pl.Masc	10:det|11:attr	* )	_	E-discourse-new	E-Inf-StatSeg|E-TopicSeg|I-SentSeg|E-NPSeg|E-none|I-sentenceSeg|E-primmarkSeg	_	E-not_ambig	E-sbj	E-defnp	E-yes	E-text_level	E-np	E-NP	_	I-s	_	E-new	E-ab	_	*	
+13	so	so	ADV	--	_	(func=MO|type=edge|cat=AP (func=MO|type=edge|cat=AVP *	_	_	I-sentenceSeg|I-SentSeg|B-Focus_newInfSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	B-nf-unsol	*	
+14	statisch	statisch	ADJD	Pos	13:adv|15:kon	(func=HD|type=edge|cat=CAP *	_	_	I-SentSeg|I-sentenceSeg|I-Focus_newInfSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	I-nf-unsol	*	
+15	und	und	KON	--	16:cj	*	_	_	I-SentSeg|I-sentenceSeg|I-Focus_newInfSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	I-nf-unsol	*	
+16	verzagt	verzagt	ADJD	Pos	17:kom	* )	_	_	I-SentSeg|I-sentenceSeg|I-Focus_newInfSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	I-nf-unsol	*	
+17	wie	wie	KOKOM	--	20:cj	(func=CC|type=edge|cat=NP *	_	B-discourse-new	I-SentSeg|B-primmarkSeg|I-sentenceSeg|I-Focus_newInfSeg|B-none	_	B-not_ambig	B-other	B-defnp	B-yes	B-text_level	B-np	_	_	I-s	_	_	_	I-nf-unsol	*	
+18	die	der	ART	Nom.Sg.Fem	_	*	_	I-discourse-new	I-sentenceSeg|I-primmarkSeg|B-Inf-StatSeg|B-NPSeg|I-Focus_newInfSeg|I-none|I-SentSeg	_	I-not_ambig	I-other	I-defnp	I-yes	I-text_level	I-np	B-NP	_	I-s	_	B-acc-inf	_	I-nf-unsol	*	
+19	deutsche	deutsch	ADJA	Pos.Nom.Sg.Fem	_	*	_	I-discourse-new	I-none|I-SentSeg|I-Inf-StatSeg|I-sentenceSeg|I-primmarkSeg|I-Focus_newInfSeg|I-NPSeg	_	I-not_ambig	I-other	I-defnp	I-yes	I-text_level	I-np	I-NP	_	I-s	_	I-acc-inf	_	I-nf-unsol	*	
+20	Abwehrreihe	Abwehrreihe	NN	Nom.Sg.Fem	19:attr|18:det|22:gmod	*	_	I-discourse-new	I-primmarkSeg|I-SentSeg|I-Focus_newInfSeg|I-none|I-sentenceSeg|I-Inf-StatSeg|I-NPSeg	_	I-not_ambig	I-other	I-defnp	I-yes	I-text_level	I-np	I-NP	_	I-s	_	I-acc-inf	_	I-nf-unsol	*	
+21	der	der	ART	Gen.Pl.Masc	_	(func=AG|type=edge|cat=NP *	_	I-discourse-new|B-discourse-new	B-none|I-Focus_newInfSeg|B-primmarkSeg|I-sentenceSeg|I-primmarkSeg|I-SentSeg|I-Inf-StatSeg|I-none|I-NPSeg	_	B-not_ambig|I-not_ambig	B-other|I-other	B-defnp|I-defnp	I-yes|B-no	B-text_level|I-text_level	B-np|I-np	I-NP	_	I-s	_	I-acc-inf	_	I-nf-unsol	*	
+22	Fußballkicker	Fußballkicker	NN	Gen.Pl.Masc	23:punct|21:det	* )))))	_	E-discourse-new	E-Focus_newInfSeg|E-none|E-Inf-StatSeg|E-NPSeg|I-SentSeg|E-primmarkSeg|E-sentenceSeg	_	E-not_ambig	E-other	E-defnp	E-yes|E-no	E-text_level	E-np	E-NP	_	I-s	_	E-acc-inf	_	E-nf-unsol	*	
+23	.	.	$.	--	_	_	_	_	E-SentSeg|B-sentenceSeg	_	_	_	_	_	_	_	_	_	E-s	_	_	_	_	* )	
+24	Und	und	KON	--	_	(cat=S *	_	_	I-sentenceSeg|B-SentSeg|B-Focus_newInfSeg	_	_	_	_	_	_	_	_	_	B-s	_	_	_	B-nf-unsol	(relname=sequence|type=multinuc|kind=segment *	
+25	dann	dann	ADV	--	_	*	_	_	I-sentenceSeg|I-Focus_newInfSeg|I-SentSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	I-nf-unsol	*	
+26	kommt	kommen	VVFIN	3.Sg.Pres.Ind	33:sbj|25:adv|27:pp|24:kon	*	_	_	I-SentSeg|I-sentenceSeg|I-Focus_newInfSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	I-nf-unsol	*	
+27	aus	aus	APPR	--	29:pn	(func=MO|type=edge|cat=PP *	_	B-other	B-none|I-SentSeg|B-PPSeg|I-sentenceSeg|I-Focus_newInfSeg|B-primmarkSeg	_	B-not_ambig	B-other	B-defnp	B-no	B-text_level	B-pp	_	B-PP	I-s	_	_	_	I-nf-unsol	*	
+28	der	der	ART	Dat.Sg.Fem	_	*	_	I-other	I-none|I-SentSeg|I-primmarkSeg|B-Inf-StatSeg|B-NPSeg|I-sentenceSeg|I-Focus_newInfSeg|I-PPSeg	_	I-not_ambig	I-other	I-defnp	I-no	I-text_level	I-pp	B-NP	I-PP	I-s	_	B-idiom	_	I-nf-unsol	*	
+29	Tiefe	Tiefe	NN	Dat.Sg.Fem	28:det	* )	_	E-other	I-SentSeg|E-NPSeg|E-primmarkSeg|E-none|I-sentenceSeg|E-PPSeg|E-Inf-StatSeg|I-Focus_newInfSeg	_	E-not_ambig	E-other	E-defnp	E-no	E-text_level	E-pp	E-NP	E-PP	I-s	_	E-idiom	_	I-nf-unsol	*	
+30	solch	solcher	PIAT	*.*.*	_	(func=SB|type=edge|cat=NP *	_	B-discourse-new	E-Focus_newInfSeg|I-SentSeg|B-secmarkSeg|I-sentenceSeg	_	B-not_ambig	B-sbj	B-indefnp	B-yes|B-no	B-text_level	B-np	_	_	I-s	_	_	_	E-nf-unsol	*	
+31	ein	ein	ART	Nom.Sg.Masc	_	*	_	I-discourse-new	B-Inf-StatSeg|I-secmarkSeg|B-TopicSeg|B-NPSeg|I-SentSeg|I-sentenceSeg	_	I-not_ambig	I-sbj	I-indefnp	I-no|I-yes	I-text_level	I-np	B-NP	_	I-s	_	B-new	B-ab	_	*	
+32	fulminanter	fulminant	ADJA	Pos.Nom.Sg.Masc	_	*	_	I-discourse-new	I-secmarkSeg|I-TopicSeg|I-NPSeg|I-SentSeg|I-sentenceSeg|I-Inf-StatSeg	_	I-not_ambig	I-sbj	I-indefnp	I-no|I-yes	I-text_level	I-np	I-NP	_	I-s	_	I-new	I-ab	_	*	
+33	Steilpass	Steilpass	NN	Nom.Sg.Masc	31:attr|30:det|34:punct|32:attr|38:rel	*	_	E-discourse-new|I-discourse-new	E-Inf-StatSeg|I-sentenceSeg|E-NPSeg|I-SentSeg|E-TopicSeg|I-secmarkSeg|E-secmarkSeg	_	E-not_ambig|I-not_ambig	I-sbj|E-sbj	I-indefnp|E-indefnp	E-no|I-yes	I-text_level|E-text_level	I-np|E-np	E-NP	_	I-s	_	E-new	E-ab	_	*	
+34	,	,	$,	--	_	_	_	_	I-SentSeg|I-sentenceSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	_	*	
+35	von	von	APPR	--	36:pn	(func=RC|type=edge|cat=S (func=MO|type=edge|cat=PP *	_	I-discourse-new	I-secmarkSeg|I-SentSeg|B-Focus_newInfSeg|I-sentenceSeg|B-PPSeg	_	I-not_ambig	I-sbj	I-indefnp	I-yes	I-text_level	I-np	_	B-PP	I-s	_	_	_	B-nf-unsol	*	
+36	dem	der	PRELS	Dat.Sg.Masc	_	* )	_	I-discourse-new	S-NPSeg|I-Focus_newInfSeg|I-sentenceSeg|I-SentSeg|E-PPSeg|I-secmarkSeg|S-Inf-StatSeg	_	I-not_ambig	I-sbj	I-indefnp	I-yes	I-text_level	I-np	S-NP	E-PP	I-s	_	S-giv-active	_	I-nf-unsol	*	
+37	man	man	PIS	Nom.Sg.*	_	*	_	I-discourse-new	I-SentSeg|I-secmarkSeg|S-Inf-StatSeg|S-NPSeg|I-Focus_newInfSeg|I-sentenceSeg	_	I-not_ambig	I-sbj	I-indefnp	I-yes	I-text_level	I-np	S-NP	_	I-s	_	S-acc-sit	_	I-nf-unsol	*	
+38	hofft	hoffen	VVFIN	3.Sg.Pres.Ind	35:pp|39:punct|37:sbj|48:neb	*	_	I-discourse-new	I-SentSeg|I-secmarkSeg|I-sentenceSeg|I-Focus_newInfSeg	_	I-not_ambig	I-sbj	I-indefnp	I-yes	I-text_level	I-np	_	_	I-s	_	_	_	I-nf-unsol	*	
+39	,	,	$,	--	_	_	_	_	I-Focus_newInfSeg|I-sentenceSeg|I-SentSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	I-nf-unsol	*	
+40	dass	dass	KOUS	--	_	(func=OC|type=edge|cat=S *	_	I-discourse-new	I-SentSeg|I-sentenceSeg|I-secmarkSeg|I-Focus_newInfSeg|I-groupsSeg	_	I-not_ambig	I-sbj	I-indefnp	I-yes	I-text_level	I-np	_	_	I-s	_	_	_	I-nf-unsol	*	
+41	die	der	ART	Nom.Pl.Masc	_	(func=SB|type=edge|cat=NP *	_	I-discourse-new|B-discourse-new	B-primmarkSeg|I-SentSeg|B-none|I-Focus_newInfSeg|I-secmarkSeg|I-groupsSeg|B-NPSeg|I-sentenceSeg|B-Inf-StatSeg	_	B-not_ambig|I-not_ambig	B-other|I-sbj|B-sbj	B-ne|I-indefnp|B-defnp	I-yes|B-no	I-text_level|B-text_level	I-np|B-np	B-NP	_	I-s	_	B-new	_	I-nf-unsol	*	
+42	Seeburger	Seeburg	ADJA	Pos.*.*.*	43:kon	(func=NK|type=edge|cat=CAP *	_	I-discourse-new	I-primmarkSeg|I-sentenceSeg|I-none|I-NPSeg|I-SentSeg|I-Inf-StatSeg|I-Focus_newInfSeg|I-secmarkSeg|I-groupsSeg	_	I-not_ambig	I-other|I-sbj	I-indefnp|I-ne|I-defnp	I-no|I-yes	I-text_level	I-np	I-NP	_	I-s	_	I-new	_	I-nf-unsol	*	
+43	oder	oder	KON	--	44:cj	*	_	I-discourse-new	I-sentenceSeg|I-SentSeg|I-secmarkSeg|I-NPSeg|I-groupsSeg|I-primmarkSeg|I-Focus_newInfSeg|I-none|I-Inf-StatSeg	_	I-not_ambig	I-sbj	I-indefnp|I-defnp	I-no|I-yes	I-text_level	I-np	I-NP	_	I-s	_	I-new	_	I-nf-unsol	*	
+44	Groß-Glienicker	Groß-Glienick	ADJA	Pos.*.*.*	_	* )	_	I-discourse-new	I-primmarkSeg|I-Focus_newInfSeg|I-none|I-sentenceSeg|I-SentSeg|I-Inf-StatSeg|I-secmarkSeg|E-groupsSeg|I-NPSeg	_	I-not_ambig	I-other|I-sbj	I-indefnp|I-defnp|I-ne	I-no|I-yes	I-text_level	I-np	I-NP	_	I-s	_	I-new	_	I-nf-unsol	*	
+45	Mitspieler	Mitspieler	NN	Nom.Pl.Masc	41:det|42:attr	* )	_	I-discourse-new|E-discourse-new	I-sentenceSeg|I-SentSeg|E-Inf-StatSeg|E-NPSeg|I-Focus_newInfSeg|I-secmarkSeg|E-none|E-primmarkSeg	_	E-not_ambig|I-not_ambig	I-sbj|E-other|E-sbj	I-indefnp|E-ne|E-defnp	I-yes|E-no	E-text_level|I-text_level	E-np|I-np	E-NP	_	I-s	_	E-new	_	I-nf-unsol	*	
+46	ihn	ihn	PPER	3.Acc.Sg.Masc	_	(func=OC|type=edge|cat=VP *	_	I-discourse-new|S-referring	I-Focus_newInfSeg|S-NPSeg|I-sentenceSeg|I-secmarkSeg|S-primmarkSeg|S-anaphoric|I-SentSeg|S-Inf-StatSeg	S-anaphor_nominal	I-not_ambig|S-not_ambig	S-dir-obj|I-sbj	I-indefnp|S-pper	I-yes|S-no	I-text_level|S-text_level	I-np|S-np	S-NP	_	I-s	_	S-giv-active	_	I-nf-unsol	*	
+47	aufnehmen	aufnehmen	VVINF	Inf	46:obja	* )	_	I-discourse-new	I-secmarkSeg|I-SentSeg|I-Focus_newInfSeg|I-sentenceSeg	_	I-not_ambig	I-sbj	I-indefnp	I-yes	I-text_level	I-np	_	_	I-s	_	_	_	I-nf-unsol	*	
+48	können	können	VMFIN	3.Pl.Pres.Ind	40:konj|47:aux|45:sbj|49:punct	* ))))	_	E-discourse-new	E-Focus_newInfSeg|I-SentSeg|E-secmarkSeg|E-sentenceSeg	_	E-not_ambig	E-sbj	E-indefnp	E-yes	E-text_level	E-np	_	_	I-s	_	_	_	E-nf-unsol	*	
+49	.	.	$.	--	_	_	_	_	E-SentSeg|B-sentenceSeg	_	_	_	_	_	_	_	_	_	E-s	_	_	_	_	* ))	
+50	Ein	ein	ART	Nom.Sg.Masc	_	(cat=S (func=PD|type=edge|cat=NP *	_	_	B-TopicSeg|B-Inf-StatSeg|B-SentSeg|B-NPSeg|I-sentenceSeg	_	_	_	_	_	_	_	B-NP	_	B-s	_	B-acc-inf	B-ab	_	(relname=evaluation|type=rst|kind=group|type=span (relname=span|kind=group|type=span (relname=span|kind=segment *	
+51	Befreiungsschlag	Befreiungsschlag	NN	Nom.Sg.Masc	50:det	* )	_	_	E-TopicSeg|E-NPSeg|I-SentSeg|E-Inf-StatSeg|I-sentenceSeg	_	_	_	_	_	_	_	E-NP	_	I-s	_	E-acc-inf	E-ab	_	*	
+52	ist	sein	VAFIN	3.Sg.Pres.Ind	54:adv|65:neb|51:pred|53:sbj|55:adv	*	_	_	I-sentenceSeg|I-SentSeg|B-Focus_newInfSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	B-nf-unsol	*	
+53	es	es	PPER	3.Nom.Sg.Neut	_	*	_	_	I-Focus_newInfSeg|I-sentenceSeg|I-SentSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	I-nf-unsol	*	
+54	allerdings	allerdings	ADV	--	_	*	_	_	I-sentenceSeg|I-SentSeg|I-Focus_newInfSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	I-nf-unsol	*	
+55	nicht	nicht	PTKNEG	--	56:punct	*	_	_	I-Focus_newInfSeg|I-sentenceSeg|I-SentSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	I-nf-unsol	*	
+56	,	,	$,	--	_	_	_	_	I-SentSeg|I-Focus_newInfSeg|I-sentenceSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	I-nf-unsol	*	
+57	weil	weil	KOUS	--	_	(func=MO|type=edge|cat=S *	_	_	I-sentenceSeg|I-SentSeg|I-Focus_newInfSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	I-nf-unsol	(relname=evidence|type=rst|kind=group|type=span (relname=span|kind=segment *	
+58	es	es	PPER	3.Nom.Sg.Neut	_	*	_	_	I-Focus_newInfSeg|I-sentenceSeg|I-SentSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	I-nf-unsol	*	
+59	vorerst	vorerst	ADV	--	_	*	_	_	I-sentenceSeg|I-SentSeg|I-Focus_newInfSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	I-nf-unsol	*	
+60	keine	kein	PIAT	Acc.Sg.Fem	_	(func=OA|type=edge|cat=NP *	_	_	B-Inf-StatSeg|I-sentenceSeg|B-NPSeg|I-Focus_newInfSeg|I-SentSeg	_	_	_	_	_	_	_	B-NP	_	I-s	_	B-idiom	_	I-nf-unsol	*	
+61	Gefahr	Gefahr	NN	Acc.Sg.Fem	60:det	*	_	_	E-Inf-StatSeg|I-Focus_newInfSeg|I-SentSeg|E-NPSeg|I-sentenceSeg	_	_	_	_	_	_	_	E-NP	_	I-s	_	E-idiom	_	I-nf-unsol	*	
+62	fürs	für	APPRART	Acc.Sg.Neut	64:pn	(func=MNR|type=edge|cat=PP *	_	B-discourse-new	I-Focus_newInfSeg|B-none|B-PPSeg|I-sentenceSeg|B-primmarkSeg|I-SentSeg	_	B-not_ambig	B-other	B-defnp	B-no	B-text_level	B-pp	_	B-PP	I-s	_	_	_	I-nf-unsol	*	
+63	Dallgower	Dallgower	ADJA	Pos.*.*.*	_	*	_	S-referring|I-discourse-new	I-Focus_newInfSeg|S-primmarkSeg|11:anaphor_antecedent|I-PPSeg|B-NPSeg|S-none|I-none|I-SentSeg|I-sentenceSeg|B-Inf-StatSeg|I-primmarkSeg	_	I-not_ambig|S-not_ambig	I-other|S-other	S-ne|I-defnp	I-no|S-no	S-text_level|I-text_level	I-pp|S-np	B-NP	I-PP	I-s	_	B-acc-inf	_	I-nf-unsol	*	
+64	Tor	Tor	NN	Acc.Sg.Neut	63:attr	* ))	_	E-discourse-new	E-PPSeg|E-none|E-primmarkSeg|E-Inf-StatSeg|I-Focus_newInfSeg|I-SentSeg|I-sentenceSeg|E-NPSeg	_	E-not_ambig	E-other	E-defnp	E-no	E-text_level	E-pp	E-NP	E-PP	I-s	_	E-acc-inf	_	I-nf-unsol	*	
+65	gab	geben	VVFIN	3.Sg.Past.Ind	61:obja|59:adv|57:konj|58:sbj|66:punct|62:pp	* ))	_	_	E-Focus_newInfSeg|E-sentenceSeg|I-SentSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	E-nf-unsol	*	
+66	.	.	$.	--	_	_	_	_	E-SentSeg|B-sentenceSeg	_	_	_	_	_	_	_	_	_	E-s	_	_	_	_	*	
+67	Die	der	ART	Nom.Pl.Masc	_	(cat=S (func=SB|type=edge|cat=CNP (func=CJ|type=edge|cat=NP *	_	B-referring|B-other	B-none|B-Inf-StatSeg|41:anaphor_antecedent|42:anaphor_antecedent|B-NPSeg|B-SentSeg|B-primmarkSeg|I-sentenceSeg|45:anaphor_antecedent|B-anaphoric|B-TopicSeg	B-anaphor_nominal	B-not_ambig	B-other|B-sbj	B-defnp	B-yes|B-no	B-text_level	B-np	B-NP	_	B-s	_	B-giv-inactive	B-ab	_	(relname=elaboration|type=rst|kind=segment *	
+68	Seeburger	Seeburger	NN	Nom.Pl.Masc	67:det|69:kon	* )	_	I-other|E-referring	I-none|I-sentenceSeg|42:anaphor_antecedent|45:anaphor_antecedent|I-SentSeg|E-Inf-StatSeg|I-TopicSeg|I-primmarkSeg|E-NPSeg|41:anaphor_antecedent|E-anaphoric|E-primmarkSeg	E-anaphor_nominal	I-not_ambig|E-not_ambig	I-sbj|E-other	I-defnp|E-defnp	I-yes|E-no	I-text_level|E-text_level	I-np|E-np	E-NP	_	I-s	_	E-giv-inactive	I-ab	_	*	
+69	und	und	KON	--	71:cj	*	_	I-other	I-none|I-sentenceSeg|I-TopicSeg|I-primmarkSeg|I-SentSeg	_	I-not_ambig	I-sbj	I-defnp	I-yes	I-text_level	I-np	_	_	I-s	_	_	I-ab	_	*	
+70	einige	einiger	PIAT	Nom.Pl.Masc	_	(func=CJ|type=edge|cat=NP *	_	I-other	B-NPSeg|I-SentSeg|B-primmarkSeg|B-Inf-StatSeg|I-none|45:anaphor_antecedent|I-primmarkSeg|I-sentenceSeg|44:anaphor_antecedent|41:anaphor_antecedent|I-TopicSeg	_	I-not_ambig	I-sbj	I-defnp	I-yes	I-text_level	I-np	B-NP	_	I-s	_	B-giv-inactive	I-ab	_	*	
+71	Groß-Glienicker	Groß-Glienicker	NN	Nom.Pl.Masc	70:det	* ))	_	E-other	E-NPSeg|44:anaphor_antecedent|41:anaphor_antecedent|E-none|E-TopicSeg|E-Inf-StatSeg|45:anaphor_antecedent|E-primmarkSeg|I-sentenceSeg|I-SentSeg	_	E-not_ambig	E-sbj	E-defnp	E-yes	E-text_level	E-np	E-NP	_	I-s	_	E-giv-inactive	E-ab	_	*	
+72	haben	haben	VAFIN	3.Pl.Pres.Ind	76:aux|68:sbj	*	_	_	I-SentSeg|B-Focus_newInfSeg|I-sentenceSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	B-nf-unsol	*	
+73	den	der	ART	Acc.Sg.Masc	_	(func=OC|type=edge|cat=CVP (func=CJ|type=edge|cat=VP (func=OA|type=edge|cat=NP *	_	B-discourse-new	I-sentenceSeg|B-none|I-Focus_newInfSeg|B-NPSeg|B-primmarkSeg|I-SentSeg|B-Inf-StatSeg	_	B-not_ambig	B-other	B-defnp	B-no	B-text_level	B-np	B-NP	_	I-s	_	B-acc-inf	_	I-nf-unsol	*	
+74	Ball	Ball	NN	Acc.Sg.Masc	73:det	* )	_	E-discourse-new	E-primmarkSeg|E-NPSeg|I-Focus_newInfSeg|E-none|I-SentSeg|E-Inf-StatSeg|I-sentenceSeg	_	E-not_ambig	E-other	E-defnp	E-no	E-text_level	E-np	E-NP	_	I-s	_	E-acc-inf	_	I-nf-unsol	*	
+75	erst	erst	ADV	--	_	*	_	_	I-SentSeg|I-Focus_newInfSeg|I-sentenceSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	I-nf-unsol	*	
+76	zurückgespielt	zurückspielen	VVPP	Psp	74:obja|75:adv|77:kon	* )	_	_	I-Focus_newInfSeg|I-sentenceSeg|I-SentSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	I-nf-unsol	*	
+77	und	und	KON	--	83:cj	*	_	_	I-Focus_newInfSeg|I-sentenceSeg|I-SentSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	I-nf-unsol	*	
+78	dann	dann	ADV	--	_	(func=CJ|type=edge|cat=VP *	_	_	I-SentSeg|I-sentenceSeg|I-Focus_newInfSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	I-nf-unsol	*	
+79	um	um	ADV	--	81:pn|80:adv	(func=MO|type=edge|cat=AP (func=MO|type=edge|cat=AVP *	_	_	I-Focus_newInfSeg|I-SentSeg|I-sentenceSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	I-nf-unsol	*	
+80	so	so	ADV	--	_	* )	_	_	I-sentenceSeg|I-Focus_newInfSeg|I-SentSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	I-nf-unsol	*	
+81	drängender	drängend	ADJD	Pos	_	* )	_	_	I-Focus_newInfSeg|I-sentenceSeg|I-SentSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	I-nf-unsol	*	
+82	wieder	wieder	ADV	--	_	*	_	_	I-Focus_newInfSeg|I-sentenceSeg|I-SentSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	I-nf-unsol	*	
+83	gefordert	fordern	VVPP	Psp	79:adv|78:adv|82:adv|84:punct	* )))	_	_	E-sentenceSeg|I-SentSeg|E-Focus_newInfSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	E-nf-unsol	*	
+84	.	.	$.	--	_	_	_	_	B-sentenceSeg|E-SentSeg	_	_	_	_	_	_	_	_	_	E-s	_	_	_	_	* ))))	
+85	Nun	nun	ADV	--	_	(cat=S *	_	_	B-SentSeg|I-sentenceSeg	_	_	_	_	_	_	_	_	_	B-s	_	_	_	_	(relname=evaluation|type=rst|kind=group|type=span (relname=span|kind=segment *	
+86	sollen	sollen	VMFIN	3.Pl.Pres.Ind	87:sbj|88:aux|85:adv	*	_	_	I-SentSeg|I-sentenceSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	_	*	
+87	sie	sie	PPER	3.Nom.Pl.*	_	*	_	S-referring	68:anaphor_antecedent|S-Inf-StatSeg|S-anaphoric|S-TopicSeg|I-sentenceSeg|70:anaphor_antecedent|S-NPSeg|S-primmarkSeg|I-SentSeg|71:anaphor_antecedent|69:anaphor_antecedent|67:anaphor_antecedent	S-anaphor_nominal	S-ambig_ante	S-sbj	S-pper	S-no	S-text_level	S-np	S-NP	_	I-s	_	S-giv-active	S-ab	_	*	
+88	zeigen	zeigen	VVINF	Inf	94:oa|89:punct	(func=OC|type=edge|cat=VP *	_	_	I-sentenceSeg|I-SentSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	_	*	
+89	,	,	$,	--	_	_	_	_	I-SentSeg|I-sentenceSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	_	*	
+90	wie	wie	PWAV	--	_	(func=OC|type=edge|cat=S *	_	_	I-sentenceSeg|I-SentSeg|B-Focus_newInfSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	B-nf-unsol	*	
+91	sie	sie	PPER	3.Nom.Pl.*	_	*	_	S-referring	I-Focus_newInfSeg|S-Inf-StatSeg|87:anaphor_antecedent|S-NPSeg|I-SentSeg|S-anaphoric|I-sentenceSeg|S-primmarkSeg	S-anaphor_nominal	S-not_ambig	S-sbj	S-pper	S-no	S-text_level	S-np	S-NP	_	I-s	_	S-giv-acitve	_	I-nf-unsol	*	
+92	die	der	ART	Acc.Sg.Fem	_	(func=OA|type=edge|cat=NP *	_	B-referring	I-sentenceSeg|B-NPSeg|I-Focus_newInfSeg|I-SentSeg|B-Inf-StatSeg|B-primmarkSeg|B-anaphoric	B-anaphor_nominal	B-not_ambig	B-dir-obj	B-defnp	B-no	B-text_level	B-np	B-NP	_	I-s	_	B-acc-inf	_	I-nf-unsol	*	
+93	Chance	Chance	NN	Acc.Sg.Fem	92:det	* )	_	E-referring	E-NPSeg|E-primmarkSeg|E-anaphoric|I-sentenceSeg|I-SentSeg|I-Focus_newInfSeg|E-Inf-StatSeg	E-anaphor_nominal	E-not_ambig	E-dir-obj	E-defnp	E-no	E-text_level	E-np	E-NP	_	I-s	_	E-acc-inf	_	I-nf-unsol	*	
+94	verwerten	verwerten	VVFIN	3.Pl.Pres.Ind	91:sbj|95:punct|93:obja|90:rel	* )))	_	_	E-Focus_newInfSeg|I-SentSeg|E-sentenceSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	E-nf-unsol	*	
+95	.	.	$.	--	_	_	_	_	E-SentSeg|B-sentenceSeg	_	_	_	_	_	_	_	_	_	E-s	_	_	_	_	*	
+96	Eine	ein	ART	Nom.Sg.Fem	_	(cat=S (func=SB|type=edge|cat=NP *	_	_	I-sentenceSeg|B-NPSeg|B-SentSeg|B-Inf-StatSeg	_	_	_	_	_	_	_	B-NP	_	B-s	_	B-new	_	_	(relname=elaboration|type=rst|kind=group|type=span (relname=span|kind=segment *	
+97	Diskussion	Diskussion	NN	Nom.Sg.Fem	96:det|98:punct|104:rel	*	_	_	I-SentSeg|E-NPSeg|I-sentenceSeg|E-Inf-StatSeg	_	_	_	_	_	_	_	E-NP	_	I-s	_	E-new	_	_	*	
+98	,	,	$,	--	_	_	_	_	I-SentSeg|I-sentenceSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	_	*	
+99	wo	wo	PWAV	--	_	(func=OC|type=edge|cat=S (func=OC|type=edge|cat=VP *	_	_	I-sentenceSeg|I-SentSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	_	*	
+100	künftig	künftig	ADJD	Pos	_	*	_	_	I-sentenceSeg|I-SentSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	_	*	
+101	die	der	ART	Nom.Sg.Fem	_	(func=SB|type=edge|cat=NP *	_	B-discourse-new	I-sentenceSeg|B-none|B-TopicSeg|B-Inf-StatSeg|B-primmarkSeg|I-SentSeg|B-NPSeg	_	B-not_ambig	B-sbj	B-defnp	B-no	B-text_level	B-np	B-NP	_	I-s	_	B-new	B-ab	_	*	
+102	Trainerkabine	Trainerkabine	NN	Nom.Sg.Fem	101:det	* )	_	E-discourse-new	I-sentenceSeg|E-Inf-StatSeg|I-SentSeg|E-TopicSeg|E-primmarkSeg|E-none|E-NPSeg	_	E-not_ambig	E-sbj	E-defnp	E-no	E-text_level	E-np	E-NP	_	I-s	_	E-new	E-ab	_	*	
+103	stehen	stehen	VVINF	Inf	99:adv|100:adv	* )	_	_	I-sentenceSeg|I-SentSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	_	*	
+104	soll	sollen	VMFIN	3.Sg.Pres.Ind	105:punct|103:aux|102:sbj	* ))	_	_	I-SentSeg|I-sentenceSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	_	*	
+105	,	,	$,	--	_	_	_	_	I-SentSeg|I-sentenceSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	_	*	
+106	wäre	sein	VAFIN	3.Sg.Past.Subj	97:sbj|111:pred	*	_	_	I-SentSeg|I-sentenceSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	_	(relname=nonvolitional-result|type=rst|kind=segment *	
+107	in	in	APPR	--	110:pn	(func=MO|type=edge|cat=PP *	_	B-discourse-new	I-sentenceSeg|B-primmarkSeg|I-SentSeg|B-none|B-PPSeg	_	B-not_ambig	B-other	B-defnp	B-no	B-text_level	B-pp	_	B-PP	I-s	_	_	_	_	*	
+108	der	der	ART	Dat.Sg.Fem	_	*	_	I-discourse-new	I-sentenceSeg|I-none|B-Inf-StatSeg|I-SentSeg|I-primmarkSeg|I-PPSeg|B-NPSeg|B-TopicSeg	_	I-not_ambig	I-other	I-defnp	I-no	I-text_level	I-pp	B-NP	I-PP	I-s	_	B-new	B-fs	_	*	
+109	jetzigen	jetziger	ADJA	Pos.Dat.Sg.Fem	_	*	_	I-discourse-new	I-SentSeg|I-Inf-StatSeg|I-primmarkSeg|I-NPSeg|I-PPSeg|I-sentenceSeg|I-TopicSeg|I-none	_	I-not_ambig	I-other	I-defnp	I-no	I-text_level	I-pp	I-NP	I-PP	I-s	_	I-new	I-fs	_	*	
+110	Spielsituation	Spielsituation	NN	Dat.Sg.Fem	109:attr|108:det	* )	_	E-discourse-new	I-SentSeg|E-TopicSeg|E-NPSeg|E-primmarkSeg|E-PPSeg|I-sentenceSeg|E-none|E-Inf-StatSeg	_	E-not_ambig	E-other	E-defnp	E-no	E-text_level	E-pp	E-NP	E-PP	I-s	_	E-new	E-fs	_	*	
+111	verheerend	verheerend	ADJD	Pos	107:pp|112:punct	* )	_	_	I-SentSeg|E-sentenceSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	_	*	
+112	.	.	$.	--	_	_	_	_	E-SentSeg|B-sentenceSeg	_	_	_	_	_	_	_	_	_	E-s	_	_	_	_	* ))))))))	
+113	Und	und	KON	--	_	(cat=S *	_	_	B-SentSeg|I-sentenceSeg|B-Focus_newInfSeg	_	_	_	_	_	_	_	_	_	B-s	_	_	_	B-nf-unsol	(relname=evaluation|type=rst|kind=group|type=span (relname=span|kind=segment *	
+114	eine	ein	ART	Acc.Sg.Fem	_	(func=OA|type=edge|cat=NP *	_	_	I-Focus_newInfSeg|B-NPSeg|I-SentSeg|I-sentenceSeg|B-Inf-StatSeg	_	_	_	_	_	_	_	B-NP	_	I-s	_	B-idiom	_	I-nf-unsol	*	
+115	Parallele	Parallele	NN	Acc.Sg.Fem	114:det|116:pp	*	_	_	E-Inf-StatSeg|E-NPSeg|I-SentSeg|I-Focus_newInfSeg|I-sentenceSeg	_	_	_	_	_	_	_	E-NP	_	I-s	_	E-idiom	_	I-nf-unsol	*	
+116	zu	zu	APPR	--	119:pn	(func=MNR|type=edge|cat=PP *	_	B-referring	22:anaphor_antecedent|I-Focus_newInfSeg|B-anaphoric|I-SentSeg|21:anaphor_antecedent|B-PPSeg|B-primmarkSeg|I-sentenceSeg	B-anaphor_nominal	B-not_ambig	B-other	B-defnp	B-no	B-text_level	B-pp	_	B-PP	I-s	_	_	_	I-nf-unsol	*	
+117	den	der	ART	Dat.Pl.Masc	_	*	_	I-referring	B-NPSeg|I-PPSeg|I-Focus_newInfSeg|I-anaphoric|I-SentSeg|22:anaphor_antecedent|I-primmarkSeg|B-Inf-StatSeg|I-sentenceSeg|21:anaphor_antecedent	I-anaphor_nominal	I-not_ambig	I-other	I-defnp	I-no	I-text_level	I-pp	B-NP	I-PP	I-s	_	B-giv-inactive	_	I-nf-unsol	*	
+118	deutschen	deutsch	ADJA	Pos.Dat.Pl.Masc	_	*	_	I-referring	22:anaphor_antecedent|I-SentSeg|I-sentenceSeg|I-anaphoric|I-primmarkSeg|21:anaphor_antecedent|I-Inf-StatSeg|I-Focus_newInfSeg|I-NPSeg|I-PPSeg	I-anaphor_nominal	I-not_ambig	I-other	I-defnp	I-no	I-text_level	I-pp	I-NP	I-PP	I-s	_	I-giv-inactive	_	I-nf-unsol	*	
+119	Grotten-Kickern	Grotten-Kicker	NN	Dat.Pl.Masc	118:attr|117:det	* ))	_	E-referring	E-Inf-StatSeg|21:anaphor_antecedent|E-NPSeg|I-SentSeg|22:anaphor_antecedent|E-anaphoric|I-sentenceSeg|I-Focus_newInfSeg|E-primmarkSeg|E-PPSeg	E-anaphor_nominal	E-not_ambig	E-other	E-defnp	E-no	E-text_level	E-pp	E-NP	E-PP	I-s	_	E-giv-inactive	_	I-nf-unsol	*	
+120	gibt	geben	VVFIN	3.Sg.Pres.Ind	123:adv|115:obja|113:kon|121:sbj	*	_	_	I-sentenceSeg|I-SentSeg|I-Focus_newInfSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	I-nf-unsol	*	
+121	es	es	PPER	3.Nom.Sg.Neut	_	*	_	_	I-SentSeg|I-Focus_newInfSeg|I-sentenceSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	I-nf-unsol	*	
+122	immer	immer	ADV	--	_	(func=MO|type=edge|cat=AVP *	_	_	I-SentSeg|I-Focus_newInfSeg|I-sentenceSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	I-nf-unsol	*	
+123	noch	noch	ADV	--	124:punct|122:adv	* ))	_	_	E-Focus_newInfSeg|E-sentenceSeg|I-SentSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	E-nf-unsol	*	
+124	.	.	$.	--	_	_	_	_	E-SentSeg|B-sentenceSeg	_	_	_	_	_	_	_	_	_	E-s	_	_	_	_	*	
+125	Auch	auch	ADV	--	_	(cat=S (func=MO|type=edge|cat=S (func=PD|type=edge|cat=VP *	_	_	I-sentenceSeg|B-SentSeg	_	_	_	_	_	_	_	_	_	B-s	_	_	_	_	(relname=evidence|type=rst|kind=group|type=span (relname=span|kind=group|type=span (relname=span|kind=segment *	
+126	wenn	wenn	KOUS	--	125:adv	*	_	_	I-SentSeg|I-sentenceSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	_	*	
+127	die	der	ART	Nom.Pl.Masc	_	(func=SB|type=edge|cat=NP *	_	B-discourse-new	B-primmarkSeg|B-Inf-StatSeg|I-SentSeg|I-sentenceSeg|B-NPSeg|B-none|B-TopicSeg	_	B-not_ambig	B-sbj	B-defnp	B-no	B-text_level	B-np	B-NP	_	I-s	_	B-acc-aggr	B-ab	_	*	
+128	Spieler	Spieler	NN	Nom.Pl.Masc	127:det	* )	_	E-discourse-new	I-sentenceSeg|E-TopicSeg|E-primmarkSeg|E-Inf-StatSeg|E-NPSeg|I-SentSeg|E-none	_	E-not_ambig	E-sbj	E-defnp	E-no	E-text_level	E-np	E-NP	_	I-s	_	E-acc-aggr	E-ab	_	*	
+129	aus	aus	APPR	--	132:pn	(func=MO|type=edge|cat=PP *	_	B-referring	B-Focus_newInfSeg|B-PPSeg|B-anaphoric|I-sentenceSeg|B-primmarkSeg|I-SentSeg	B-anaphor_nominal	B-not_ambig	B-other	B-defnp	B-no	B-text_level	B-pp	_	B-PP	I-s	_	_	_	B-nf-unsol	*	
+130	den	der	ART	Dat.Pl.Masc	_	*	_	I-referring	I-PPSeg|I-anaphoric|I-sentenceSeg|I-primmarkSeg|B-Inf-StatSeg|I-SentSeg|B-NPSeg|I-Focus_newInfSeg	I-anaphor_nominal	I-not_ambig	I-other	I-defnp	I-no	I-text_level	I-pp	B-NP	I-PP	I-s	_	B-giv-inactive	_	I-nf-unsol	*	
+131	verschiedenen	verschieden	ADJA	Pos.Dat.Pl.Masc	_	*	_	I-referring	I-Inf-StatSeg|I-sentenceSeg|I-primmarkSeg|I-PPSeg|I-anaphoric|I-NPSeg|I-SentSeg|I-Focus_newInfSeg	I-anaphor_nominal	I-not_ambig	I-other	I-defnp	I-no	I-text_level	I-pp	I-NP	I-PP	I-s	_	I-giv-inactive	_	I-nf-unsol	*	
+132	Vereinen	Verein	NN	Dat.Pl.Masc	130:det|131:attr	* )	_	E-referring	E-NPSeg|I-Focus_newInfSeg|E-anaphoric|E-Inf-StatSeg|I-sentenceSeg|E-primmarkSeg|I-SentSeg|E-PPSeg	E-anaphor_nominal	E-not_ambig	E-other	E-defnp	E-no	E-text_level	E-pp	E-NP	E-PP	I-s	_	E-giv-inactive	_	I-nf-unsol	*	
+133	zusammengewürfelt	zusammenwürfeln	VVPP	Psp	129:pp	* )	_	_	I-SentSeg|I-Focus_newInfSeg|I-sentenceSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	I-nf-unsol	*	
+134	sind	sein	VAFIN	3.Pl.Pres.Ind	126:konj|133:pred|135:punct|128:sbj	* )	_	_	I-SentSeg|E-Focus_newInfSeg|I-sentenceSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	E-nf-unsol	*	
+135	,	,	$,	--	_	_	_	_	I-sentenceSeg|I-SentSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	_	*	
+136	sie	sie	PPER	3.Nom.Pl.Masc	_	*	_	S-referring	I-SentSeg|S-primmarkSeg|128:anaphor_antecedent|I-sentenceSeg|S-TopicSeg|S-NPSeg|S-Inf-StatSeg|127:anaphor_antecedent|S-anaphoric	S-anaphor_nominal	S-not_ambig	S-sbj	S-pper	S-no	S-text_level	S-np	S-NP	_	I-s	_	S-giv-active	S-ab	_	*	
+137	müssen	müssen	VMFIN	3.Pl.Pres.Ind	140:aux|134:adv|136:sbj	*	_	_	I-sentenceSeg|I-SentSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	_	*	
+138	sich	sich	PRF	3.Acc.Pl	_	(func=OC|type=edge|cat=VP *	_	_	I-sentenceSeg|I-SentSeg|S-Inf-StatSeg|S-NPSeg	_	_	_	_	_	_	_	S-NP	_	I-s	_	S-acc-aggr	_	_	*	
+139	daran	daran	PROAV	--	152:neb	(func=OP|type=edge|cat=PP *	_	_	I-sentenceSeg|I-SentSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	_	*	
+140	gewöhnen	gewöhnen	VVINF	Inf	138:obja|141:punct|139:pp	*	_	_	I-SentSeg|I-sentenceSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	_	*	
+141	,	,	$,	--	_	_	_	_	I-sentenceSeg|I-SentSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	_	*	
+142	dass	dass	KOUS	--	_	(func=RE|type=edge|cat=S *	_	_	I-sentenceSeg|I-SentSeg|B-Focus_newInfSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	B-nf-unsol	*	
+143	sie	sie	PPER	3.Nom.Pl.Masc	_	*	_	S-referring	S-NPSeg|S-primmarkSeg|I-Focus_newInfSeg|136:anaphor_antecedent|S-Inf-StatSeg|S-anaphoric|I-sentenceSeg|I-SentSeg	S-anaphor_nominal	S-not_ambig	S-sbj	S-pper	S-no	S-text_level	S-np	S-NP	_	I-s	_	S-giv-active	_	I-nf-unsol	*	
+144	nun	nun	ADV	--	_	*	_	_	I-sentenceSeg|I-SentSeg|I-Focus_newInfSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	I-nf-unsol	*	
+145	in	in	APPR	--	147:pn	(func=MO|type=edge|cat=PP *	_	_	I-SentSeg|I-Focus_newInfSeg|I-sentenceSeg|B-PPSeg	_	_	_	_	_	_	_	_	B-PP	I-s	_	_	_	I-nf-unsol	*	
+146	einer	ein	ART	Dat.Sg.Fem	_	*	_	_	I-sentenceSeg|I-PPSeg|B-NPSeg|I-SentSeg|B-Inf-StatSeg|I-Focus_newInfSeg	_	_	_	_	_	_	_	B-NP	I-PP	I-s	_	B-acc-inf	_	I-nf-unsol	*	
+147	Mannschaft	Mannschaft	NN	Dat.Sg.Fem	150:app|146:det|148:punct	*	_	_	I-PPSeg|I-Focus_newInfSeg|I-sentenceSeg|I-Inf-StatSeg|I-NPSeg|I-SentSeg	_	_	_	_	_	_	_	I-NP	I-PP	I-s	_	I-acc-inf	_	I-nf-unsol	*	
+148	&quot;	&quot;	$(	--	_	_	_	_	I-SentSeg|I-PPSeg|I-sentenceSeg|I-NPSeg|I-Focus_newInfSeg|I-Inf-StatSeg	_	_	_	_	_	_	_	I-NP	I-PP	I-s	_	I-acc-inf	_	I-nf-unsol	*	
+149	Döberitzer	Döberitzer	ADJA	Pos.*.*.*	_	(func=NK|type=edge|cat=PN (func=PNC|type=edge|cat=NP *	_	B-discourse-new	I-PPSeg|B-primmarkSeg|B-none|I-SentSeg|I-sentenceSeg|I-Inf-StatSeg|I-NPSeg|I-Focus_newInfSeg	_	B-not_ambig	B-other	B-ne	B-no	B-text_level	B-np	I-NP	I-PP	I-s	_	I-acc-inf	_	I-nf-unsol	*	
+150	Heide	Heide	NN	Nom.Sg.Fem	151:punct|149:attr	* )))	_	E-discourse-new	I-Inf-StatSeg|I-NPSeg|I-SentSeg|I-Focus_newInfSeg|E-none|I-PPSeg|E-primmarkSeg|I-sentenceSeg	_	E-not_ambig	E-other	E-ne	E-no	E-text_level	E-np	I-NP	I-PP	I-s	_	I-acc-inf	_	I-nf-unsol	*	
+151	&quot;	&quot;	$(	--	_	_	_	_	I-Focus_newInfSeg|I-SentSeg|E-Inf-StatSeg|E-PPSeg|I-sentenceSeg|E-NPSeg	_	_	_	_	_	_	_	E-NP	E-PP	I-s	_	E-acc-inf	_	I-nf-unsol	*	
+152	spielen	spielen	VVFIN	3.Pl.Pres.Ind	142:konj|143:sbj|144:adv|145:pp|153:punct	* ))))	_	_	I-SentSeg|E-sentenceSeg|E-Focus_newInfSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	E-nf-unsol	*	
+153	.	.	$.	--	_	_	_	_	B-sentenceSeg|E-SentSeg	_	_	_	_	_	_	_	_	_	E-s	_	_	_	_	*	
+154	Und	und	KON	--	_	(cat=S *	_	_	B-Focus_newInfSeg|B-SentSeg|I-sentenceSeg	_	_	_	_	_	_	_	_	_	B-s	_	_	_	B-nf-unsol	(relname=evaluation|type=rst|kind=segment *	
+155	das	der	PDS	Nom.Sg.Neut	_	*	_	S-referring	S-Inf-StatSeg|I-SentSeg|I-sentenceSeg|I-Focus_newInfSeg|S-NPSeg|S-none|S-primmarkSeg	_	S-not_ambig	S-sbj	S-pds	S-no	S-text_level	S-np	S-NP	_	I-s	_	S-giv-active	_	I-nf-unsol	*	
+156	heißt	heißen	VVFIN	3.Sg.Pres.Ind	155:sbj|154:kon|157:adv	*	_	_	I-sentenceSeg|I-SentSeg|I-Focus_newInfSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	I-nf-unsol	*	
+157	gemeinsam	gemeinsam	ADJD	Pos	158:kon	(func=OC|type=edge|cat=CO *	_	_	I-SentSeg|I-Focus_newInfSeg|I-sentenceSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	I-nf-unsol	*	
+158	und	und	KON	--	160:cj	*	_	_	I-sentenceSeg|I-SentSeg|I-Focus_newInfSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	I-nf-unsol	*	
+159	nicht	nicht	PTKNEG	--	_	(func=CJ|type=edge|cat=AVP *	_	_	I-SentSeg|I-sentenceSeg|I-Focus_newInfSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	I-nf-unsol	*	
+160	gegeneinander	gegeneinander	ADV	--	161:punct|159:adv	* )))	_	_	E-sentenceSeg|I-SentSeg|E-Focus_newInfSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	E-nf-unsol	*	
+161	.	.	$.	--	_	_	_	_	E-SentSeg|B-sentenceSeg	_	_	_	_	_	_	_	_	_	E-s	_	_	_	_	* ))	
+162	Ermahnungen	Ermahnung	NN	Nom.Pl.Fem	169:rel|163:pp	(cat=S (func=SB|type=edge|cat=NP *	_	_	S-Inf-StatSeg|B-SentSeg|S-NPSeg|I-sentenceSeg|B-TopicSeg	_	_	_	_	_	_	_	S-NP	_	B-s	_	S-new	B-ab	_	(relname=elaboration|type=rst|kind=group|type=span (relname=span|kind=segment *	
+163	von	von	APPR	--	165:pn	(func=MNR|type=edge|cat=PP *	_	B-discourse-new	B-none|I-TopicSeg|B-primmarkSeg|I-SentSeg|B-PPSeg|I-sentenceSeg	_	B-not_ambig	B-other	B-defnp	B-no	B-text_level	B-pp	_	B-PP	I-s	_	_	I-ab	_	*	
+164	der	der	ART	Dat.Sg.Fem	_	*	_	I-discourse-new	I-SentSeg|I-TopicSeg|I-PPSeg|I-none|I-primmarkSeg|B-Inf-StatSeg|B-NPSeg|I-sentenceSeg	_	I-not_ambig	I-other	I-defnp	I-no	I-text_level	I-pp	B-NP	I-PP	I-s	_	B-acc-inf	I-ab	_	*	
+165	Seitenlinie	Seitenlinie	NN	Dat.Sg.Fem	166:punct|164:det	* )	_	E-discourse-new	E-PPSeg|E-primmarkSeg|I-sentenceSeg|E-TopicSeg|I-SentSeg|E-none|E-Inf-StatSeg|E-NPSeg	_	E-not_ambig	E-other	E-defnp	E-no	E-text_level	E-pp	E-NP	E-PP	I-s	_	E-acc-inf	E-ab	_	*	
+166	,	,	$,	--	_	_	_	_	I-SentSeg|I-sentenceSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	_	*	
+167	miteinander	miteinander	ADV	--	_	(func=OC|type=edge|cat=CVP (func=CJ|type=edge|cat=VP *	_	_	B-Focus_newInfSeg|I-SentSeg|I-sentenceSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	B-nf-unsol	*	
+168	fair	fair	ADJD	Pos	_	*	_	_	I-Focus_newInfSeg|I-sentenceSeg|I-SentSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	I-nf-unsol	*	
+169	umzugehen	umgehen	VVIZU	--	167:adv|168:adv|170:kon	* )	_	_	I-Focus_newInfSeg|I-sentenceSeg|I-SentSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	I-nf-unsol	*	
+170	und	und	KON	--	178:cj	*	_	_	I-SentSeg|I-Focus_newInfSeg|I-sentenceSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	I-nf-unsol	*	
+171	sich	sich	PRF	3.Acc.Pl	_	(func=CJ|type=edge|cat=VP *	_	_	I-SentSeg|S-Inf-StatSeg|I-Focus_newInfSeg|S-NPSeg|I-sentenceSeg	_	_	_	_	_	_	_	S-NP	_	I-s	_	S-acc-aggr	_	I-nf-unsol	*	
+172	nicht	nicht	PTKNEG	--	_	*	_	_	I-SentSeg|I-sentenceSeg|I-Focus_newInfSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	I-nf-unsol	*	
+173	beim	bei	APPRART	Dat.Sg.Masc	175:pn	(func=MO|type=edge|cat=PP *	_	B-other	I-sentenceSeg|B-none|B-primmarkSeg|I-SentSeg|I-Focus_newInfSeg|B-PPSeg	_	B-not_ambig	B-other	B-defnp	B-no	B-text_level	B-pp	_	B-PP	I-s	_	_	_	I-nf-unsol	*	
+174	kleinsten	klein	ADJA	Sup.Dat.Sg.Masc	_	*	_	I-other	I-Focus_newInfSeg|I-PPSeg|I-sentenceSeg|I-primmarkSeg|B-Inf-StatSeg|I-SentSeg|B-NPSeg|I-none	_	I-not_ambig	I-other	I-defnp	I-no	I-text_level	I-pp	B-NP	I-PP	I-s	_	B-idiom	_	I-nf-unsol	*	
+175	Schubser	Schubser	NN	Dat.Sg.Masc	174:attr	* )	_	E-other	E-PPSeg|I-Focus_newInfSeg|E-none|E-Inf-StatSeg|I-sentenceSeg|E-NPSeg|I-SentSeg|E-primmarkSeg	_	E-not_ambig	E-other	E-defnp	E-no	E-text_level	E-pp	E-NP	E-PP	I-s	_	E-idiom	_	I-nf-unsol	*	
+176	gegenseitig	gegenseitig	ADJD	Pos	_	*	_	_	I-sentenceSeg|I-Focus_newInfSeg|I-SentSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	I-nf-unsol	*	
+177	zu	zu	PTKZU	--	_	(func=HD|type=edge|cat=VZ *	_	_	I-SentSeg|I-sentenceSeg|I-Focus_newInfSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	I-nf-unsol	*	
+178	zerfleischen	zerfleischen	VVINF	Inf	171:obja|172:adv|173:pp|177:part|179:punct|176:adv	* ))))	_	_	I-Focus_newInfSeg|I-SentSeg|I-sentenceSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	I-nf-unsol	*	
+179	,	,	$,	--	_	_	_	_	I-SentSeg|I-sentenceSeg|I-Focus_newInfSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	I-nf-unsol	*	
+180	sind	sein	VAFIN	3.Pl.Pres.Ind	182:pred|181:adv|162:sbj	*	_	_	I-sentenceSeg|I-Focus_newInfSeg|I-SentSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	I-nf-unsol	*	
+181	normalerweise	normalerweise	ADV	--	_	*	_	_	I-Focus_newInfSeg|I-SentSeg|I-sentenceSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	I-nf-unsol	*	
+182	überflüssig	überflüssig	ADJD	Pos	183:punct	* )	_	_	E-Focus_newInfSeg|E-sentenceSeg|I-SentSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	E-nf-unsol	*	
+183	.	.	$.	--	_	_	_	_	E-SentSeg|B-sentenceSeg	_	_	_	_	_	_	_	_	_	E-s	_	_	_	_	*	
+184	Vorerst	vorerst	ADV	--	_	(cat=S *	_	_	B-SentSeg|I-sentenceSeg	_	_	_	_	_	_	_	_	_	B-s	_	_	_	_	(relname=evaluation|type=rst|kind=segment *	
+185	allerdings	allerdings	ADV	--	_	*	_	_	I-SentSeg|I-sentenceSeg	_	_	_	_	_	_	_	_	_	I-s	_	_	_	_	*	
+186	hilfreich	hilfreich	ADJD	Pos	184:adv|187:punct|185:adv	* )	_	_	E-SentSeg|E-sentenceSeg	_	_	_	_	_	_	_	_	_	E-s	_	_	_	_	*	
+187	.	.	$.	--	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	_	* ))))))))))
+	
+
