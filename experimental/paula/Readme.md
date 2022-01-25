@@ -76,8 +76,9 @@ remarks:
   - the CoNLL property is named after the annoset element URI, e.g., `MERGED`
   - annotations are being conflated into a single priperty (i.e., the one derived from the layer ID = annoset element, e.g., `MERGED`)
 
-  To suppress this behavior, remove `*.anno.xml` and `*.anno_feats.xml` before conversion. 
+  To suppress this behavior, remove `*.anno.xml` and `*.anno_feats.xml` before conversion.
 
+- we produce CoNLL-RDF data structures, but note that we keep the original URI scheme not that we provide conventional sentence segmentation. We provide the generated CoNLL-RDF data, but for illustration purposes only. Processing should 
 - we generate PTB-style trees, but we do not validate whether powla:hasParent relations constitute a single tree. For discontinuous elements, these are silently expanded to the full extent.
 - we provide annotations of POWLA nodes as `|`-separated set (unsorted) of attribute-value pairs. As we explicitly encode the attribute, this is more verbose than conventional PTB trees in CoNLL that only provide the value.
 - PTB encoding in CoNLL cannot distinguish node and relation annotations. both as presented as node-level annotations, here.
