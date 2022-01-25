@@ -34,6 +34,6 @@ DELETE {
 } WHERE {
   ?a ?b ?c.
   FILTER(strstarts(str(?a), "https://github.com/korpling/paula-xml#") ||
-         strstarts(str(?a), "https://github.com/korpling/paula-xml#") ||
-         strstarts(str(?a), "https://github.com/korpling/paula-xml#"))
+         strstarts(str(?b), "https://github.com/korpling/paula-xml#") ||
+         strstarts(str(?c), "https://github.com/korpling/paula-xml#"))
 };
