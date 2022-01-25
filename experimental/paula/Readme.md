@@ -42,12 +42,15 @@ remarks:
   as an example, PCC2 contains *sequences of* xpointer fragments like
 
       (#xpointer(id('tok_30')/range-to(id('tok_33'))),#xpointer(id('tok_35')/range-to(id('tok_38'))),#xpointer(id('tok_40')/range-to(id('tok_48'))))
+- as a result, some generated URIs will be non-valid
 
   PAULA issues:
   - there should not be a parenthesis around fragment identifiers
   - are comma-separated xpointers in line with the XPointer specification?
   - the comma-separated xpointers include the `#` prefix. this is incorrect, the `#` should go before all xpointers
   - we have workarounds for these issues, but it is neither clear whether we cover the full XPointer fragment of PAULA nor whether valid XPointer fragments will break because of these PAULA-specific workarounds
+  - PAULA (ab)uses the file system to encode annotation features. PAULA "namespaces" are naming conventions for files (i.e., the first "."-separated substring of the base name), but their encoding in the data is indirect and optional (annoset file).
+  - Within an annotation layer, PAULA can have multiple tiers (markable files). These are distinguished by their `markList/@type`. This information is propagated down to the elements. (An alternative encoding could use sub-layers, but this is not currently supported by POWLA.)
 
 ## POWLA to CoNLL
 

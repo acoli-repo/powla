@@ -403,7 +403,7 @@ DELETE {
     ucase(replace(str(?anno),".*[#/]([^#/]+)$","$1")))) as ?conll)
 };
 
-# (h) infer sentences after a struct
+# (h) infer sentences before struct boundaries
 # ?
 
 # (i) deduplicate CoNLL properties

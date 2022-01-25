@@ -266,7 +266,7 @@ for file in type2files["mark"] + type2files["struct"] + type2files["rel"] + type
                     else:
                         print(f"<{lastUri}> powla:nextTerm <{uri}> .")
             else:
-                print(f"<{uri}> a powla:Node .")
+                print(f"<{uri}> a powla:Node ; paula:type \"\"\"{escape(type)}\"\"\".")
             if len(targets)>0:
                 print("#",parse)
                 for p in targets:
