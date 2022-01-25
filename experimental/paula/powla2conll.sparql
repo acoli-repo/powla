@@ -364,7 +364,7 @@ INSERT {
       ?root powla:hasLayer ?l.
       MINUS { ?root powla:hasLayer ?l; powla:hasParent/powla:hasLayer ?l }
       ?root (^powla:hasParent)* ?p.
-      ?p a nif:Node.
+      ?p a powla:Node.
 
       BIND(")" as ?par)
       # we go top-down in analogy with ?pre
