@@ -1,12 +1,16 @@
 # PAULA conversion
 
-setup and demo:
+setup
 
     $> make
 
-see samples/ for converted data
+demo (PAULA parsing and CoNLL generation, *slow*):
 
-To convert a directory containing PAULA files, say, my-paula-dir/, run
+    $> make samples
+
+see `samples/` for converted data
+
+To convert a directory containing PAULA files, say, `my-paula-dir/` to POWLA/RDF, run
 
     $> python3 paula2rdf.py http://put-your-base-uri.here/ my-paula-dir > output.ttl
 
@@ -15,6 +19,22 @@ If only one argument is provided, it must be directory. Then, it will also be us
 By default, we produce "pure" POWLA. Alternatively, you can create CoNLL-RDF:
 
     $> python3 paula2rdf.py http://put-your-base-uri.here/ my-paula-dir --conll_rdf > output.ttl
+
+Note that PAULA does not mark sentence boundaries (only indirectly, in annotations), so we do not generate `nif:Sentence`s.
+
+We provide a *much* more advanced (but much slower) way to generate CoNLL-RDF as part of CoNLL conversion, see `Makefile`. This not only allows to infer sentence boundaries and detect different types of annotations (markables/spans, structs/trees, relations and token-level annotations), but also converts then to a CoNLL representation that can be easily processed. To call this functionality directly, use
+
+    $> ./paula2conll.sh my-paula-dir > output.conll
+
+or
+
+    $> ./paula2conll.sh my-paula.zip > output.conll
+
+To enable heuristic sentence splitting, use the `-split` flag:
+
+    $> ./paula2conll.sh -split my-paula-dir > output.conll
+
+Note that CoNLL generation is rather slow as it involves complex restructuring. This is used for debugging purposes mostly, for actual processing, we recommend working with POWLA directly.
 
 ## PAULA to POWLA
 
@@ -78,7 +98,7 @@ remarks:
 
   To suppress this behavior, remove `*.anno.xml` and `*.anno_feats.xml` before conversion.
 
-- we produce CoNLL-RDF data structures, but note that we keep the original URI scheme not that we provide conventional sentence segmentation. We provide the generated CoNLL-RDF data, but for illustration purposes only. Processing should 
+- we produce CoNLL-RDF data structures, but note that we keep the original URI scheme not that we provide conventional sentence segmentation. We provide the generated CoNLL-RDF data, but for illustration purposes only. Further processing should start from the generated CoNLL data, instead.
 - we generate PTB-style trees, but we do not validate whether powla:hasParent relations constitute a single tree. For discontinuous elements, these are silently expanded to the full extent.
 - we provide annotations of POWLA nodes as `|`-separated set (unsorted) of attribute-value pairs. As we explicitly encode the attribute, this is more verbose than conventional PTB trees in CoNLL that only provide the value.
 - PTB encoding in CoNLL cannot distinguish node and relation annotations. both as presented as node-level annotations, here.
