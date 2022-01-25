@@ -31,6 +31,7 @@ remarks:
 - we do not preserve PAULA namespaces, as these are mere naming conventions for individual files. However, the file names are preserved in URIs, so this information can be recovered.
 - in annotations, we replace `"` by `&quot;` and `&` by `&amp;`
 - PAULA is not limited to sentences as data types. When CoNLL is converted to PAULA and converted back, there is no reliable way of recovering sentence structure (unless you define a source-specific pattern). POWLA can represent sentences, but we do not attempt to recover them from arbitrary PAULA input.
+- as our XPointer support is incomplete, it is possible that some generated URIs are invalid. Export to CoNLL and re-import to fix.
 
 ## Limitations
 
@@ -67,4 +68,11 @@ remarks:
 - if multiple sets of structs overlap in their nodes (including tokens!), all annotations on these shared nodes will be provided in both trees, because the original annotation layer of individual `powla:hasAnnotation` subproperties is not tracked. To keep them separate, avoid node sharing and/or annotating tokens with struct-specific annotations.
 - relations without annotations are not returned
 - for RelLayers, we preserve the original directionality. For dependency annotations in PCC2, this means we point from head to dependent (CoNLL-U points the other way).
-- as we cannot identify a primary type of dependency syntax, we do not use the `conll:HEAD` property
+- as we cannot identify a primary type of dependency syntax, we use the `conll:HEAD` property only for marking the `nif:Sentence`
+- except for labelled edges in trees, CoNLL does not support natively support relations between elements other than words. secondary edges and coreference annotations are are thus propagated to the individual words (i.e., duplicated). This encoding is lossy and non-reversible, but specific to the CoNLL format. (If used in combination with span annotation, it is reversible *by hand*, if we identify the corresponding spans. For secondary edges, it is not reversible as we cannot reliably refer to the attachment point in the PTB tree.)
+- Note that this kind of encoding does also apply to SRL annotations, we do not generate the conventional CoNLL notation for SRLs that would permit for m:1 relations as we cannot easily reduce the original m:n encoding to a m:1 encoding (where is the head?) and we risk using the same  
+- if the same property is used to serve multiple functions, the resulting CoNLL column will aggregate hetetogeneous information, e.g.,
+
+      :tok_117 conll:TYPE "21:anaphor_antecedent|I-anaphoric|22:anaphor_antecedent". # (PCC2, 4282)
+
+    In this, this is all coming from coreference (`mmax`) annotation, but the relation annotations (`21:...`, `22:...`) originate from the `type` feature of original relations, whereas the span annotations (`I-...`) originate from the `type` feature of original markables.

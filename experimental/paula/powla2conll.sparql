@@ -391,8 +391,11 @@ DELETE {
   ?w ?conll ?dep
 } WHERE {
   ?anno rdfs:subPropertyOf* powla:hasAnnotation.
-  ?rel a powla:Relation; ?anno ?val; powla:hasSource ?w; powla:hasTarget ?tgt.
-  MINUS { ?w powla:hasParent ?tgt }
+  ?rel a powla:Relation; ?anno ?val; powla:hasSource ?W; powla:hasTarget ?TGT.
+  MINUS { ?W powla:hasParent ?TGT }
+  # CoNLL allows to annotate relations between words, only, so we expand this silently into an n:m relation
+  ?w powla:hasParent* ?W; a nif:Word.
+  ?tgt powla:hasParent* ?TGT; a nif:Word.
   ?tgt conll:ID ?head.
   FILTER(isliteral(?val))
   BIND(concat(str(?head),":",?val) as ?dep)
