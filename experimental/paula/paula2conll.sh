@@ -16,22 +16,22 @@ UPDATE=$MYHOME/conll-rdf/run.sh' CoNLLRDFUpdater -custom -updates'
 WRITE=$MYHOME/conll-rdf/run.sh' CoNLLRDFFormatter -conll'
 
 #
-# help
-###########
-
-if [ $# -eq 0 -o ! -e $1 ]; then
-  echo synopsis: $0" [-split] DATA[1..n]" 1>&2
-  echo '  -split heuristic sentence splitting, will slow down conversion' 1>&2
-  echo '  DATAi  ZIP file or folder that contains one or multiple PAULA projects, expect one annoset per (sub-) directory' 1>&2
-  exit 1
-fi;
-
-#
 # config
 ###########
 
 split=""
 if echo $1 | egrep -i '^-split$' >& /dev/null; then split=$MYHOME/induce-nif-sentences.sparql; shift; fi;
+
+#
+# help
+###########
+
+if [ $# -eq 0 -o ! -e $1 ]; then
+  echo synopsis: $0" [-split] DATA[1..n]" 1>&2
+  echo '  DATAi  ZIP file or folder that contains one or multiple PAULA projects, expect one annoset per (sub-) directory' 1>&2
+  echo '  -split heuristic sentence splitting, will slow down conversion' 1>&2
+  exit 1
+fi;
 
 #
 # processing
@@ -76,7 +76,7 @@ while test $# -gt 0; do
       $UPDATE \
           $split \
           $MYHOME/powla2conll.sparql \
-          $MYHOME/remove-powla.sparql  > $ttl ) 1>&2
+          $MYHOME/remove-powla.sparql  > $ttl ) 1>&2; \
     echo 1>&2
 
 #
@@ -86,10 +86,10 @@ while test $# -gt 0; do
     # note that the PAULA converter doesn't produce depenency annotations, but only aggregate dependencies, so we can filter out HEAD
     cols="ID WORD "$cols
     echo $ttl '-> conll with columns '$cols 1>&2
-    time(
+    time (
       cat $ttl | \
       $WRITE $cols
-    ) 1>&2
+    ) ;\
     echo;
     echo 1>&2
 
