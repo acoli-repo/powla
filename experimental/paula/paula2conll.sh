@@ -41,7 +41,7 @@ while test $# -gt 0; do
   DIR=$1
   echo '# '$DIR;
   echo;
-  if echo $DIR | egrep -i 'zip$'; then
+  if [ -f $DIR ] ; then
       DIR=/tmp/`basename $1`;
       while [ -e $DIR ]; do
         DIR=$DIR.`ls $DIR* | wc -l`;

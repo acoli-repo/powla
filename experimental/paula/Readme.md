@@ -52,6 +52,7 @@ remarks:
 - in annotations, we replace `"` by `&quot;` and `&` by `&amp;`
 - PAULA is not limited to sentences as data types. When CoNLL is converted to PAULA and converted back, there is no reliable way of recovering sentence structure (unless you define a source-specific pattern). POWLA can represent sentences, but we do not attempt to recover them from arbitrary PAULA input.
 - as our XPointer support is incomplete, it is possible that some generated URIs are invalid. Export to CoNLL and re-import to fix.
+- we support processing zip files, but not zip files that contain zip files with PAULA data. Unfortunately, the primary source for PAULA data, laudatio.org, provides its data in such redundant archives. Uncompress before processing.
 
 ## Limitations
 

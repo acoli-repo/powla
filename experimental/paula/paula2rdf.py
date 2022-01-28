@@ -161,6 +161,20 @@ def decode_xlink(xlink,basetree,baseelems):
             return parse,targets,string
 
 #
+# iterate over directories
+#############################
+dirs=[args.dir]
+files=[]
+while(len(dirs)>0):
+    dir=dirs[0]
+    if os.path.isdir(dir):
+        for f in os.listdir(dir):
+            dirs.append(os.path.join(dir,f))
+    else:
+        files.append(dir)
+    dirs=dirs[1:]
+
+#
 # reading data
 ################
 
@@ -172,7 +186,8 @@ type2files={
     "feat":[]
 }
 
-for file in os.listdir(args.dir):
+
+for file in files:
     if file.endswith("xml"):
         with open(os.path.join(args.dir,file),"rb") as input:
             type=None
@@ -234,11 +249,14 @@ for file in type2files["mark"] + type2files["struct"] + type2files["rel"] + type
         base=re.sub('"'," ",base)
         base=re.sub("'"," ",base)
         base=base.split()[1]
+        if not base in file2data:
+            base=os.path.join(os.path.dirname(file),base)
         #print(base)
     # print(content.decode("utf-8")) # or debugging only
 
     tree=etree.XML(content,etree.XMLParser())
     basetree=None
+    baseelems=[]
     if base in file2data:
         basetree=etree.XML(file2data[base])
         baseelems=basetree.xpath("//*[@id!='']")
