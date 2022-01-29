@@ -19,6 +19,9 @@ WRITE=$MYHOME/conll-rdf/run.sh' CoNLLRDFFormatter -conll'
 # config
 ###########
 
+debug="false"
+if echo $1 | egrep -i '^-debug$' >& /dev/null; then debug="true"; shift; fi;
+
 split=""
 if echo $1 | egrep -i '^-split$' >& /dev/null; then split=$MYHOME/induce-nif-sentences.sparql; shift; fi;
 
@@ -27,8 +30,9 @@ if echo $1 | egrep -i '^-split$' >& /dev/null; then split=$MYHOME/induce-nif-sen
 ###########
 
 if [ $# -eq 0 -o ! -e $1 ]; then
-  echo synopsis: $0" [-split] DATA[1..n]" 1>&2
+  echo synopsis: $0" [-debug] [-split] DATA[1..n]" 1>&2
   echo '  DATAi  ZIP file or folder that contains one or multiple PAULA projects, expect one annoset per (sub-) directory' 1>&2
+  echo '  -debug do not delete temporary files' 1>&2
   echo '  -split heuristic sentence splitting, will slow down conversion' 1>&2
   exit 1
 fi;
@@ -73,10 +77,18 @@ while test $# -gt 0; do
     time (\
       python3 $MYHOME/paula2rdf.py '/' $dir | \
       egrep -v '^#' | egrep '[^\s]' | \
-      $UPDATE \
+      if [ $debug = "true" ]; then
+        $UPDATE \
+            $split \
+            $MYHOME/powla2conll.sparql | tee $ttl.full | \
+        $UPDATE \
+            $MYHOME/remove-powla.sparql ;\
+      else \
+        $UPDATE \
           $split \
           $MYHOME/powla2conll.sparql \
-          $MYHOME/remove-powla.sparql  > $ttl ) 1>&2; \
+          $MYHOME/remove-powla.sparql; \
+      fi > $ttl ) 1>&2; \
     echo 1>&2
 
 #
@@ -96,11 +108,13 @@ while test $# -gt 0; do
 #
 # prune & iterate
 ####################
-    rm -rf $tmpDir;
+    if [ $debug != "true" ]; then rm -rf $tmpDir; fi;
   done;
 
-  if echo $1 | egrep -i 'zip$'; then
-    rm -rf $DIR;
+  if [ $debug != "true" ]; then
+    if echo $1 | egrep -i 'zip$'; then
+      rm -rf $DIR;
+    fi;
   fi;
 
   echo;
