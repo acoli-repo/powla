@@ -5,10 +5,10 @@
 - Web Annotation and NIF to come
 - no mapping-specifics in the code:
   mapping RDFS-inferred from ontologies that formalize the dependencies between formats as rdfs:subClassOf, etc.
+- converters to demonstrate expressive equivalence with PAULA (`paula/`), SALT (`salt/`), etc.
+- CoNLL generation to debug demonstrators
 
-this *may* require adjustments to the ontology, hence, owl/ contains both initial converter prototypes and a copy of powla.owl
-
-so far, powla.owl is left unchanged
+This *may* require adjustments to the ontology, hence, `owl/` contains an updated version of powla.owl (must be compared with ../powla.owl before publication, to synchronize comments)
 
 ## adjustments for POWLA 2.0
 - deprecate subclasses of powla:Relation
@@ -20,6 +20,7 @@ so far, powla.owl is left unchanged
 - powla:lastTerminal => powla:last
 - organize embedding via first/last and start/end: subclasses of Nonterminals
 - split ontology in core ontology (remove inverse and transitive props, no begin/end, first/last etc.) and extended ontology (incl. inverses, transitives, start/end OR first/last)
+- keep, but deprecate powla:MarkableLayer, etc. In CoNLL export, these are very helpful temporary categories to orgaize the input
 
 ## open questions
 - hierarchically organized layers?
@@ -31,3 +32,18 @@ so far, powla.owl is left unchanged
   - PRO: ELAN has a similar notion, but with different semantics: a sub-layer inherits the segmentation of its super-layer).
     - CON: No real-world sample data at hand, reconsider upon request.
   - decision: no action unless requested and/or real-world sample data is provided.
+
+## problems
+
+### sequential order by properties
+
+The experiments here follow CoNLL-RDF in modelling sequential order exclusively by means of `powla:nextTerm`, resp. `nif:nextWord`. However, for the processing of corpora, this is problematic, as corpus-wide search for transitive succession queries becomes quickly intractable. Moreover, offsets cannot be easily derived from `powla:nextTerm`, either, because already aggregate counts may time out.
+
+In fact for many sample data in the `salt` directory, CoNLL export failed for that reason (with a stack overflow error).
+
+There are two possible solutions:
+
+- `powla:start` with integer offsets (can be problematic if empty elements are being inserted, also, for every change, we need to recalculate all indices; also, this would not be downward-compatible with CoNLL-RDF)
+- splitting the input, e.g., into `nif:Sentence`s, and querying for order locally only (that would be compatible with current CoNLL-RDF practices)
+
+Note that such a secondary split does not have to coincide with sentence breaks on other layers (e.g., tree annotations). (Unlike CoNLL, there are no structural constraints.) However, a CoNLL export may contain unexpected information then.

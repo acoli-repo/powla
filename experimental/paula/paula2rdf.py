@@ -92,7 +92,7 @@ def decode_xlink(xlink,basetree,baseelems):
                     string+=" "+s
                 return parse,targets,string
 
-            if xlink.startswith(","):
+            if xlink.startswith(",") or xlink.startswith(" "): # produced by Pepper for https://www.laudatio-repository.org/download/format/6/15/1.0
                 return decode_xlink(xlink[1:],basetree,baseelems)
 
             xlink=re.sub(",#",",",xlink)
@@ -154,6 +154,8 @@ def decode_xlink(xlink,basetree,baseelems):
                 parse=[xlink[1:]]
             elif xlink.startswith("#") and "," in xlink: # enumeration (not sure this is valid, but it occurs)
                 parse=[ p for p in xlink[1:].split(",") if p in baseelems ]
+            elif xlink.startswith("#") and " " in xlink: # enumeration (produced by Pepper for https://www.laudatio-repository.org/download/format/6/15/1.0)
+                parse=[ p for p in xlink[1:].split(" ") if p in baseelems ]
             else:
                 raise Exception("unresolvable xlink \""+xlink+"\"")
 
