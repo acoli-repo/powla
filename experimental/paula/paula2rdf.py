@@ -21,8 +21,10 @@ if args.dir==None:
 ##############
 
 def geturi(baseURI,file):
+    #print(f"geturi({baseURI},{file}) -> ",end="")
     if file.startswith(args.baseURI):
         file=file[len(args.baseURI):]
+        file=re.sub(r"^/+","",file)
     reducible=True
     while reducible:
         reducible=False
@@ -35,6 +37,9 @@ def geturi(baseURI,file):
         if baseURI.split("/")[-1]=="..":
             baseURI="/".split(baseURI.split("/")[0:-2])
             reducible=True
+    result=baseURI+"/"+file
+    result=re.sub(r"/+","/", result) # to normalize
+    #print(result)
     return baseURI+"/"+file
 
 def escape(string):
@@ -173,7 +178,7 @@ def decode_xlink(xlink,basetree,baseelems):
                     elif n==0 or not parse[n-1] in "string-range":
                         raise Exception("unsupported XPointer expression \""+p+"\"")
                     # last expression was string-range: ok
-            targets=[os.path.join(args.baseURI,base)+"#"+p for p in targets]
+            targets=[geturi(args.baseURI,base)+"#"+p for p in targets]
 
             return parse,targets,string
 
@@ -346,9 +351,9 @@ for file in type2files["mark"] + type2files["struct"] + type2files["rel"] + type
                     if basetree and xlink.startswith("#"): # untested
                         _,targets,_=decode_xlink(xlink,basetree,baseelems)
                     elif xlink.startswith("#"): # this is the local document in PCC2 -- but this is not actually XML valid, because the other paths require the directory!
-                        targets=[os.path.join(args.baseURI,file)+xlink]
+                        targets=[geturi(args.baseURI,file)+xlink]
                     else:
-                        targets=[os.path.join(args.baseURI,xlink)]
+                        targets=[geturi(args.baseURI,xlink)]
 
                     ruri="[]" # blank node
                     if "id" in rel.attrib:
@@ -358,7 +363,7 @@ for file in type2files["mark"] + type2files["struct"] + type2files["rel"] + type
                         t=geturi(args.baseURI,t)
 
                         print(f"<{t}> powla:hasParent <{uri}> . ")
-                        print(f"{ruri} a powla:Relation; powla:hasSource <{t}>; powla:hasTarget <{uri}> ",end="")
+                        print(f"{ruri} a powla:Relation; rdfs:comment 'relation 1: {args.baseURI}+{file}'; powla:hasSource <{t}>; powla:hasTarget <{uri}> ",end="")
                         if "type" in rel.attrib:
                             print(f"; paula:type \""+rel.attrib["type"]+"\" ", end="")
                             # this seems to be an add hoc extension for RST
@@ -389,7 +394,7 @@ for file in type2files["mark"] + type2files["struct"] + type2files["rel"] + type
                         t=geturi(args.baseURI,t)
                         for s in sources: # both should be singleton sets
                             s=geturi(args.baseURI,s)
-                            print(f"<{uri}> a powla:Relation; powla:hasSource <{s}>; powla:hasTarget <{t}> .")
+                            print(f"<{uri}> a powla:Relation; rdfs:comment 'relation 2'; powla:hasSource <{s}>; powla:hasTarget <{t}> .")
     for feat in tree.xpath("//feat"):
         type=None # shouldn't be used
         try:
@@ -431,4 +436,4 @@ for file in type2files["mark"] + type2files["struct"] + type2files["rel"] + type
                                 reltargets=[geturi(args.baseURI,reltgt)]
                     if reltargets!=None:
                         for r in reltargets:
-                            print(f"[] a powla:Relation; powla:hasSource <{t}>; powla:hasTarget <{r}>; paula:type \"{type}\" .")
+                            print(f"[] a powla:Relation; rdfs:comment 'relation 3'; powla:hasSource <{t}>; powla:hasTarget <{r}>; paula:type \"{type}\" .")

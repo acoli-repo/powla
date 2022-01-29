@@ -74,8 +74,9 @@ while test $# -gt 0; do
 # PAULA 2 POWLA
 ###################
     echo $dir '->' $ttl 1>&2;
+    dir=`realpath $dir`
     time (\
-      python3 $MYHOME/paula2rdf.py '/' $dir | \
+      python3 $MYHOME/paula2rdf.py $dir $dir | \
       egrep -v '^#' | egrep '[^\s]' | \
       if [ $debug = "true" ]; then
         $UPDATE \
