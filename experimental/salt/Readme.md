@@ -1,3 +1,4 @@
+
 # Salt
 
 Salt is the Java implementation of the PAULA Object Model as used both in the
@@ -9,6 +10,8 @@ Salt is conceptually equivalent with PAULA-XML and the only way to create SALT
 data that we are aware of is by means of Pepper. Instead of providing a native
 SALT implementation, we thus use the PAULA export of Pepper.
 
+In principle, this provides us with RDF converters for 27 formats, although not all importers have been tested and there may be gaps (both in the coverage in the original converters and in our coverage of PAULA XPointer constructors).
+
 ## Usage
 
 synopsis:
@@ -16,7 +19,7 @@ synopsis:
 
 with
 
-  - `PepperImporter` one of the importers of [pepper-wrapper](https://github.com/acoli-repo/pepper-wrapper)
+  - `PepperImporter` one of the importers of [pepper-wrapper](https://github.com/acoli-repo/pepper-wrapper).
   - `SOURCE`*i* one or multiple source files/directories
   - `(no flag)` return plain POWLA-RDF in Turtle format
   - `-split` infer `nif:Sentence`s and `nif:nextSentence` (plus `nif:Word`, `nif:nextWord`)
@@ -44,19 +47,19 @@ notes:
 
 - PAULA directory to POWLA-RDF
 
-    $> ./toRDF.sh PaulaImporter ../paula/data/DDB_paula/ > ddb.powla.ttl
+	    $> ./toRDF.sh PaulaImporter ../paula/data/DDB_paula/ > ddb.powla.ttl
 
 - PAULA directory to CoNLL-RDF with heuristically inferred sentence boundaries
 
-    $> ./toRDF.sh PaulaImporter ../paula/data/DDB_paula/ -split > ddb.conll.ttl
+	    $> ./toRDF.sh PaulaImporter ../paula/data/DDB_paula/ -split > ddb.conll.ttl
 
 - PAULA directory to CoNLL-TSV with heuristically inferred sentence boundaries
 
-    $> ./toRDF.sh PaulaImporter ../paula/data/DDB_paula/ -split -conll > ddb.conll
+	    $> ./toRDF.sh PaulaImporter ../paula/data/DDB_paula/ -split -conll > ddb.conll
 
 - PAULA zip archive to POWLA-RDF
 
-    $> ./toRDF.sh PaulaImporter ../paula/data/pcc2_PAULA.zip > pcc2.powla.ttl
+	    $> ./toRDF.sh PaulaImporter ../paula/data/pcc2_PAULA.zip > pcc2.powla.ttl
 
   > Note 1: CoNLL generation *for this particular dataset* can take >10 minutes. This is because its annotations are particularly complex. Ideally process one layer at a time.
 
@@ -64,15 +67,15 @@ notes:
 
 - Exmaralada archive to POWLA-RDF
 
-    $> ./toRDF.sh EXMARaLDAImporter samples/swc.zip > swc.powla.ttl
+	    $> ./toRDF.sh EXMARaLDAImporter samples/swc.zip > swc.powla.ttl
 
 - Exmaralada archive to CoNLL
 
-    $> ./toRDF.sh EXMARaLDAImporter samples/swc.zip -conll > swc.conll
+	    $> ./toRDF.sh EXMARaLDAImporter samples/swc.zip -conll > swc.conll
 
 - Excel archive to POWLA-RDF
 
-    $> ./toRDF.sh SpreadsheetImporter samples/tuniz.zip > tunic.powla.ttl
+	    $> ./toRDF.sh SpreadsheetImporter samples/tuniz.zip > tunic.powla.ttl
 
   > Note: Operational but Pepper conversion is relatively slow. In practice, consider exporting Excel to TSV and then using CoNLL-RDF, instead
 
@@ -80,7 +83,7 @@ notes:
 
 - Gate 7z archive to POWLA-RDF
 
-    $> ./toRDF.sh GateImporter samples/germanc.7z > germanc.powla.ttl
+	    $> ./toRDF.sh GateImporter samples/germanc.7z > germanc.powla.ttl
 
   > Note: tokens and segmentations ok, markables failed
 
@@ -88,19 +91,19 @@ notes:
 
 - TreeTagger to POWLA-RDF
 
-    $> ./toRDF.sh TreeTaggerImporter samples/maerchen.zip > treetagger.powla.ttl
+	    $> ./toRDF.sh TreeTaggerImporter samples/maerchen.zip > treetagger.powla.ttl
 
   > Note: This is a test for the TreeTaggerImporter, and it works as expected. In practice, however, we recommend to **not** use Pepper for that, but CoNLL-RDF, as Pepper/PAULA will loose sentence boundaries that then need to be inferred. To perform this inference over the complete corpus (or even just transitive search using `powla:nextTerm+`) is impractical as the search space can be enormous. In CoNLL-RDF, this is broken up into one axis within each sentence (`nif:nextWord`) and one over sentences (`nif:nextSentence`), which is *way* more performant.
 
 - Excel archive to CoNLL
 
-    $> ./toRDF.sh SpreadsheetImporter samples/tuniz.zip -conll > tunic.conll
+	    $> ./toRDF.sh SpreadsheetImporter samples/tuniz.zip -conll > tunic.conll
 
   > Note: This works, but is strongly discouraged, as traversing the `powla:nextTerm+` axis can be unperformant. Instead, consider to export TSV directly from your Spreadsheet software.
 
 - Gate 7z archive to CoNLL
 
-    $> ./toRDF.sh GateImporter samples/germanc.7z -conll > germanc.conll
+	    $> ./toRDF.sh GateImporter samples/germanc.7z -conll > germanc.conll
 
   > Note: in principle, this works (modulo the issues mentioned under the POWLA-RDF conversion)
   > However, a major drawback is that transitive search is always performed over the full document.
@@ -110,6 +113,6 @@ notes:
 
 - CoraXML to POWLA-RDF
 
-    $> ./toRDF.sh CoraXMLImporter samples/rem-coralled*xml > cora.powla.ttl
+	    $> ./toRDF.sh CoraXMLImporter samples/rem-coralled*xml > cora.powla.ttl
 
   > Note: At the moment, this fails because of [a Pepper issue}(https://github.com/korpling/pepper/issues/148)
