@@ -116,3 +116,9 @@ notes:
 	    $> ./toRDF.sh CoraXMLImporter samples/rem-coralled*xml > cora.powla.ttl
 
   > Note: At the moment, this fails because of [a Pepper issue}(https://github.com/korpling/pepper/issues/148)
+
+## Docker version
+
+Build with
+
+    $> docker build -f Dockerfile -t acoli/salt2rdf .
