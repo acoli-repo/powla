@@ -20,6 +20,23 @@ if args.dir==None:
 # aux
 ##############
 
+def geturi(baseURI,file):
+    if file.startswith(args.baseURI):
+        file=file[len(args.baseURI):]
+    reducible=True
+    while reducible:
+        reducible=False
+        if baseURI.endswith("/") or baseURI.endswith("#"):
+            baseURI=baseURI[0:-1]
+            reducible=True
+        if baseURI.split("/")[-1]==".":
+            baseURI="/".split(baseURI.split("/")[0:-1])
+            reducible=True
+        if baseURI.split("/")[-1]=="..":
+            baseURI="/".split(baseURI.split("/")[0:-2])
+            reducible=True
+    return baseURI+"/"+file
+
 def escape(string):
     """ escaping for turtle literals """
 
@@ -189,7 +206,7 @@ type2files={
 
 for file in files:
     if file.endswith("xml"):
-        with open(os.path.join(args.dir,file),"rb") as input:
+        with open(file,"rb") as input:
             type=None
             content=input.read()
             tmp=content.decode("utf-8")
@@ -267,7 +284,7 @@ for file in type2files["mark"] + type2files["struct"] + type2files["rel"] + type
         # special treatment for type=tok
         # note that we presuppose sequential order
 
-        uri=args.baseURI+file+"#"+mark.attrib["id"]
+        uri=geturi(args.baseURI,file)+"#"+mark.attrib["id"]
         if "{http://www.w3.org/1999/xlink}href" in mark.attrib:
             xlink=mark.attrib["{http://www.w3.org/1999/xlink}href"].strip()
 
@@ -288,6 +305,7 @@ for file in type2files["mark"] + type2files["struct"] + type2files["rel"] + type
             if len(targets)>0:
                 print("#",parse)
                 for p in targets:
+                    p=geturi(args.baseURI,p)
                     print(f"<{p}> powla:hasParent <{uri}> .")
                 print()
             if string:
@@ -299,11 +317,11 @@ for file in type2files["mark"] + type2files["struct"] + type2files["rel"] + type
             lastUri=uri
 
     for struct in tree.xpath("//struct"):
-        uri=args.baseURI+file+"#"+struct.attrib["id"]
+        uri=geturi(args.baseURI,file)+"#"+struct.attrib["id"]
         id=tree.xpath("//header/@paula_id")[0]
         type=tree.xpath("//structList[1]/@type")[0]
         if type=="annoSet":
-            print(f"<{args.baseURI+file}> a powla:Document .")
+            print(f"<{geturi(args.baseURI,file)}> a powla:Document .")
             print(f"<{uri}> a powla:Layer .")
             for rel in struct.xpath("./rel"):
                 if "{http://www.w3.org/1999/xlink}href" in rel.attrib:
@@ -316,7 +334,7 @@ for file in type2files["mark"] + type2files["struct"] + type2files["rel"] + type
                         reltree=etree.parse(os.path.join(args.dir,xlink))
                         ids=reltree.xpath("//*/@id")
                         for id in ids:
-                            print(f"<{os.path.join(args.baseURI,xlink)+'#'+id}> powla:hasLayer <{uri}> .")
+                            print(f"<{geturi(args.baseURI,xlink)+'#'+id}> powla:hasLayer <{uri}> .")
 
         else: # elif type in ["struct","const"]: # RST, TIGER
             print(f"<{uri}> a powla:Node .")
@@ -334,9 +352,11 @@ for file in type2files["mark"] + type2files["struct"] + type2files["rel"] + type
 
                     ruri="[]" # blank node
                     if "id" in rel.attrib:
-                        ruri="<"+os.path.join(args.baseURI,file)+"#"+rel.attrib["id"]+">"
+                        ruri="<"+geturi(args.baseURI,file)+"#"+rel.attrib["id"]+">"
 
                     for t in targets:
+                        t=geturi(args.baseURI,t)
+
                         print(f"<{t}> powla:hasParent <{uri}> . ")
                         print(f"{ruri} a powla:Relation; powla:hasSource <{t}>; powla:hasTarget <{uri}> ",end="")
                         if "type" in rel.attrib:
@@ -349,7 +369,7 @@ for file in type2files["mark"] + type2files["struct"] + type2files["rel"] + type
         #     sys.exit()
 
     for rel in tree.xpath("//relList/rel"):
-        uri=args.baseURI+file+"#"+rel.attrib["id"]
+        uri=geturi(args.baseURI,file)+"#"+rel.attrib["id"]
         id=tree.xpath("//header/@paula_id")[0]
         if "{http://www.w3.org/1999/xlink}href" in rel.attrib:
                     source=rel.attrib["{http://www.w3.org/1999/xlink}href"].strip()
@@ -359,14 +379,16 @@ for file in type2files["mark"] + type2files["struct"] + type2files["rel"] + type
                     if basetree!=None and xlink.startswith("#"): # untested
                         _,targets,_=decode_xlink(xlink,basetree,baseelems)
                     else: # assume that the document name is encoded
-                        targets=[os.path.join(args.baseURI,xlink)]
+                        targets=[geturi(args.baseURI,xlink)]
                     if basetree!=None and source.startswith("#"): # untested
                         _,sources,_=decode_xlink(source,basetree,baseelems)
                     else: # assume that the document name is encoded
-                        sources=[os.path.join(args.baseURI,source)]
+                        sources=[geturi(args.baseURI,source)]
 
                     for t in targets:
+                        t=geturi(args.baseURI,t)
                         for s in sources: # both should be singleton sets
+                            s=geturi(args.baseURI,s)
                             print(f"<{uri}> a powla:Relation; powla:hasSource <{s}>; powla:hasTarget <{t}> .")
     for feat in tree.xpath("//feat"):
         type=None # shouldn't be used
@@ -381,9 +403,9 @@ for file in type2files["mark"] + type2files["struct"] + type2files["rel"] + type
             if basetree!=None and xlink.startswith("#"): # untested
                         _,targets,_=decode_xlink(xlink,basetree,baseelems)
             elif xlink.startswith("#"): # this is the local document in PCC2 -- but this is not actually XML valid, because the other paths require the directory!
-                        targets=[os.path.join(args.baseURI,file)+xlink]
+                        targets=[geturi(args.baseURI,file)+xlink]
             else:
-                        targets=[os.path.join(args.baseURI,xlink)]
+                        targets=[geturi(args.baseURI,xlink)]
             for t in targets: # should be singleton
                 if "value" in feat.attrib:
                     # from type, we derive the property name
@@ -404,9 +426,9 @@ for file in type2files["mark"] + type2files["struct"] + type2files["rel"] + type
                     if basetree!=None and reltgt.startswith("#"): # untested
                                 _,reltargets,_=decode_xlink(reltgt,basetree,baseelems)
                     elif reltgt.startswith("#"): # this is the local document in PCC2 -- but this is not actually XML valid, because the other paths require the directory!
-                                reltargets=[os.path.join(args.baseURI,file)+reltgt]
+                                reltargets=[geturi(args.baseURI,file)+reltgt]
                     else:
-                                reltargets=[os.path.join(args.baseURI,reltgt)]
+                                reltargets=[geturi(args.baseURI,reltgt)]
                     if reltargets!=None:
                         for r in reltargets:
                             print(f"[] a powla:Relation; powla:hasSource <{t}>; powla:hasTarget <{r}>; paula:type \"{type}\" .")

@@ -56,22 +56,22 @@ while test $# -gt 0; do
       exit 2;
   fi
 
-  for dir in `cd $DIR; find | grep 'xml$' | sed s/'\/[^\/]*$'// | uniq | sort -u`; do
+  for dir in `find $DIR | grep 'xml$' | sed s/'\/[^\/]*$'// | uniq | sort -u`; do
     tmpDir=/tmp/`basename $dir`;
     while [ -e $tmpDir ]; do
       tmpDir=$tmpDir.`ls $tmpDir* | wc -l`
     done;
     mkdir -p $tmpDir;
     ttl=$tmpDir/tmp.ttl
-    echo '# '$DIR/$dir
+    echo '# '$dir
     echo
 
 #
 # PAULA 2 POWLA
 ###################
-    echo $DIR/$dir '->' $ttl 1>&2;
+    echo $dir '->' $ttl 1>&2;
     time (\
-      python3 $MYHOME/paula2rdf.py '/' $DIR/$dir | \
+      python3 $MYHOME/paula2rdf.py '/' $dir | \
       egrep -v '^#' | egrep '[^\s]' | \
       $UPDATE \
           $split \
