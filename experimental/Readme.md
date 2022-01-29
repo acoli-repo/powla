@@ -32,6 +32,7 @@ This *may* require adjustments to the ontology, hence, `owl/` contains an update
   - PRO: ELAN has a similar notion, but with different semantics: a sub-layer inherits the segmentation of its super-layer).
     - CON: No real-world sample data at hand, reconsider upon request.
   - decision: no action unless requested and/or real-world sample data is provided.
+- for performant querying, aggregation and transformation, we need more coarse-grained navigational segments equivalent to `nif:Sentence` in CoNLL-RDF. Suggestion: `powla:Segment` (this is to be preferred over `powla:Sentence` because it is technically motivated [limiting search space], not linguistically [beiing sentential]). A `nif:Sentence` as in CoNLL-RDF would then be `rdfs:subClassOf powla:Segment`.
 
 ## problems
 
