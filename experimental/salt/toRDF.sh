@@ -3,7 +3,7 @@
 # synopsis: toRDF PepperImporter source-dir-file-or-zip [-split] [-conll]
 # we write to stdout
 
-MYHOME=`dirname $0`
+MYHOME=`dirname $(realpath $0)`
 PEPPER=$MYHOME/pepper-wrapper
 PAULA=$MYHOME/../paula
 CONLL=$PAULA/conll-rdf

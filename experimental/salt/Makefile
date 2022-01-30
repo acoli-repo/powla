@@ -31,3 +31,11 @@ samples:
 	mv samples/tmp/gate/*7z samples/germanc.7z
 
 	rm -rf samples/tmp
+
+docker:
+	# for development
+	docker rmi -f acoli/salt2rdf
+	! docker rmi -f $(docker images -f "dangling=true" -q)
+
+	docker build -f Dockerfile -t acoli/salt2rdf .
+	docker run acoli/salt2rdf powla/experimental/salt/toRDF.sh
