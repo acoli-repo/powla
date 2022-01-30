@@ -4,6 +4,10 @@
 # we write to stdout
 
 MYHOME=`dirname $(realpath $0)`
+if echo $0 | grep -v '\/' >& /dev/null; then
+  MYHOME=`dirname $(whereis $0 | sed s/'\s'/'\n'/g | head -n 2 | tail -n 1)`
+fi;
+
 PEPPER=$MYHOME/pepper-wrapper
 PAULA=$MYHOME/../paula
 CONLL=$PAULA/conll-rdf
