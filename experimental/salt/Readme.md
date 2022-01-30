@@ -1,5 +1,4 @@
-
-# Salt
+# Salt wrapper
 
 Salt is the Java implementation of the PAULA Object Model as used both in the
 ANNIS corpus management system and in the Pepper converter suite (that is used
@@ -39,6 +38,24 @@ notes:
 - if called with `PaulaImporter`, it will not use Pepper, but process the data directly
 - performance is best when run on a single POWLA annoset, not on the full corpus
 
+## Docker version
+
+Build with
+
+    $> docker build -f Dockerfile -t acoli/salt2rdf .
+
+or with
+
+    $> make docker
+
+Example call (make sure to call `make samples` before):
+
+    $> docker run --mount type=bind,source=`realpath samples/`,target=/source acoli/salt2rdf toRDF ExmaraldaImporter source/swc.zip
+
+This is equivalent to the conventional
+
+    $> bash -e ./toRDF.sh ExmaraldaImporter samples/swc.zip
+
 ## Examples
 
 **Preparations**: To retrieve the data samples cited below, run `make` in the local directory.
@@ -69,6 +86,8 @@ notes:
 
 	    $> ./toRDF.sh EXMARaLDAImporter samples/swc.zip > swc.powla.ttl
 
+  > Note: check whether export is complete. *For this data*, there may be an issue with end of spans, but it is not clear so far whether this is an issue in Pepper, with PAULA processing or with CoNLL export..
+
 - Exmaralada archive to CoNLL
 
 	    $> ./toRDF.sh EXMARaLDAImporter samples/swc.zip -conll > swc.conll
@@ -79,6 +98,10 @@ notes:
 
   > Note: Operational but Pepper conversion is relatively slow. In practice, consider exporting Excel to TSV and then using CoNLL-RDF, instead
 
+- Exmaralda archive to POWLA-RDF, Docker version
+
+      $> docker run --mount type=bind,source=`realpath samples/`,target=/source acoli/salt2rdf toRDF ExmaraldaImporter source/swc.zip > swc.powla.ttl
+
 ### To be debugged
 
 - Gate 7z archive to POWLA-RDF
@@ -86,6 +109,12 @@ notes:
 	    $> ./toRDF.sh GateImporter samples/germanc.7z > germanc.powla.ttl
 
   > Note: tokens and segmentations ok, markables failed
+
+- Exmaralda archive to CoNLL, Docker version
+
+      $> docker run --mount type=bind,source=`realpath samples/`,target=/source acoli/salt2rdf toRDF ExmaraldaImporter source/swc.zip -conll > swc.conll
+
+  > Note: This works fine in the shell version, but not in the Docker version.
 
 ### Operational, but dispreferred
 
@@ -116,9 +145,3 @@ notes:
 	    $> ./toRDF.sh CoraXMLImporter samples/rem-coralled*xml > cora.powla.ttl
 
   > Note: At the moment, this fails because of [a Pepper issue}(https://github.com/korpling/pepper/issues/148)
-
-## Docker version
-
-Build with
-
-    $> docker build -f Dockerfile -t acoli/salt2rdf .

@@ -13,7 +13,6 @@ samples:
 	if [ ! -e samples/tmp/rem.zip ]; then wget https://www.laudatio-repository.org/download/format/20/36/1.0 -O samples/tmp/rem.zip; fi
 	unzip -j samples/tmp/rem.zip -d samples/tmp/coralled
 	unzip -j samples/tmp/coralled/*zip rem-corralled-20161222/M543-N1.xml rem-corralled-20161222/cora-xml.dtd -d samples/rem
-	mv samples/rem/M543-N1.xml samples/rem/M543-N1.xml
 
 	# Exmaralda
 	if [ ! -e samples/tmp/swc.zip ]; then wget https://www.laudatio-repository.org/download/format/6/15/1.0 -O samples/tmp/swc.zip; fi
@@ -32,10 +31,11 @@ samples:
 
 	rm -rf samples/tmp
 
-docker:
+docker_reset:
 	# for development
 	docker rmi -f acoli/salt2rdf
 	! docker rmi -f $(docker images -f "dangling=true" -q)
 
+docker:
 	docker build -f Dockerfile -t acoli/salt2rdf .
 	docker run acoli/salt2rdf powla/experimental/salt/toRDF.sh
