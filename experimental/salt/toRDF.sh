@@ -30,12 +30,12 @@ if [ ! -e $PEPPER ]; then
   git clone https://github.com/acoli-repo/pepper-wrapper;
   cd $PEPPER;
   make;
-fi;
+fi 1>&2
 
 if [ ! -e $CONLL ]; then
     cd $PAULA;
     make;
-fi;
+fi 1>&2
 
 # transform
 for src in $@; do
@@ -79,7 +79,7 @@ for src in $@; do
         paula=$paula.`ls $paula*|wc -l`
       done;
       mkdir -p $paula
-      bash -e $PEPPER/convert.sh $importer PaulaExporter $src $paula/;
+      bash -e $PEPPER/convert.sh $importer PaulaExporter $src $paula/ 1>&2;
       if find $paula | grep 'xml$' | egrep . >& /dev/null; then
         echo ok >&/dev/null;
       else
