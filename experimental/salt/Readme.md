@@ -138,6 +138,12 @@ This is equivalent to the conventional
   > However, a major drawback is that transitive search is always performed over the full document.
   > Many files failed with StackOverflow errors
 
+- TextImporter
+
+    $> ./toRDF.sh TextImporter Readme.md
+
+  > Note: This will not produce any "real" output, but this is *not a bug*, because the resulting file does not contain any annotation (such as, for example, tokenization). And without annotations, the resulting POWLA data is just an empty set of triples ... For processing plain text, it is strongly recommended to perform tokenization first. For whitespace tokenization, this can be achieved with `sed -e s/'$'/'\n\n'/g -e s/'\s\s*'/'\n'/g` Readme.md > Readme.tok`. The resulting file is a (very simplistic) CoNLL-TSV format and can be processed with CoNLL-RDF.
+
 ### Not operational because of Pepper issues
 
 - CoraXML to POWLA-RDF
