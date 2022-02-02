@@ -26,12 +26,12 @@ This *may* require adjustments to the ontology, hence, `owl/` contains an update
 - hierarchically organized layers?
   - we could introduce `powla:subLayer`
   - PRO: these occur in PAULA annotations, e.g., the `mmax` layer of PCC2, in the distinction between layers and files. In the available data, this distinction is limited to a single layer with multiple files.
-    - CON: they are not encoded in the format, but indirectly via the file system. The (implicit!) PAULA distinction is currently preserved as (implicit!) information in POWLA URIs.
+    - CON: they are not encoded in the format, but indirectly via the file system. The (implicit!) PAULA distinction is currently preserved as (implicit!) information in POWLA URIs, so there is no information loss in the current modelling.
   - PRO: The formalism for PAULA annosets allows to express hierarchies over multiple layers.
     - CON: No sample data at hand, reconsider upon request.
   - PRO: ELAN has a similar notion, but with different semantics: a sub-layer inherits the segmentation of its super-layer).
     - CON: No real-world sample data at hand, reconsider upon request.
-  - decision: no action unless requested and/or real-world sample data is provided.
+  - ACTION: none; no action unless requested and/or real-world sample data is provided.
 - for performant querying, aggregation and transformation, we need more coarse-grained navigational segments equivalent to `nif:Sentence` in CoNLL-RDF. Suggestion: `powla:Segment` (this is to be preferred over `powla:Sentence` because it is technically motivated [limiting search space], not linguistically [beiing sentential]). A `nif:Sentence` as in CoNLL-RDF would then be `rdfs:subClassOf powla:Segment`.
 
 ## problems
@@ -48,3 +48,7 @@ There are two possible solutions:
 - splitting the input, e.g., into `nif:Sentence`s, and querying for order locally only (that would be compatible with current CoNLL-RDF practices)
 
 Note that such a secondary split does not have to coincide with sentence breaks on other layers (e.g., tree annotations). (Unlike CoNLL, there are no structural constraints.) However, a CoNLL export may contain unexpected information then.
+
+As a possible way out, we can create different POWLA profiles and converters between them, say, a document profile (roughly equivalent with CoNLL-RDF, no obligatory corpus overhead, sequential order by properties), and a corpus profile (roughly equivalent with relANNIS, using an indexing scheme to encode sequential organization).
+
+Yet another possibility is a splitter functionality which inserts segment boundaries for tokens with specific string value. This would be equivalent with `nif:Sentence`, but to stay agnostic about the linguistic interpretation of these structures, we should better call them `nif:Segment`. The order of `nif:Segment`s can be encoded with `powla:next`, as these should be top-level elements in their respective layer.

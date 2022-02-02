@@ -1,0 +1,165 @@
+# created with https://editor.swagger.io/
+
+swagger: "2.0"
+info:
+  description: "Fintan Docker integration experiment; TODO: update to openapi: 3.0.0, also cf. https://swagger.io/docs/specification/2-0/file-upload/"
+  version: "1.0.0"
+  title: "PepperReader"
+  termsOfService: "http://swagger.io/terms/ [to be replaced]"
+  contact:
+    email: "christian.chiarcos@gmail.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "to.be.determin.ed"
+basePath: "/data"
+tags:
+- name: "corpus"
+  description: "corpus data uploaded from file or blob, and processed"
+  externalDocs:
+    description: "to be updated"
+    url: "http://swagger.io"
+schemes:
+- "https"
+- "http"
+paths:
+  /resource/{id}:
+    parameters:
+      - name: "id"
+        in: "path"
+        description: "identifier as used for POST request"
+        required: true
+        type: "string"
+    get:
+      tags:
+      - "corpus"
+      summary: "Get processed data (full or partial)"
+      description: "result (full or partial)"
+      operationId: "getResponse"
+      produces:
+      - "application/xml"
+      - "application/json"
+      responses:
+        "202":
+         description: "accepted: processing not concluded yet"
+        "206":
+          description: "partial result, there is more to read"
+          schema:
+            $ref: "#/definitions/Response"
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Response"
+        "400":
+          description: "Invalid status value"
+        "208":
+          description: "already reported, nothing more to read"
+    delete:
+      tags:
+      - "corpus"
+      summary: "Deletes a resource"
+      description: ""
+      operationId: "delete"
+      produces:
+      - "application/xml"
+      - "application/json"
+      responses:
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "ID not found"
+  /blob/{id}:
+    parameters:
+      - name: "id"
+        in: "path"
+        description: "resource/data ID"
+        required: true
+        type: "string"
+      - name: "importer"
+        in: "formData"
+        description: "PepperImporter"
+        required: true
+        type: string
+    post:
+      tags:
+      - "corpus"
+      summary: "Send raw data"
+      description: "resource/data ID"
+      operationId: "addData"
+      responses:
+        "405":
+          description: "Invalid input"
+        "409":
+          description: "conflict (output queue not empty)"
+        "408":
+          description: "timeout"
+        "413":
+          description: "payload too large (hitting a processing limit)"
+      parameters:
+      - in: "formData"
+        name: "blob"
+        type: "string"
+        description: "Data to be processed"
+        required: true
+      consumes:
+        - "application/x-www-form-urlencoded"
+  /file/{id}:
+    parameters:
+      - name: "id"
+        in: "path"
+        description: "resource ID"
+        required: true
+        type: "string"
+      - name: "importer"
+        in: "formData"
+        description: "PepperImporter"
+        required: true
+        type: string
+    post:
+      tags:
+      - "corpus"
+      summary: "Upload a corpus file"
+      description: "path to a local file"
+      operationId: "addFile"
+      responses:
+        "405":
+          description: "Invalid input"
+        "409":
+          description: "conflict (output queue not empty)"
+        "408":
+          description: "timeout"
+        "413":
+          description: "payload too large (hitting a processing limit)"
+      consumes:
+      - "multipart/form-data"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "formData"
+        name: "file"
+        type: "file"
+        description: "File to upload"
+        required: true
+definitions:
+  Response:
+    type: "object"
+    required:
+    - "format"
+    - "value"
+    properties:
+      format:
+        type: "string"
+        description: "response format"
+        example: "CoNLL-RDF"
+        enum:
+        - "POWLA-RDF"
+        - "CoNLL-RDF"
+        - "CoNLL-TSV"
+      value:
+        type: "string"
+        example: "PREFIX : <#>\n:s1_1 a nif:Word; conll:WORD 'test'."
+
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"

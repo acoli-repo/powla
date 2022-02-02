@@ -37,6 +37,9 @@ notes:
 - tested on Ubuntu 20.04L
 - if called with `PaulaImporter`, it will not use Pepper, but process the data directly
 - performance is best when run on a single POWLA annoset, not on the full corpus
+- as we only call Pepper converters, we inherit their limitations. This includes constraints about the structure of paths (for PaulaImporter), idiosyncratic naming constraints (e.g., TextImporter will fail if the file ending is not `*.txt`), actual bugs (CoraXMLImporter fails because it expects the CoraXML DTD to be bundled with Pepper, which it isn't). These issues are normally not documented here.
+- our PAULA converter was developed from scratch and bottom-up, using official sample data as a basis. We do not guarantee to cover the full extent of the PAULA XML language in its various versions. In particular, we do not support language features that occur in DTD or documentation but not in the data we looked into. Furthermore, there are bugs on our own. In particular, our handling of XPointers is not fully equivalent with that of Pepper.
+- Our support of XPointer is incomplete. Also, we do not implement XPointer proper, but both the subset of XPointer constructions observed in PAULA and the PAULA-specific extensions and variations that are not part of the XPointer draft spec
 
 ## Docker version
 
