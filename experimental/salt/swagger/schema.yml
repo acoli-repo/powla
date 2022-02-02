@@ -42,6 +42,8 @@ paths:
       responses:
         "202":
          description: "accepted: processing not concluded yet"
+         schema:
+            $ref: "#/definitions/Response"
         "206":
           description: "partial result, there is more to read"
           schema:
@@ -87,6 +89,10 @@ paths:
       description: "resource/data ID"
       operationId: "addData"
       responses:
+        "200":
+          description: "ok"
+          schema:
+            $ref: "#/definitions/Response"
         "405":
           description: "Invalid input"
         "409":
@@ -122,6 +128,10 @@ paths:
       description: "path to a local file"
       operationId: "addFile"
       responses:
+        "200":
+          description: "ok"
+          schema:
+            $ref: "#/definitions/Response"
         "405":
           description: "Invalid input"
         "409":

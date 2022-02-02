@@ -22,7 +22,7 @@ def add_data(id, importer, blob):  # noqa: E501
     :param blob: Data to be processed
     :type blob: str
 
-    :rtype: None
+    :rtype: Response
     """
     return blob
 
@@ -39,7 +39,7 @@ def add_file(id, importer, file):  # noqa: E501
     :param file: File to upload
     :type file: werkzeug.datastructures.FileStorage
 
-    :rtype: None
+    :rtype: Response
     """
 
     tmpfile="/tmp/salt/"+id+"/"+file.filename
