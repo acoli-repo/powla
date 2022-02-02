@@ -1,5 +1,13 @@
 # OpenAPI-compliant container for Pepper/SALT-based conversion
 
+Idea is to
+
+- build a swagger server to run `toRDF.sh` (done: Python server under https://github.com/acoli-repo/powla/tree/main/experimental/salt/swagger/python-server, run with `make start` in the directory)
+- build a Java client to send files and to spell out responses (CoNLL, CoNLL-RDF, POWLA) to stdout (begun: https://github.com/acoli-repo/powla/blob/main/experimental/salt/swagger/java-client/Client.java, not communicating with server yet; run with `make test` in the directory)
+- process the output further using CoNLLStreamExtractor or CoNLLRDFUpdater (not tested yet)
+
+## working notes
+
 (HTTP codes from https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#1xx_informational_response)
 
 REST ops:
