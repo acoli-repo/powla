@@ -3,8 +3,23 @@
 Idea is to
 
 - build a swagger server to run `toRDF.sh` (done: Python server under https://github.com/acoli-repo/powla/tree/main/experimental/salt/swagger/python-server, run with `make start` in the directory)
-- build a Java client to send files and to spell out responses (CoNLL, CoNLL-RDF, POWLA) to stdout (begun: https://github.com/acoli-repo/powla/blob/main/experimental/salt/swagger/java-client/Client.java, not communicating with server yet; run with `make test` in the directory)
+- build a Java client to send files and to spell out responses (CoNLL, CoNLL-RDF, POWLA) to stdout (https://github.com/acoli-repo/powla/blob/main/experimental/salt/swagger/java-client/Client.java, not communicating with server yet; run with `make test` in the directory)
 - process the output further using CoNLLStreamExtractor or CoNLLRDFUpdater (not tested yet)
+
+## Usage
+
+- start the Docker container
+
+    $> make -C python-server start
+
+- try the Java client
+
+    $> make -C java-client test
+
+  See `java-client/Makefile` for the exact call.
+
+  Note 1: Draft of a wrapper that connects with or starts a Docker container is in `java-client/Wrapper.java`, but not operational yet.
+  Note 2: Such a wrapper should be properly implemented using [Docker-Java](https://github.com/docker-java/docker-java).
 
 ## working notes
 
