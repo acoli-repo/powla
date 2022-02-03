@@ -24,7 +24,7 @@ def add_data(id, importer, blob):  # noqa: E501
 
     :rtype: Response
     """
-    return blob
+    return Response(value=blob) # still unprocessed ... # TODO: write to file and then call add_file
 
 
 def add_file(id, importer, file):  # noqa: E501
@@ -62,7 +62,7 @@ def add_file(id, importer, file):  # noqa: E501
     if len(result)==0:
         result="ERROR LOG:\n"+stderr.decode("utf-8").strip()
 
-    return result
+    return Response(format="POWLA-RDF", value=result)
 
     # content=file.stream.readlines()
     # content=[ line.decode("utf-8",errors="ignore") for line in content ]
