@@ -43,13 +43,14 @@ public class Client {
             System.err.println("processing "+file);
             try {
                 //apiInstance.addFile(id, importer, new File(file));
-                ApiResponse response = apiInstance.addFileWithHttpInfo​(id, importer, new File(file));
+                ApiResponse apiresponse = apiInstance.addFileWithHttpInfo​(id, importer, new File(file));
                 System.out.println("# doc: "+file);
-                System.out.println("# response: "+response.getStatusCode());
-                System.out.println("# headers: "+response.getHeaders());
-//ApiResponse response = client.execute(call, Class.forName("java.lang.String"));
-                System.out.println(response.getData());
-                // if (response.getData() != null) {
+                System.out.println("# response: "+apiresponse.getStatusCode());
+                System.out.println("# headers: "+apiresponse.getHeaders());
+
+                Response response= (Response)apiresponse.getData();
+                System.out.println("# format: "+response.getFormat());
+                System.out.println(response.getValue());
                 //   JSonValue errorMessageValue = (JSonValue) response.getData().get("error");
                 //   if (errorMessageValue != null) {
                 //     errorMessage = (String) errorMessageValue.getValue();
