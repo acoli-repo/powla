@@ -19,6 +19,8 @@ def add_data(id, importer, blob):  # noqa: E501
     :type id: str
     :param importer: PepperImporter
     :type importer: str
+    :param format: target format, one of CoNLL-RDF, CoNLL or POWLA
+    :type format: str
     :param blob: Data to be processed
     :type blob: str
 
@@ -36,6 +38,8 @@ def add_file(id, importer, file):  # noqa: E501
     :type id: str
     :param importer: PepperImporter
     :type importer: str
+    :param format: target format, one of CoNLL-RDF, CoNLL or POWLA
+    :type format: str
     :param file: File to upload
     :type file: werkzeug.datastructures.FileStorage
 

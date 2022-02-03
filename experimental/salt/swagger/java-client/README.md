@@ -2,7 +2,7 @@
 
 PepperReader
 - API version: 1.0.0
-  - Build date: 2022-02-02T23:56:58.269Z
+  - Build date: 2022-02-03T01:18:13.970Z
 
 Fintan Docker integration experiment; TODO: update to openapi: 3.0.0, also cf. https://swagger.io/docs/specification/2-0/file-upload/
 
@@ -87,9 +87,10 @@ public class CorpusApiExample {
         CorpusApi apiInstance = new CorpusApi();
         String id = "id_example"; // String | resource/data ID
         String importer = "importer_example"; // String | PepperImporter
+        String format = "format_example"; // String | target format, one of CoNLL-RDF, CoNLL or POWLA
         String blob = "blob_example"; // String | Data to be processed
         try {
-            Response result = apiInstance.addData(id, importer, blob);
+            Response result = apiInstance.addData(id, importer, format, blob);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling CorpusApi#addData");

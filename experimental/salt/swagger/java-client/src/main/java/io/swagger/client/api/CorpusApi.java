@@ -59,13 +59,14 @@ public class CorpusApi {
      * Build call for addData
      * @param id resource/data ID (required)
      * @param importer PepperImporter (required)
+     * @param format target format, one of CoNLL-RDF, CoNLL or POWLA (required)
      * @param blob Data to be processed (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call addDataCall(String id, String importer, String blob, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call addDataCall(String id, String importer, String format, String blob, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -80,6 +81,8 @@ public class CorpusApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         if (importer != null)
         localVarFormParams.put("importer", importer);
+        if (format != null)
+        localVarFormParams.put("format", format);
         if (blob != null)
         localVarFormParams.put("blob", blob);
 
@@ -112,7 +115,7 @@ public class CorpusApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call addDataValidateBeforeCall(String id, String importer, String blob, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call addDataValidateBeforeCall(String id, String importer, String format, String blob, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -124,13 +127,18 @@ public class CorpusApi {
             throw new ApiException("Missing the required parameter 'importer' when calling addData(Async)");
         }
         
+        // verify the required parameter 'format' is set
+        if (format == null) {
+            throw new ApiException("Missing the required parameter 'format' when calling addData(Async)");
+        }
+        
         // verify the required parameter 'blob' is set
         if (blob == null) {
             throw new ApiException("Missing the required parameter 'blob' when calling addData(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = addDataCall(id, importer, blob, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = addDataCall(id, importer, format, blob, progressListener, progressRequestListener);
         return call;
 
     }
@@ -140,12 +148,13 @@ public class CorpusApi {
      * resource/data ID
      * @param id resource/data ID (required)
      * @param importer PepperImporter (required)
+     * @param format target format, one of CoNLL-RDF, CoNLL or POWLA (required)
      * @param blob Data to be processed (required)
      * @return Response
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Response addData(String id, String importer, String blob) throws ApiException {
-        ApiResponse<Response> resp = addDataWithHttpInfo(id, importer, blob);
+    public Response addData(String id, String importer, String format, String blob) throws ApiException {
+        ApiResponse<Response> resp = addDataWithHttpInfo(id, importer, format, blob);
         return resp.getData();
     }
 
@@ -154,12 +163,13 @@ public class CorpusApi {
      * resource/data ID
      * @param id resource/data ID (required)
      * @param importer PepperImporter (required)
+     * @param format target format, one of CoNLL-RDF, CoNLL or POWLA (required)
      * @param blob Data to be processed (required)
      * @return ApiResponse&lt;Response&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Response> addDataWithHttpInfo(String id, String importer, String blob) throws ApiException {
-        com.squareup.okhttp.Call call = addDataValidateBeforeCall(id, importer, blob, null, null);
+    public ApiResponse<Response> addDataWithHttpInfo(String id, String importer, String format, String blob) throws ApiException {
+        com.squareup.okhttp.Call call = addDataValidateBeforeCall(id, importer, format, blob, null, null);
         Type localVarReturnType = new TypeToken<Response>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -169,12 +179,13 @@ public class CorpusApi {
      * resource/data ID
      * @param id resource/data ID (required)
      * @param importer PepperImporter (required)
+     * @param format target format, one of CoNLL-RDF, CoNLL or POWLA (required)
      * @param blob Data to be processed (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call addDataAsync(String id, String importer, String blob, final ApiCallback<Response> callback) throws ApiException {
+    public com.squareup.okhttp.Call addDataAsync(String id, String importer, String format, String blob, final ApiCallback<Response> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -195,7 +206,7 @@ public class CorpusApi {
             };
         }
 
-        com.squareup.okhttp.Call call = addDataValidateBeforeCall(id, importer, blob, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = addDataValidateBeforeCall(id, importer, format, blob, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Response>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -204,13 +215,14 @@ public class CorpusApi {
      * Build call for addFile
      * @param id resource ID (required)
      * @param importer PepperImporter (required)
+     * @param format target format, one of CoNLL-RDF, CoNLL or POWLA (required)
      * @param file File to upload (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call addFileCall(String id, String importer, File file, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call addFileCall(String id, String importer, String format, File file, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -225,6 +237,8 @@ public class CorpusApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         if (importer != null)
         localVarFormParams.put("importer", importer);
+        if (format != null)
+        localVarFormParams.put("format", format);
         if (file != null)
         localVarFormParams.put("file", file);
 
@@ -257,7 +271,7 @@ public class CorpusApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call addFileValidateBeforeCall(String id, String importer, File file, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call addFileValidateBeforeCall(String id, String importer, String format, File file, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -269,13 +283,18 @@ public class CorpusApi {
             throw new ApiException("Missing the required parameter 'importer' when calling addFile(Async)");
         }
         
+        // verify the required parameter 'format' is set
+        if (format == null) {
+            throw new ApiException("Missing the required parameter 'format' when calling addFile(Async)");
+        }
+        
         // verify the required parameter 'file' is set
         if (file == null) {
             throw new ApiException("Missing the required parameter 'file' when calling addFile(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = addFileCall(id, importer, file, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = addFileCall(id, importer, format, file, progressListener, progressRequestListener);
         return call;
 
     }
@@ -285,12 +304,13 @@ public class CorpusApi {
      * path to a local file
      * @param id resource ID (required)
      * @param importer PepperImporter (required)
+     * @param format target format, one of CoNLL-RDF, CoNLL or POWLA (required)
      * @param file File to upload (required)
      * @return Response
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Response addFile(String id, String importer, File file) throws ApiException {
-        ApiResponse<Response> resp = addFileWithHttpInfo(id, importer, file);
+    public Response addFile(String id, String importer, String format, File file) throws ApiException {
+        ApiResponse<Response> resp = addFileWithHttpInfo(id, importer, format, file);
         return resp.getData();
     }
 
@@ -299,12 +319,13 @@ public class CorpusApi {
      * path to a local file
      * @param id resource ID (required)
      * @param importer PepperImporter (required)
+     * @param format target format, one of CoNLL-RDF, CoNLL or POWLA (required)
      * @param file File to upload (required)
      * @return ApiResponse&lt;Response&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Response> addFileWithHttpInfo(String id, String importer, File file) throws ApiException {
-        com.squareup.okhttp.Call call = addFileValidateBeforeCall(id, importer, file, null, null);
+    public ApiResponse<Response> addFileWithHttpInfo(String id, String importer, String format, File file) throws ApiException {
+        com.squareup.okhttp.Call call = addFileValidateBeforeCall(id, importer, format, file, null, null);
         Type localVarReturnType = new TypeToken<Response>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -314,12 +335,13 @@ public class CorpusApi {
      * path to a local file
      * @param id resource ID (required)
      * @param importer PepperImporter (required)
+     * @param format target format, one of CoNLL-RDF, CoNLL or POWLA (required)
      * @param file File to upload (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call addFileAsync(String id, String importer, File file, final ApiCallback<Response> callback) throws ApiException {
+    public com.squareup.okhttp.Call addFileAsync(String id, String importer, String format, File file, final ApiCallback<Response> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -340,7 +362,7 @@ public class CorpusApi {
             };
         }
 
-        com.squareup.okhttp.Call call = addFileValidateBeforeCall(id, importer, file, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = addFileValidateBeforeCall(id, importer, format, file, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Response>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

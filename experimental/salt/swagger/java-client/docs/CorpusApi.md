@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 <a name="addData"></a>
 # **addData**
-> Response addData(id, importer, blob)
+> Response addData(id, importer, format, blob)
 
 Send raw data
 
@@ -28,9 +28,10 @@ resource/data ID
 CorpusApi apiInstance = new CorpusApi();
 String id = "id_example"; // String | resource/data ID
 String importer = "importer_example"; // String | PepperImporter
+String format = "format_example"; // String | target format, one of CoNLL-RDF, CoNLL or POWLA
 String blob = "blob_example"; // String | Data to be processed
 try {
-    Response result = apiInstance.addData(id, importer, blob);
+    Response result = apiInstance.addData(id, importer, format, blob);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling CorpusApi#addData");
@@ -44,6 +45,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| resource/data ID |
  **importer** | **String**| PepperImporter |
+ **format** | **String**| target format, one of CoNLL-RDF, CoNLL or POWLA |
  **blob** | **String**| Data to be processed |
 
 ### Return type
@@ -61,7 +63,7 @@ No authorization required
 
 <a name="addFile"></a>
 # **addFile**
-> Response addFile(id, importer, file)
+> Response addFile(id, importer, format, file)
 
 Upload a corpus file
 
@@ -77,9 +79,10 @@ path to a local file
 CorpusApi apiInstance = new CorpusApi();
 String id = "id_example"; // String | resource ID
 String importer = "importer_example"; // String | PepperImporter
+String format = "format_example"; // String | target format, one of CoNLL-RDF, CoNLL or POWLA
 File file = new File("/path/to/file.txt"); // File | File to upload
 try {
-    Response result = apiInstance.addFile(id, importer, file);
+    Response result = apiInstance.addFile(id, importer, format, file);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling CorpusApi#addFile");
@@ -93,6 +96,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| resource ID |
  **importer** | **String**| PepperImporter |
+ **format** | **String**| target format, one of CoNLL-RDF, CoNLL or POWLA |
  **file** | **File**| File to upload |
 
 ### Return type

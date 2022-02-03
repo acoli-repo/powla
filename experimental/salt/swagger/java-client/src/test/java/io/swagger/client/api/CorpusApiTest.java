@@ -45,8 +45,9 @@ public class CorpusApiTest {
     public void addDataTest() throws Exception {
         String id = null;
         String importer = null;
+        String format = null;
         String blob = null;
-        Response response = api.addData(id, importer, blob);
+        Response response = api.addData(id, importer, format, blob);
 
         // TODO: test validations
     }
@@ -63,8 +64,9 @@ public class CorpusApiTest {
     public void addFileTest() throws Exception {
         String id = null;
         String importer = null;
+        String format = null;
         File file = null;
-        Response response = api.addFile(id, importer, file);
+        Response response = api.addFile(id, importer, format, file);
 
         // TODO: test validations
     }

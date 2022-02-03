@@ -20,20 +20,24 @@ public class Client {
 
       String basePath = apiInstance.getApiClient().getBasePath();
 
-      System.err.println("synopsis: Client [-base BasePath] ID PepperImporter FILE[1..n]\n"+
+      System.err.println("synopsis: Client [-base BasePath] [-o format] ID PepperImporter FILE[1..n]\n"+
           "\tBasePath       base path, e.g., http://localhost:8080/data/, defaults to "+basePath+"\n"+
+          "\tformat         output format, e.g., POWLA, POWLA-RDF, CoNLL-RDF, or CoNLL, defaults to POWLA\n"+
           "\tID             string, used for internal resource identification\n"+
           "\tPepperImporter one Pepper importer, e.g., ExmaraldaImporter, PaulaImporter, etc.\n"+
           "\tFILEi          argument file(s), should conform to requirements of the selected PepperImporter");
 
         String id=null;
         String importer = null;
+        String format="POWLA";
 
         for(int i = 0; i<args.length; i++) {
           if(args[i].equalsIgnoreCase("-base")) {
             basePath=args[++i];
             ac.setBasePath(basePath);
             apiInstance.setApiClient(ac);
+          } else if(args[i].equalsIgnoreCase("-o")) {
+            format=args[++i];
           } else if(id==null) {
             id=args[i];
           } else if(importer==null) {
@@ -43,7 +47,7 @@ public class Client {
             System.err.println("processing "+file);
             try {
                 //apiInstance.addFile(id, importer, new File(file));
-                ApiResponse apiresponse = apiInstance.addFileWithHttpInfo​(id, importer, new File(file));
+                ApiResponse apiresponse = apiInstance.addFileWithHttpInfo​(id, importer, format, new File(file));
                 System.out.println("# doc: "+file);
                 System.out.println("# response: "+apiresponse.getStatusCode());
                 System.out.println("# headers: "+apiresponse.getHeaders());

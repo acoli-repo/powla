@@ -46,6 +46,8 @@ paths:
             $ref: "#/definitions/Response"
         "202":
           description: "accepted: processing not concluded yet"
+          schema:
+            $ref: "#/definitions/Response"
         "206":
           description: "partial result, there is more to read"
           schema:
@@ -96,12 +98,21 @@ paths:
         description: "PepperImporter"
         required: true
         type: "string"
+      - name: "format"
+        in: "formData"
+        description: "target format, one of CoNLL-RDF, CoNLL or POWLA"
+        required: true
+        type: "string"
       - name: "blob"
         in: "formData"
         description: "Data to be processed"
         required: true
         type: "string"
       responses:
+        "200":
+          description: "ok"
+          schema:
+            $ref: "#/definitions/Response"
         "405":
           description: "Invalid input"
         "408":
@@ -134,12 +145,21 @@ paths:
         description: "PepperImporter"
         required: true
         type: "string"
+      - name: "format"
+        in: "formData"
+        description: "target format, one of CoNLL-RDF, CoNLL or POWLA"
+        required: true
+        type: "string"
       - name: "file"
         in: "formData"
         description: "File to upload"
         required: true
         type: "file"
       responses:
+        "200":
+          description: "ok"
+          schema:
+            $ref: "#/definitions/Response"
         "405":
           description: "Invalid input"
         "408":
