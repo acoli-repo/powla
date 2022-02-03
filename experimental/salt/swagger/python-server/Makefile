@@ -11,8 +11,8 @@ start:
 		# curl -X 'POST' 'http://172.17.0.2:8080/data/file/txt1' -F 'file=@'`realpath README.md` -F 'importer=TextImporter'
 
 test: start
-		curl -X 'POST' 'http://172.17.0.2:8080/data/file/ex1' -F 'file=@'`realpath ../../samples/swc.zip` -F 'importer=ExmaraldaImporter'
+		curl -X 'POST' 'http://172.17.0.2:8080/data/file/ex1' -F 'file=@'`realpath ../../samples/swc.zip` -F "format=POWLA" -F 'importer=ExmaraldaImporter'
 
 clean:
 		docker rmi -f acoli/tordf
-		!docker rmi -f $$(docker images -f "dangling=true" -q)
+		- docker rmi -f $$(docker images -f "dangling=true" -q)

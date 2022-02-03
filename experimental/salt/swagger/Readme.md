@@ -18,7 +18,7 @@ Idea is to
 
   See `java-client/Makefile` for the exact call.
 
-  At the moment, this will return POWLA-RDF in Turtle.
+  At the moment, this will return POWLA-RDF in Turtle. (CoNLL output is not operational, yet.)
 
   Note 1: Draft of a wrapper that connects with or starts a Docker container is in `java-client/Wrapper.java`, but not operational yet.
   Note 2: Such a wrapper should be properly implemented using [Docker-Java](https://github.com/docker-java/docker-java).

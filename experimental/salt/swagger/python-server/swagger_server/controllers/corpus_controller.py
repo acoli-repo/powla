@@ -10,7 +10,7 @@ from swagger_server import util
 # can we get something like a global variable?
 id2tmpfile={}
 
-def add_data(id, importer, blob):  # noqa: E501
+def add_data(id, importer, format, blob):  # noqa: E501
     """Send raw data
 
     resource/data ID # noqa: E501
@@ -29,7 +29,7 @@ def add_data(id, importer, blob):  # noqa: E501
     return Response(value=blob) # still unprocessed ... # TODO: write to file and then call add_file
 
 
-def add_file(id, importer, file):  # noqa: E501
+def add_file(id, importer, format, file):  # noqa: E501
     """Upload a corpus file
 
     path to a local file # noqa: E501
@@ -53,10 +53,15 @@ def add_file(id, importer, file):  # noqa: E501
     if not os.path.exists(tmpfile):
             id2tmpfile[id]=tmpfile
             file.save(tmpfile)
+
+    args=["toRDF",importer,tmpfile]
+    if format=="CoNLL":
+        args.add("-conll")
+
     #         return str(id2tmpfile)
     #
     # return "it's me: "+"Popen "+file.name
-    proc = subprocess.Popen(["toRDF",importer,tmpfile], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    proc = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     # proc = subprocess.Popen(["ls","-l",tmpfile], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     stdout, stderr = proc.communicate()
     # return "when calling toRDF "+importer+" "+str(tmpfile)+":\n"+str(stdout)+"\nERR: "+"\nERR: ".join(str(stderr).split("\n"))
@@ -66,7 +71,7 @@ def add_file(id, importer, file):  # noqa: E501
     if len(result)==0:
         result="ERROR LOG:\n"+stderr.decode("utf-8").strip()
 
-    return Response(format="POWLA-RDF", value=result)
+    return Response(value=result, format=format)
 
     # content=file.stream.readlines()
     # content=[ line.decode("utf-8",errors="ignore") for line in content ]
