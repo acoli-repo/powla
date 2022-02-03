@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 <a name="addData"></a>
 # **addData**
-> addData(id, importer, blob)
+> Response addData(id, importer, blob)
 
 Send raw data
 
@@ -30,7 +30,8 @@ String id = "id_example"; // String | resource/data ID
 String importer = "importer_example"; // String | PepperImporter
 String blob = "blob_example"; // String | Data to be processed
 try {
-    apiInstance.addData(id, importer, blob);
+    Response result = apiInstance.addData(id, importer, blob);
+    System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling CorpusApi#addData");
     e.printStackTrace();
@@ -47,7 +48,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-null (empty response body)
+[**Response**](Response.md)
 
 ### Authorization
 
@@ -60,7 +61,7 @@ No authorization required
 
 <a name="addFile"></a>
 # **addFile**
-> addFile(id, importer, file)
+> Response addFile(id, importer, file)
 
 Upload a corpus file
 
@@ -78,7 +79,8 @@ String id = "id_example"; // String | resource ID
 String importer = "importer_example"; // String | PepperImporter
 File file = new File("/path/to/file.txt"); // File | File to upload
 try {
-    apiInstance.addFile(id, importer, file);
+    Response result = apiInstance.addFile(id, importer, file);
+    System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling CorpusApi#addFile");
     e.printStackTrace();
@@ -95,7 +97,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-null (empty response body)
+[**Response**](Response.md)
 
 ### Authorization
 
