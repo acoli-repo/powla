@@ -45,6 +45,7 @@ RUN git clone https://github.com/acoli-repo/pepper-wrapper && \
 # clone CoNLL-RDF
 RUN git clone https://github.com/acoli-repo/conll-rdf && \
     cd conll-rdf &&\
+    ./compile.sh &&\
     echo | ./run.sh CoNLLStreamExtractor '#' ID
 
 # clone and configure powla
